@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ModBlocks {
+public class MTBlocks {
 	
 	
 	
@@ -25,7 +25,6 @@ public class ModBlocks {
 	}
 	
 	public static void registerBlock (Block block) {
-//		block.setCreativeTab(Alloys.alloys);
 		GameRegistry.register(block);
 		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 		Utils.getLogger().info("Registered Block: " + block.getUnlocalizedName().substring(5));

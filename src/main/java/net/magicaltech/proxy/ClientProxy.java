@@ -1,14 +1,14 @@
 package net.magicaltech.proxy;
 
-import net.magicaltech.init.ModBlocks;
-import net.magicaltech.init.ModItems;
+import net.magicaltech.init.MTBlocks;
+import net.magicaltech.init.MTItems;
 
 public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void registerRenders() {
-		ModItems.registerRenders();
-		ModBlocks.registerRenders();
+		MTItems.registerRenders();
+		MTBlocks.registerRenders();
 	}
 
 }

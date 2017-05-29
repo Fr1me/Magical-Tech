@@ -1,5 +1,7 @@
 package net.magicaltech;
 
+import net.magicaltech.init.MTBlocks;
+import net.magicaltech.init.MTItems;
 import net.magicaltech.proxy.CommonProxy;
 import net.magicaltech.util.Utils;
 import net.minecraftforge.fml.common.Mod;
@@ -22,7 +24,8 @@ public class MagicalTech {
 	public void preInit(FMLPreInitializationEvent event) {
 		Utils.getLogger().info("Pre-Initializing");
 		
-		
+		MTItems.init();
+		MTBlocks.init();
 		
 		proxy.registerRenders();
 		
