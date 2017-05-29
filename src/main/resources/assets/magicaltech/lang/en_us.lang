@@ -1,7 +1,7 @@
 #Creative Tabs
-itemGroup.tools=Magical Tools
-itemGroup.combat=Magical Combat
-itemGroup.machines=Magical Machines
-itemGroup.items=Magical Items
-itemGroup.blocks=Magical Blocks
-itemGroup.worldgen=Magical Worldgen
+itemGroup.tools_mt=Magical Tools
+itemGroup.combat_mt=Magical Combat
+itemGroup.machines_mt=Magical Machines
+itemGroup.items_mt=Magical Items
+itemGroup.blocks_mt=Magical Blocks
+itemGroup.worldgen_mt=Magical Worldgen

@@ -1,7 +1,7 @@
 #Creative Tabs
-itemGroup.tools=Magiska Verktyg
-itemGroup.combat=Magisk Strid
-itemGroup.machines=Magiska Maskiner
-itemGroup.items=Magiska Saker
-itemGroup.blocks=Magiska Block
-itemGroup.worldgen=Magisk Världsgenerering
+itemGroup.tools_mt=Magiska Verktyg
+itemGroup.combat_mt=Magisk Strid
+itemGroup.machines_mt=Magiska Maskiner
+itemGroup.items_mt=Magiska Saker
+itemGroup.blocks_mt=Magiska Block
+itemGroup.worldgen_mt=Magisk Världsgenerering

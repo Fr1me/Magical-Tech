@@ -1,7 +1,6 @@
 package net.magicaltech.init;
 
 import net.magicaltech.Reference;
-import net.magicaltech.creativetab.MTCreativeTabs;
 import net.magicaltech.item.ItemBase;
 import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

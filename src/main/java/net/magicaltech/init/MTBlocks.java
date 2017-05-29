@@ -1,6 +1,7 @@
 package net.magicaltech.init;
 
 import net.magicaltech.Reference;
+import net.magicaltech.block.BlockBase;
 import net.magicaltech.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -13,15 +14,18 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class MTBlocks {
 	
-	
+	public static Block hStone;
 	
 	public static void init() {
+		hStone = new BlockBase("hardened_stone", 5.0F, 20.0F, "pickaxe", 1, MTCreativeTabs.blocks);
 	}
 	
 	public static void register() {
+		registerBlock(hStone);
 	}
 
 	public static void registerRenders() {
+		registerRender(hStone);
 	}
 	
 	public static void registerBlock (Block block) {
