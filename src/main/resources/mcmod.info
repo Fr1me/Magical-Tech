@@ -1,0 +1,16 @@
+[
+{
+  "modid": "magicaltech",
+  "name": "Magical Tech",
+  "description": "Magic and tech, simply combined.",
+  "version": "1.0",
+  "mcversion": "1.11.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["XFireEyeZ", "TheGamingHuskyMC"],
+  "credits": "No one yet",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
