@@ -4,7 +4,9 @@ import net.magicaltech.Reference;
 import net.magicaltech.item.ItemBase;
 import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSeeds;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -12,17 +14,38 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class MTItems {
 	
 	public static Item magicWand;
+	public static Item pIron;
+	public static Item tIngot;
+	public static Item seedTransition;
 	
 	public static void init() {
+//		Normal Items
 		magicWand = new ItemBase("wand", MTCreativeTabs.items);
+		pIron = new ItemBase("prophecy_iron", MTCreativeTabs.items);
+		tIngot = new ItemBase("transistium_ingot", MTCreativeTabs.items);
+		
+//		Seeds
+		seedTransition = new ItemSeeds(MTBlocks.cropTransition, Blocks.FARMLAND).setUnlocalizedName("transition_seeds").setRegistryName("transition_seeds");
 	}
 	
 	public static void register() {
+//		Normal Items
 		registerItem(magicWand);
+		registerItem(pIron);
+		registerItem(tIngot);
+		
+//		Seeds
+		registerItem(seedTransition);
 	}
 	
 	public static void registerRenders() {
+//		Normal Items
 		registerRender(magicWand, 0, null);
+		registerRender(pIron, 0, null);
+		registerRender(tIngot, 0, null);
+		
+//		Seeds
+		registerRender(seedTransition, 0, null);
 	}
 	
 	public static void registerItem(Item item) {

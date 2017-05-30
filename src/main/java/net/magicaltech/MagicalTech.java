@@ -31,6 +31,10 @@ public class MagicalTech {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		Utils.getLogger().info("Initializing");
+		MTBlocks.init();
+		MTItems.init();
+		MTBlocks.register();
+		MTItems.register();
 		proxy.init(event);
 		Utils.getLogger().info("Initialization Complete");
 	}

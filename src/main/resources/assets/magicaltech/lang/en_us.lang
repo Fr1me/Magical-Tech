@@ -1,3 +1,15 @@
+#Items
+item.wand.name=Magical Wand
+item.prophecy_iron.name=Prophecy Iron
+item.transistium_ingot.name=Transistium Ingot
+
+item.transition_seeds.name=Transition Seeds
+
+#Blocks
+tile.hardened_stone.name=Hardened Stone
+
+tile.transition_plant.name=Transition Plant
+
 #Creative Tabs
 itemGroup.tools_mt=Magical Tools
 itemGroup.combat_mt=Magical Combat

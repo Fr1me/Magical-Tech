@@ -1,3 +1,15 @@
+#Saker
+item.wand.name=Magisk Trollstav
+item.propechy_iron.name=Profetians Järn
+item.transistium_ingot.name=Transitionstacka
+
+item.transition_seeds.name=Transitionsfrön
+
+#Block
+tile.hardened_stone.name=Härdad Sten
+
+tile.transition_plant.name=Transitionsplanta
+
 #Creative Tabs
 itemGroup.tools_mt=Magiska Verktyg
 itemGroup.combat_mt=Magisk Strid
