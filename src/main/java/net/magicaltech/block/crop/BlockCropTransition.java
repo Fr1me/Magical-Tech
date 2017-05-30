@@ -18,7 +18,7 @@ public class BlockCropTransition extends BlockCrops {
 	
 	@Override
 	protected Item getCrop() {
-		return MTItems.seedTransition;
+		return MTItems.tChunk;
 	}
 
 }

@@ -23,19 +23,19 @@ public class MagicalTech {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		Utils.getLogger().info("Pre-Initializing");
-		proxy.registerRenders();
         proxy.preInit(event);
+		proxy.registerRenders();
 		Utils.getLogger().info("Pre-Initialization Complete");
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		Utils.getLogger().info("Initializing");
+		proxy.init(event);
 		MTBlocks.init();
 		MTItems.init();
 		MTBlocks.register();
 		MTItems.register();
-		proxy.init(event);
 		Utils.getLogger().info("Initialization Complete");
 	}
 	

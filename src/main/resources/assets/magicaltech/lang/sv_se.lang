@@ -2,6 +2,8 @@
 item.wand.name=Magisk Trollstav
 item.propechy_iron.name=Profetians Järn
 item.transistium_ingot.name=Transitionstacka
+item.transistium_nugget.name=Transistionsklimp
+item.transistium_chunk.name=Transitionsbit
 
 item.transition_seeds.name=Transitionsfrön
 

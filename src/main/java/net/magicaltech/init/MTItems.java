@@ -17,12 +17,16 @@ public class MTItems {
 	public static Item pIron;
 	public static Item tIngot;
 	public static Item seedTransition;
+	public static Item tNugget;
+	public static Item tChunk;
 	
 	public static void init() {
 //		Normal Items
 		magicWand = new ItemBase("wand", MTCreativeTabs.items);
 		pIron = new ItemBase("prophecy_iron", MTCreativeTabs.items);
 		tIngot = new ItemBase("transistium_ingot", MTCreativeTabs.items);
+		tNugget = new ItemBase("transistium_nugget", MTCreativeTabs.items);
+		tChunk = new ItemBase("transistium_chunk", MTCreativeTabs.items);
 		
 //		Seeds
 		seedTransition = new ItemSeeds(MTBlocks.cropTransition, Blocks.FARMLAND).setUnlocalizedName("transition_seeds").setRegistryName("transition_seeds");
@@ -33,6 +37,8 @@ public class MTItems {
 		registerItem(magicWand);
 		registerItem(pIron);
 		registerItem(tIngot);
+		registerItem(tNugget);
+		registerItem(tChunk);
 		
 //		Seeds
 		registerItem(seedTransition);
@@ -43,6 +49,8 @@ public class MTItems {
 		registerRender(magicWand, 0, null);
 		registerRender(pIron, 0, null);
 		registerRender(tIngot, 0, null);
+		registerRender(tNugget, 0, null);
+		registerRender(tChunk, 0, null);
 		
 //		Seeds
 		registerRender(seedTransition, 0, null);

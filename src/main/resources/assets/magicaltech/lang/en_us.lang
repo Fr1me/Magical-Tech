@@ -2,6 +2,8 @@
 item.wand.name=Magical Wand
 item.prophecy_iron.name=Prophecy Iron
 item.transistium_ingot.name=Transistium Ingot
+item.transistium_nugget.name=Transistium Nugget
+item.transistium_chunk.name=Transistium Chunk
 
 item.transition_seeds.name=Transition Seeds
 

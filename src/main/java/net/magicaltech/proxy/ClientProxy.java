@@ -11,13 +11,15 @@ public class ClientProxy implements IMTProxy {
 	
 	@Override
 	public void registerRenders() {
-		
+		MTItems.registerRenders();
+		MTBlocks.registerRenders();
 	}
 
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
-        MTBlocks.init();
-        MTItems.init();
+		MTItems.init();
+		MTBlocks.init();
+		
         MTCreativeTabs.initTabs();
 	}
 
