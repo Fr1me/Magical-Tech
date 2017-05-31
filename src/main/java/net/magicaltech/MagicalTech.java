@@ -26,7 +26,11 @@ public class MagicalTech {
 		Utils.getLogger().info("Pre-Initializing");
 		
         proxy.preInit(event);
-		proxy.registerRenders();
+        MTBlocks.init();
+		MTItems.init();
+		MTBlocks.register();
+		MTItems.register();
+        proxy.registerRenders();
 		
 		Utils.getLogger().info("Pre-Initialization Complete");
 	}
@@ -36,10 +40,6 @@ public class MagicalTech {
 		Utils.getLogger().info("Initializing");
 		
 		proxy.init(event);
-		MTBlocks.init();
-		MTItems.init();
-		MTBlocks.register();
-		MTItems.register();
 		RecipeHandler.registerCraftingRecipes(null);
 		RecipeHandler.registerSmeltingRecipes(null);
 		
