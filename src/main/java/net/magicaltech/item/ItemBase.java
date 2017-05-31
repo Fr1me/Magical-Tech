@@ -5,9 +5,9 @@ import net.minecraft.item.Item;
 
 public class ItemBase extends Item {
 	
-	public ItemBase(String name, CreativeTabs tab) {
-		setUnlocalizedName(name);
-		setRegistryName(name);
+	public ItemBase(String unlocalizedName, String registryName, CreativeTabs tab) {
+		setUnlocalizedName(unlocalizedName);
+		setRegistryName(registryName);
 		setCreativeTab(tab);
 	}
 

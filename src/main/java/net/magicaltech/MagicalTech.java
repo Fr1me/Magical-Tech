@@ -1,5 +1,6 @@
 package net.magicaltech;
 
+import net.magicaltech.handler.RecipeHandler;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
 import net.magicaltech.init.MTItems;
@@ -23,26 +24,34 @@ public class MagicalTech {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		Utils.getLogger().info("Pre-Initializing");
+		
         proxy.preInit(event);
 		proxy.registerRenders();
+		
 		Utils.getLogger().info("Pre-Initialization Complete");
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		Utils.getLogger().info("Initializing");
+		
 		proxy.init(event);
 		MTBlocks.init();
 		MTItems.init();
 		MTBlocks.register();
 		MTItems.register();
+		RecipeHandler.registerCraftingRecipes(null);
+		RecipeHandler.registerSmeltingRecipes(null);
+		
 		Utils.getLogger().info("Initialization Complete");
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		Utils.getLogger().info("Post-Initializing");
+		
 		proxy.postInit(event);
+		
 		Utils.getLogger().info("Post-Initialization Complete");
 	}
 

@@ -18,6 +18,7 @@ public class MTBlocks {
 	public static Block hStone;
 	
 //	Machines
+	public static Block cGen;
 	public static Block grinder;
 	
 //	Crops
@@ -28,7 +29,8 @@ public class MTBlocks {
 		hStone = new BlockBase("hardened_stone", 5.0F, 20.0F, "pickaxe", 1, MTCreativeTabs.blocks);
 		
 //		Machines
-		grinder = new BlockBase("grinder", 0, 0, "pickaxe", 0, MTCreativeTabs.machines);	
+		cGen = new BlockBase("coal_generator", 0, 0, "pickaxe", 0, MTCreativeTabs.machines);
+		grinder = new BlockBase("grinder", 0, 0, "pickaxe", 0, MTCreativeTabs.machines);
 		
 //		Crops
 		cropTransition = new BlockCropTransition("transition_plant");
@@ -39,6 +41,7 @@ public class MTBlocks {
 		registerBlock(hStone);
 		
 //		Machines
+		registerBlock(cGen);
 		registerBlock(grinder);
 		
 //		Crops
@@ -50,6 +53,7 @@ public class MTBlocks {
 		registerRender(hStone);
 		
 //		Machines
+		registerRender(cGen);
 		registerRender(grinder);
 		
 	}

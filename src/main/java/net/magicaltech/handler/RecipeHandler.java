@@ -11,7 +11,7 @@ public class RecipeHandler {
 		Utils.getLogger().info("Registering Crafting Recipes...");
 		
 		registry.addRecipe(new ItemStack(MTItems.tIngot), new Object[] {  "NNN", "NNN", "NNN", 'N', MTItems.tNugget });
-		registry.addRecipe(new ItemStack(MTItems.tNugget), new Object[] {  "CCC", "CCC", "CCC", 'C', MTItems.tChunk });
+		registry.addRecipe(new ItemStack(MTItems.tNugget), new Object[] {  "FFF", "FFF", "FFF", 'F', MTItems.tFragment });
 		
 		Utils.getLogger().info("Registered Crafting Recipes.");
 	}
