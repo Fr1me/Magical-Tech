@@ -3,6 +3,8 @@ package net.magicaltech.init;
 import net.magicaltech.Reference;
 import net.magicaltech.block.BlockBase;
 import net.magicaltech.block.BlockCoalGenerator;
+import net.magicaltech.block.BlockMachineBase;
+import net.magicaltech.block.BlockOreBase;
 import net.magicaltech.block.crop.BlockCropTransition;
 import net.magicaltech.util.Utils;
 import net.minecraft.block.Block;
@@ -17,6 +19,11 @@ public class MTBlocks {
 	
 //	Normal Blocks
 	public static Block hStone;
+	public static Block tBlock;
+	public static Block pIBlock;
+	
+//	Ores
+	public static Block rQOre;
 	
 //	Machines
 	public static Block cGen;
@@ -27,11 +34,16 @@ public class MTBlocks {
 	
 	public static void init() {
 //		Normal Blocks
-		hStone = new BlockBase("hardened_stone", 5.0F, 20.0F, "pickaxe", 1, MTCreativeTabs.blocks);
+		hStone = new BlockOreBase("hardened_stone", 5.0F, 20.0F, "pickaxe", 1);
+		tBlock = new BlockBase("transistium_block", 5.0F, 20.0F, "pickaxe", 0);
+		pIBlock = new BlockBase("prophecy_iron_block", 5.0F, 20.0F, "pickaxe", 0);
 		
+//		Ores
+		rQOre = new BlockOreBase("rose_quartz_ore", 0, 0, "pickaxe", 0);
+			
 //		Machines
-		cGen = new BlockCoalGenerator("coal_generator", 5.0F, 20.0F, "pickaxe", 0, MTCreativeTabs.machines);
-		grinder = new BlockBase("grinder", 0, 0, "pickaxe", 0, MTCreativeTabs.machines);
+		cGen = new BlockCoalGenerator("coal_generator", 5.0F, 20.0F, "pickaxe", 0);
+		grinder = new BlockMachineBase("grinder", 0, 0, "pickaxe", 0);
 		
 //		Crops
 		cropTransition = new BlockCropTransition("transition_plant");
@@ -40,6 +52,11 @@ public class MTBlocks {
 	public static void register() {
 //		Normal Blocks
 		registerBlock(hStone);
+		registerBlock(tBlock);
+		registerBlock(pIBlock);
+		
+//		Ores
+		registerBlock(rQOre);
 		
 //		Machines
 		registerBlock(cGen);
@@ -52,6 +69,11 @@ public class MTBlocks {
 	public static void registerRenders() {
 //		Normal Blocks
 		registerRender(hStone);
+		registerRender(tBlock);
+		registerRender(pIBlock);
+		
+//		Ores
+		registerRender(rQOre);
 		
 //		Machines
 		registerRender(cGen);

@@ -1,12 +1,15 @@
 package net.magicaltech;
 
 import net.magicaltech.handler.*;
+import net.magicaltech.init.MTArmor;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
 import net.magicaltech.init.MTItems;
+import net.magicaltech.init.MTTools;
 import net.magicaltech.proxy.IMTProxy;
 import net.magicaltech.tile.TileEntityCoalGenerator;
 import net.magicaltech.util.Utils;
+import net.magicaltech.worldgen.OreGen;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -33,8 +36,12 @@ public class MagicalTech {
         
         MTBlocks.init();
 		MTItems.init();
+		MTTools.init();
+		MTArmor.init();
 		MTBlocks.register();
 		MTItems.register();
+		MTTools.register();
+		MTArmor.register();
 		
 		GameRegistry.registerTileEntity(TileEntityCoalGenerator.class, Reference.MODID + ":coal_generator");
 		NetworkRegistry.INSTANCE.registerGuiHandler(MagicalTech.instance, new MTGuiHandler());
@@ -53,8 +60,11 @@ public class MagicalTech {
 		
 		proxy.init(event);
 		
+		GameRegistry.registerWorldGenerator(new OreGen(), 0);
+		
 		MTRecipeHandler.registerCraftingRecipes(null);
 		MTRecipeHandler.registerSmeltingRecipes(null);
+		MTRecipeHandler.registerArmorRecipes(null);
 		
 		MinecraftForge.EVENT_BUS.register(new MTEventHandler());
 		

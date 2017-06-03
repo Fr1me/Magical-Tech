@@ -1,8 +1,8 @@
 package net.magicaltech.handler;
 
 import net.magicaltech.client.gui.GuiCoalGenerator;
+import net.magicaltech.inventory.ContainerCoalGenerator;
 import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.tile.container.ContainerCoalGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -11,10 +11,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockCoalGenerator extends BlockBase implements ITileEntityProvider {
+public class BlockCoalGenerator extends BlockMachineBase implements ITileEntityProvider {
 
-	public BlockCoalGenerator(String name, float hardness, float resistance, String harvestTool, int harvestLevel, CreativeTabs tab) {
-		super(name, hardness, resistance, harvestTool, harvestLevel, tab);
+	public BlockCoalGenerator(String name, float hardness, float resistance, String harvestTool, int harvestLevel) {
+		super(name, hardness, resistance, harvestTool, harvestLevel);
 		
 	}
 

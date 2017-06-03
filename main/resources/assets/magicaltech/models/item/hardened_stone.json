@@ -1,3 +1,6 @@
 {
-	"parent": "magicaltech:block/hardened_stone"
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "magicaltech:blocks/hardened_stone"
+	}
 }

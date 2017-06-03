@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -21,19 +22,25 @@ public class MTItems {
 	public static Item tPiece;
 	public static Item tFragment;
 	public static Item tTFragment;
+	public static Item iStone;
+	public static Item cIStone;
+	public static Item rQuartz;
 	
 	public static void init() {
 //		Normal Items
-		magicWand = new ItemBase("wand", MTCreativeTabs.items);
-		pIron = new ItemBase("prophecy_iron", MTCreativeTabs.items);
-		tIngot = new ItemBase("transistium_ingot", MTCreativeTabs.items);
-		tNugget = new ItemBase("transistium_nugget", MTCreativeTabs.items);
-		tPiece = new ItemBase("transistium_piece", MTCreativeTabs.items);
-		tFragment = new ItemBase("transistium_fragment", MTCreativeTabs.items);
-		tTFragment = new ItemBase("tiny_transistium_fragment", MTCreativeTabs.items);
+		magicWand = new ItemBase("wand", false);
+		pIron = new ItemBase("prophecy_iron_ingot", false);
+		tIngot = new ItemBase("transistium_ingot", true);
+		tNugget = new ItemBase("transistium_nugget", false);
+		tPiece = new ItemBase("transistium_piece", false);
+		tFragment = new ItemBase("transistium_fragment", false);
+		tTFragment = new ItemBase("tiny_transistium_fragment", false);
+		iStone = new ItemBase("illusion_stone", false);
+		cIStone = new ItemBase("cursed_illusion_stone", true);
+		rQuartz = new ItemBase("rose_quartz", false);
 		
 //		Seeds
-		seedTransition = new ItemSeeds(MTBlocks.cropTransition, Blocks.FARMLAND).setUnlocalizedName("transition_seeds").setRegistryName("transition_seeds");
+		seedTransition = new ItemSeeds(MTBlocks.cropTransition, Blocks.FARMLAND).setUnlocalizedName("transition_seeds").setRegistryName("transition_seeds").setCreativeTab(MTCreativeTabs.items);
 	}
 	
 	public static void register() {
@@ -45,6 +52,9 @@ public class MTItems {
 		registerItem(tPiece);
 		registerItem(tFragment);
 		registerItem(tTFragment);
+		registerItem(iStone);
+		registerItem(cIStone);
+		registerItem(rQuartz);
 		
 //		Seeds
 		registerItem(seedTransition);
@@ -59,6 +69,9 @@ public class MTItems {
 		registerRender(tPiece, 0, null);
 		registerRender(tFragment, 0, null);
 		registerRender(tTFragment, 0, null);
+		registerRender(iStone, 0, null);
+		registerRender(cIStone, 0, null);
+		registerRender(rQuartz, 0, null);
 		
 //		Seeds
 		registerRender(seedTransition, 0, null);

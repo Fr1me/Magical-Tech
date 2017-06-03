@@ -1,8 +1,8 @@
 package net.magicaltech.client.gui;
 
 import net.magicaltech.Reference;
+import net.magicaltech.inventory.ContainerCoalGenerator;
 import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.tile.container.ContainerCoalGenerator;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;

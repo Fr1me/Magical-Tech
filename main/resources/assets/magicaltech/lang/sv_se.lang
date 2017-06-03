@@ -1,18 +1,38 @@
 #Saker
 item.wand.name=Magisk Trollstav
-item.propechy_iron.name=Profetians Järn
+item.prophecy_iron_ingot.name=Profetians Järn
 item.transistium_ingot.name=Transitionstacka
 item.transistium_nugget.name=Transistionsklimp
 item.transistium_piece.name=Transistionsbit
 item.transistium_fragment.name=Transitionsfragment
 item.tiny_transistium_fragment.name=Litet Transitionsfragment
+item.illusion_stone.name=Illusionssten
+item.cursed_illusion_stone.name=Förhäxad Illusionssten
+item.rose_quartz.name=Rosa Kvarts
 
 item.transition_seeds.name=Transitionsfrön
 
 #Block
 tile.hardened_stone.name=Härdad Sten
+tile.transistium_block.name=Transitionsblock
+tile.prophecy_iron_block.name=Profetians Järnblock
+
+tile.rose_quartz_ore.name=Rosa Kvartsmalm
 
 tile.transition_plant.name=Transitionsplanta
+
+#Verktyg
+item.transistium_sword.name=Transitionssvärd
+item.transistium_pickaxe.name=Transitionshacka
+item.transistium_axe.name=Transitionsyxa
+item.transistium_shovel.name=Transitionsspade
+item.transistium_hoe.name=Transitionsflohacka
+
+#Rustning
+item.transistium_helmet.name=Transitionshjälm
+item.transistium_chestplate.name=Transitionsharnesk
+item.transistium_leggings.name=Transitionsbyxor
+item.transistium_boots.name=Transitionsstövlar
 
 #Creative Tabs
 itemGroup.tools_mt=Magiska Verktyg
@@ -21,3 +41,7 @@ itemGroup.machines_mt=Magiska Maskiner
 itemGroup.items_mt=Magiska Saker
 itemGroup.blocks_mt=Magiska Block
 itemGroup.worldgen_mt=Magisk Världsgenerering
+
+#Prestationer
+achievement.transistium=Tillverkade du verkligen det där?!
+achievement.transistium.desc=Va?! 6 561 av de där små sakerna?!

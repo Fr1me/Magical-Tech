@@ -1,0 +1,7 @@
+{
+	"type": "CTM",
+	"textures": [
+		"blocks/hardened_stone",
+		"./hardened_stone"
+	]
+}

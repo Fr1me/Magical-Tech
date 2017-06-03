@@ -1,4 +1,4 @@
-package net.magicaltech.tile.container;
+package net.magicaltech.inventory;
 
 import net.magicaltech.tile.TileEntityCoalGenerator;
 import net.minecraft.entity.player.EntityPlayer;

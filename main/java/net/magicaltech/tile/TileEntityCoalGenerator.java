@@ -1,5 +1,8 @@
 package net.magicaltech.tile;
 
+import cofh.api.energy.EnergyConfig;
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -11,12 +14,16 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityCoalGenerator extends TileEntity implements ITickable, ICapabilityProvider{
+public class TileEntityCoalGenerator extends TileEntity implements ITickable, ICapabilityProvider, IEnergyProvider {
 
 	private ItemStackHandler handler;
 	private int totalBurnTime;
 	private int burnTime;
 	private boolean isBurning;
+	
+	byte facing = 1;
+	protected EnergyStorage energyStorage = new EnergyStorage(0);
+	protected EnergyConfig config;
 	
 	public TileEntityCoalGenerator() {
 		handler = new ItemStackHandler(1);
@@ -91,6 +98,26 @@ public class TileEntityCoalGenerator extends TileEntity implements ITickable, IC
 		
 		public int getBurnTime() {
 			return burnTime;
+		}
+
+		@Override
+		public int getEnergyStored(EnumFacing from) {
+			return energyStorage.getEnergyStored();
+		}
+
+		@Override
+		public int getMaxEnergyStored(EnumFacing from) {
+			return energyStorage.getEnergyStored();
+		}
+
+		@Override
+		public boolean canConnectEnergy(EnumFacing from) {
+			return from.ordinal() == facing;
+		}
+
+		@Override
+		public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
+			return from.ordinal() != facing ? 0 : energyStorage.extractEnergy(Math.min(config.maxPower * 2, maxExtract), simulate);
 		}
 
 }

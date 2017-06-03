@@ -2,5 +2,9 @@
 	"parent": "block/cube_all",
 	"textures": {
 		"all": "magicaltech:blocks/hardened_stone"
+	},
+	"ctm": {
+		"model": { "model": "cube" },
+		"face": "magicaltech:ctm/hardened_stone.cf"
 	}
 }

@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "magicaltech:blocks/rose_quartz_ore"
+	}
+}

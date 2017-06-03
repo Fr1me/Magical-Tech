@@ -19,60 +19,37 @@ public class MTCreativeTabs {
 
     public static void initTabs(){
         blocks = new CreativeTabs("blocks_mt"){
-            /*@Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(MTItems.magicWand);
-            }*/
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Item.getItemFromBlock(Blocks.DIAMOND_BLOCK));
+                return new ItemStack(Item.getItemFromBlock(MTBlocks.hStone));
             }
         };
         combat = new CreativeTabs("combat_mt"){
-            /*@Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(MTItems.magicWand);
-            }*/
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Items.IRON_SWORD);
-            }
+                return new ItemStack(MTTools.tSword);
+            } 
         };
         items = new CreativeTabs("items_mt"){
-            /*@Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(MTItems.magicWand);
-            }*/
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Items.IRON_INGOT);
+                return new ItemStack(MTItems.tIngot);
             }
         };
         machines = new CreativeTabs("machines_mt"){
-            /*@Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(MTItems.magicWand);
-            }*/
             @Override
             public ItemStack getTabIconItem() {
                 return new ItemStack(Item.getItemFromBlock(Blocks.FURNACE));
             }
+
         };
         tools = new CreativeTabs("tools_mt"){
-            /*@Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(MTItems.magicWand);
-            }*/
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Items.IRON_HOE);
+                return new ItemStack(MTTools.tPickaxe);
             }
         };
         worldgen = new CreativeTabs("worldgen_mt"){
-            /*@Override
-            public ItemStack getTabIconItem() {
-                return new ItemStack(MTItems.magicWand);
-            }*/
             @Override
             public ItemStack getTabIconItem() {
                 return new ItemStack(Item.getItemFromBlock(Blocks.DIAMOND_ORE));
