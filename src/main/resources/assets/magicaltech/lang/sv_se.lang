@@ -9,6 +9,7 @@ item.tiny_transistium_fragment.name=Litet Transitionsfragment
 item.illusion_stone.name=Illusionssten
 item.cursed_illusion_stone.name=Förhäxad Illusionssten
 item.rose_quartz.name=Rosa Kvarts
+item.flower.name=Blomma
 
 item.transition_seeds.name=Transitionsfrön
 
@@ -41,7 +42,11 @@ itemGroup.machines_mt=Magiska Maskiner
 itemGroup.items_mt=Magiska Saker
 itemGroup.blocks_mt=Magiska Block
 itemGroup.worldgen_mt=Magisk Världsgenerering
+itemGroup.decoration_mt=Magisk Dekoration
 
 #Prestationer
 achievement.transistium=Tillverkade du verkligen det där?!
 achievement.transistium.desc=Va?! 6 561 av de där små sakerna?!
+
+achievement.join_world=Ny dag, Ny värld!
+achievement.join_world.desc=Du startade igång en ny Minecraft-värld! 

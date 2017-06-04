@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 public class MTCreativeTabs {
 
     public static CreativeTabs blocks;
+    public static CreativeTabs decoration;
     public static CreativeTabs combat;
     public static CreativeTabs items;
     public static CreativeTabs machines;
@@ -23,6 +24,12 @@ public class MTCreativeTabs {
             public ItemStack getTabIconItem() {
                 return new ItemStack(Item.getItemFromBlock(MTBlocks.hStone));
             }
+        };
+        decoration = new CreativeTabs("decoration_mt"){
+        	@Override
+        	public ItemStack getTabIconItem() {
+        		return new ItemStack(MTItems.iStone);
+        	}
         };
         combat = new CreativeTabs("combat_mt"){
             @Override

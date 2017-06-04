@@ -6,7 +6,7 @@ import net.magicaltech.handler.MTGuiHandler;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTItems;
 import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.worldgen.OreGen;
+import net.magicaltech.world.gen.OreGen;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

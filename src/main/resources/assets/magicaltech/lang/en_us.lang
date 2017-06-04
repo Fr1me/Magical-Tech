@@ -9,6 +9,7 @@ item.tiny_transistium_fragment.name=Tiny Transistium Fragment
 item.illusion_stone.name=Illusion Stone
 item.cursed_illusion_stone.name=Cursed Illusion Stone
 item.rose_quartz.name=Rose Quartz
+item.flower.name=Flower
 
 item.transition_seeds.name=Transition Seeds
 
@@ -41,7 +42,11 @@ itemGroup.machines_mt=Magical Machines
 itemGroup.items_mt=Magical Items
 itemGroup.blocks_mt=Magical Blocks
 itemGroup.worldgen_mt=Magical Worldgen
+itemGroup.decoration_mt=Magical Decoration
 
 #Achievements
 achievement.transistium=You acctually crafted that?!
 achievement.transistium.desc=What?! 6 561 of those little things?!
+
+achievement.join_world=New day, New world!
+achievement.join_world.desc=You loaded up a fresh Minecraft world! 

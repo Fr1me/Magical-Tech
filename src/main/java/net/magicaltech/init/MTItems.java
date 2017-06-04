@@ -25,6 +25,7 @@ public class MTItems {
 	public static Item iStone;
 	public static Item cIStone;
 	public static Item rQuartz;
+	public static Item flower;
 	
 	public static void init() {
 //		Normal Items
@@ -38,6 +39,7 @@ public class MTItems {
 		iStone = new ItemBase("illusion_stone", false);
 		cIStone = new ItemBase("cursed_illusion_stone", true);
 		rQuartz = new ItemBase("rose_quartz", false);
+		flower = new ItemBase("flower", false);
 		
 //		Seeds
 		seedTransition = new ItemSeeds(MTBlocks.cropTransition, Blocks.FARMLAND).setUnlocalizedName("transition_seeds").setRegistryName("transition_seeds").setCreativeTab(MTCreativeTabs.items);
@@ -55,6 +57,7 @@ public class MTItems {
 		registerItem(iStone);
 		registerItem(cIStone);
 		registerItem(rQuartz);
+		registerItem(flower);
 		
 //		Seeds
 		registerItem(seedTransition);
@@ -62,19 +65,20 @@ public class MTItems {
 	
 	public static void registerRenders() {
 //		Normal Items
-		registerRender(magicWand, 0, null);
-		registerRender(pIron, 0, null);
-		registerRender(tIngot, 0, null);
-		registerRender(tNugget, 0, null);
-		registerRender(tPiece, 0, null);
-		registerRender(tFragment, 0, null);
-		registerRender(tTFragment, 0, null);
-		registerRender(iStone, 0, null);
-		registerRender(cIStone, 0, null);
-		registerRender(rQuartz, 0, null);
+		registerRender(magicWand);
+		registerRender(pIron);
+		registerRender(tIngot);
+		registerRender(tNugget);
+		registerRender(tPiece);
+		registerRender(tFragment);
+		registerRender(tTFragment);
+		registerRender(iStone);
+		registerRender(cIStone);
+		registerRender(rQuartz);
+		registerRender(flower);
 		
 //		Seeds
-		registerRender(seedTransition, 0, null);
+		registerRender(seedTransition);
 	}
 	
 	public static void registerItem(Item item) {
@@ -82,7 +86,7 @@ public class MTItems {
 		Utils.getLogger().info("Registered Item: " + item.getUnlocalizedName().substring(5));
 	}
 	
-	public static void registerRender(Item item, int meta, String fileName) {
+	public static void registerRender(Item item) {
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item.getUnlocalizedName().substring(5)), "inventory"));
 		Utils.getLogger().info("Registered Render For " + item.getUnlocalizedName().substring(5));
 	}

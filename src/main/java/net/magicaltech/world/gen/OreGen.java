@@ -1,4 +1,4 @@
-package net.magicaltech.worldgen;
+package net.magicaltech.world.gen;
 
 import java.util.Random;
 

@@ -9,7 +9,7 @@ import net.magicaltech.init.MTTools;
 import net.magicaltech.proxy.IMTProxy;
 import net.magicaltech.tile.TileEntityCoalGenerator;
 import net.magicaltech.util.Utils;
-import net.magicaltech.worldgen.OreGen;
+import net.magicaltech.world.gen.OreGen;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -46,8 +46,6 @@ public class MagicalTech {
 		GameRegistry.registerTileEntity(TileEntityCoalGenerator.class, Reference.MODID + ":coal_generator");
 		NetworkRegistry.INSTANCE.registerGuiHandler(MagicalTech.instance, new MTGuiHandler());
 		
-		MTAchievementHandler.registerAchievements();
-		
 		proxy.registerRenders();
         proxy.registerTileEntities();
 		
@@ -65,6 +63,8 @@ public class MagicalTech {
 		MTRecipeHandler.registerCraftingRecipes(null);
 		MTRecipeHandler.registerSmeltingRecipes(null);
 		MTRecipeHandler.registerArmorRecipes(null);
+		
+		MTAchievementHandler.registerAchievements();
 		
 		MinecraftForge.EVENT_BUS.register(new MTEventHandler());
 		
