@@ -21,7 +21,7 @@ public class MTAchievementHandler {
 	private static List<Achievement> achievementsMT = new ArrayList<Achievement>();
 	
 	public static Achievement achievementJoinWorld = createAchievement("join_world", 0, 0, MTItems.flower, (Achievement)null);
-	public static Achievement achievementTransistium = createAchievement("transistium", 2, 1, MTItems.tIngot, (Achievement)achievementJoinWorld);
+	public static Achievement achievementTransistium = createAchievement("transistium", 2, 1, MTItems.tIngot, achievementJoinWorld);
 	
 	public static void registerAchievements() {
 		Achievement[] achievementArray = new Achievement[achievementsMT.size()];
@@ -34,19 +34,19 @@ public class MTAchievementHandler {
 	}
 	
 	private static Achievement createAchievement(String name, int column, int row, Item item, Achievement parent) {
-		Achievement acheivement = new Achievement("achievement." + name, name, column, row, item, (Achievement)null); //The null is for the parent this is if one achievement requires another to unlock it
+		Achievement acheivement = new Achievement("achievement." + name, name, column, row, item, parent); //The null is for the parent this is if one achievement requires another to unlock it
 		achievementsMT.add(acheivement);
 		return acheivement;
 	}
 	
 	private static Achievement createAchievement(String name, int column, int row, Block block, Achievement parent) {
-		Achievement acheivement = new Achievement("achievement." + name, name, column, row, block, (Achievement)null);
+		Achievement acheivement = new Achievement("achievement." + name, name, column, row, block, parent);
 		achievementsMT.add(acheivement);
 		return acheivement;
 	}
 	
 	private static Achievement createAchievement(String name, int column, int row, ItemStack stack, Achievement parent) {
-		Achievement acheivement = new Achievement("achievement." + name, name, column, row, stack, (Achievement)null);
+		Achievement acheivement = new Achievement("achievement." + name, name, column, row, stack, parent);
 		achievementsMT.add(acheivement);
 		return acheivement;
 	}
