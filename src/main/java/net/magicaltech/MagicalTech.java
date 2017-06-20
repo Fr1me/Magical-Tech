@@ -42,6 +42,7 @@ public class MagicalTech {
 		MTItems.register();
 		MTTools.register();
 		MTArmor.register();
+
 		
 		GameRegistry.registerTileEntity(TileEntityCoalGenerator.class, Reference.MODID + ":coal_generator");
 		NetworkRegistry.INSTANCE.registerGuiHandler(MagicalTech.instance, new MTGuiHandler());
@@ -62,10 +63,10 @@ public class MagicalTech {
 		
 		MTRecipeHandler.registerCraftingRecipes(null);
 		MTRecipeHandler.registerSmeltingRecipes(null);
+		MTRecipeHandler.registerToolRecipes(null);
 		MTRecipeHandler.registerArmorRecipes(null);
 		
 		MTAchievementHandler.registerAchievements();
-		
 		MinecraftForge.EVENT_BUS.register(new MTEventHandler());
 		
 		Utils.getLogger().info("Initialization Complete");
