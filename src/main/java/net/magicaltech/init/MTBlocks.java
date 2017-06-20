@@ -39,11 +39,11 @@ public class MTBlocks {
 		pIBlock = new BlockBase("prophecy_iron_block", 5.0F, 20.0F, "pickaxe", 0);
 		
 //		Ores
-		rQOre = new BlockOreBase("rose_quartz_ore", 0, 0, "pickaxe", 0);
+		rQOre = new BlockOreBase("rose_quartz_ore", 5.0F, 20.0F, "pickaxe", 0);
 			
 //		Machines
 		cGen = new BlockCoalGenerator("coal_generator", 5.0F, 20.0F, "pickaxe", 0);
-		grinder = new BlockMachineBase("grinder", 0, 0, "pickaxe", 0);
+		grinder = new BlockMachineBase("grinder", 5.0F, 20.0F, "pickaxe", 0);
 		
 //		Crops
 		cropTransition = new BlockCropTransition("transition_plant");

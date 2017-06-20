@@ -1,5 +1,7 @@
 package net.magicaltech.block;
 
+import net.magicaltech.MagicalTech;
+import net.magicaltech.handler.MTGuiHandler;
 import net.magicaltech.tile.TileEntityCoalGenerator;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.state.IBlockState;
@@ -24,8 +26,15 @@ public class BlockCoalGenerator extends BlockMachineBase implements ITileEntityP
 	}
 	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-	}
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        
+        if(!playerIn.isSneaking()){
+            playerIn.openGui(MagicalTech.instance, MTGuiHandler.COAL_GENERATOR, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            return true;
+        }
+        else
+            return false;
+    }
 
 }
