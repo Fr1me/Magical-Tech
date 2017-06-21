@@ -18,9 +18,15 @@ tile.hardened_stone.name=Härdad Sten
 tile.transistium_block.name=Transitionsblock
 tile.prophecy_iron_block.name=Profetians Järnblock
 
+#Malm
 tile.rose_quartz_ore.name=Rosa Kvartsmalm
 
+#Grödor
 tile.transition_plant.name=Transitionsplanta
+
+#Maskiner
+tile.coal_generator.name=Kolgenerator
+tile.grinder.name=Kvarn
 
 #Verktyg
 item.transistium_sword.name=Transitionssvärd
@@ -49,4 +55,7 @@ achievement.transistium=Tillverkade du verkligen det där?!
 achievement.transistium.desc=Va?! 6 561 av de där små sakerna?!
 
 achievement.join_world=Ny dag, Ny värld!
-achievement.join_world.desc=Du startade igång en ny Minecraft-värld! 
+achievement.join_world.desc=Du startade igång en ny Minecraft-värld!
+
+#Gui:s
+container.coal_generator=Kolgenerator

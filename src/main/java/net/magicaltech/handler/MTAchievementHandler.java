@@ -36,19 +36,19 @@ public class MTAchievementHandler {
 	private static Achievement createAchievement(String name, int column, int row, Item item, Achievement parent) {
 		Achievement acheivement = new Achievement("achievement." + name, name, column, row, item, parent); //The null is for the parent this is if one achievement requires another to unlock it
 		achievementsMT.add(acheivement);
-		return acheivement;
+		return new Achievement("achievement." + name, name, column, row, item, parent);
 	}
 	
 	private static Achievement createAchievement(String name, int column, int row, Block block, Achievement parent) {
 		Achievement acheivement = new Achievement("achievement." + name, name, column, row, block, parent);
 		achievementsMT.add(acheivement);
-		return acheivement;
+		return new Achievement("achievement." + name, name, column, row, block, parent);
 	}
 	
 	private static Achievement createAchievement(String name, int column, int row, ItemStack stack, Achievement parent) {
 		Achievement acheivement = new Achievement("achievement." + name, name, column, row, stack, parent);
 		achievementsMT.add(acheivement);
-		return acheivement;
+		 return new Achievement("achievement." + name, name, column, row, stack, parent);
 	}
 
 }

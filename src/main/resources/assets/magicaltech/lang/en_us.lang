@@ -18,9 +18,15 @@ tile.hardened_stone.name=Hardened Stone
 tile.transistium_block.name=Block Of Transistium
 tile.prophecy_iron_block.name=Block Of Prophecy Iron
 
+#Ores
 tile.rose_quartz_ore.name=Rose Quartz Ore
 
+#Crops
 tile.transition_plant.name=Transition Plant
+
+#Machines
+tile.coal_generator.name=Coal Generator
+tile.grinder.name=Grinder
 
 #Tools
 item.transistium_sword.name=Transistium Sword
@@ -50,3 +56,6 @@ achievement.transistium.desc=What?! 6 561 of those little things?!
 
 achievement.join_world=New day, New world!
 achievement.join_world.desc=You loaded up a fresh Minecraft world! 
+
+#Guis
+container.coal_generator=Coal Generator
