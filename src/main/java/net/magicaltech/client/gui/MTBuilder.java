@@ -247,7 +247,7 @@ public class MTBuilder extends GuiBuilder {
 				list.add(TextFormatting.GRAY + "prolly a bug");
 				list.add(TextFormatting.GRAY + "pls report and tell how tf you did this");
 			}
-			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRenderer);
+			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRendererObj);
 			GlStateManager.disableLighting();
 			GlStateManager.color(1, 1, 1, 1);
 		}
