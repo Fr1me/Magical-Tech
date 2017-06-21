@@ -13,8 +13,8 @@ import org.lwjgl.opengl.GL12;
 
 import com.google.common.base.Function;
 
-import net.magicaltech.util.color.Color;
-import net.magicaltech.util.color.ColorARGB;
+import net.magicaltech.util.colours.Colour;
+import net.magicaltech.util.colours.ColourARGB;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -75,11 +75,11 @@ public class TextureUtils {
         return loadTexture(resource).data;
     }
 
-    public static Color[] loadTextureColours(ResourceLocation resource) {
+    public static Colour[] loadTextureColours(ResourceLocation resource) {
         int[] idata = loadTextureData(resource);
-        Color[] data = new Color[idata.length];
+        Colour[] data = new Colour[idata.length];
         for (int i = 0; i < data.length; i++) {
-            data[i] = new ColorARGB(idata[i]);
+            data[i] = new ColourARGB(idata[i]);
         }
         return data;
     }

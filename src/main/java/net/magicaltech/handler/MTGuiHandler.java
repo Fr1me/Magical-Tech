@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class MTGuiHandler implements IGuiHandler{
+	
     public static final int COAL_GENERATOR = 0;
  
     @Override

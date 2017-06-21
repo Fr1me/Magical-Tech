@@ -4,12 +4,26 @@
   "name": "Magical Tech",
   "description": "Magic and tech, simply combined.",
   "version": "1.0",
-  "mcversion": "1.11.2",
+  "mcversion": "1.12",
   "url": "",
   "updateUrl": "",
   "authorList": ["XFireEyeZ", "TheGamingHuskyMC"],
   "credits": "No one yet",
   "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+},
+{
+  "modid": "ninetaillib",
+  "name": "NineTailLib",
+  "description": "Library mod for all KitsuneAlex mods.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://github.com/TeamMD5/NineTailLib",
+  "updateUrl": "",
+  "authorList": ["KitsuneAlex"],
+  "credits": "",
+  "logoFile": "assets/ninetaillib/textures/logo.png",
   "screenshots": [],
   "dependencies": []
 }

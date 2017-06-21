@@ -18,15 +18,11 @@ tile.hardened_stone.name=Hardened Stone
 tile.transistium_block.name=Block Of Transistium
 tile.prophecy_iron_block.name=Block Of Prophecy Iron
 
-#Ores
 tile.rose_quartz_ore.name=Rose Quartz Ore
+tile.prophecy_iron_ore.name=Rose Quartz Ore
+tile.transistium_ore.name=Prophecy Iron Ore
 
-#Crops
 tile.transition_plant.name=Transition Plant
-
-#Machines
-tile.coal_generator.name=Coal Generator
-tile.grinder.name=Grinder
 
 #Tools
 item.transistium_sword.name=Transistium Sword
@@ -35,11 +31,33 @@ item.transistium_axe.name=Transistium Axe
 item.transistium_shovel.name=Transistium Shovel
 item.transistium_hoe.name=Transistium Hoe
 
+item.rose_quartz_sword.name=Rose Quartz Sword
+item.rose_quartz_pickaxe.name=Rose Quartz Pickaxe
+item.rose_quartz_axe.name=Rose Quartz Axe
+item.rose_quartz_shovel.name=Rose Quartz Shovel
+item.rose_quartz_hoe.name=Rose Quartz Hoe
+
+item.prophecy_iron_sword.name=Prophecy Iron Sword
+item.prophecy_iron_pickaxe.name=Prophecy Iron Pickaxe
+item.prophecy_iron_axe.name=Prophecy Iron Axe
+item.prophecy_iron_shovel.name=Prophecy Iron Shovel
+item.prophecy_iron_hoe.name=Prophecy Iron Hoe
+
 #Armor
 item.transistium_helmet.name=Transistium Helmet
 item.transistium_chestplate.name=Transistium Chestplate
 item.transistium_leggings.name=Transistium Leggings
 item.transistium_boots.name=Transistium Boots
+
+item.rose_quartz_helmet.name=Rose Quartz Helmet
+item.rose_quartz_chestplate.name=Rose Quartz Chestplate
+item.rose_quartz_leggings.name=Rose Quartz Leggings
+item.rose_quartz_boots.name=Rose Quartz Boots
+
+item.prophecy_iron_helmet.name=Prophecy Iron Helmet
+item.prophecy_iron_chestplate.name=Prophecy Iron Chestplate
+item.prophecy_iron_leggings.name=Prophecy Iron Leggings
+item.prophecy_iron_boots.name=Prophecy Iron Boots
 
 #Creative Tabs
 itemGroup.tools_mt=Magical Tools
@@ -56,6 +74,3 @@ achievement.transistium.desc=What?! 6 561 of those little things?!
 
 achievement.join_world=New day, New world!
 achievement.join_world.desc=You loaded up a fresh Minecraft world! 
-
-#Guis
-container.coal_generator=Coal Generator

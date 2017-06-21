@@ -2,7 +2,9 @@ package net.magicaltech.block;
 
 import java.util.Random;
 
+import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
+import net.magicaltech.init.MTItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -10,19 +12,26 @@ import net.minecraft.item.Item;
 
 public class BlockOreBase extends Block {
 	
-	public BlockOreBase(String name, float hardness, float resistance, String harvestTool, int harvestLevel) {
+	public BlockOreBase(String name) {
 		super(Material.ROCK);
 		setUnlocalizedName(name);
 		setRegistryName(name);
-		setHardness(hardness);
-		setResistance(resistance);
-		setHarvestLevel(harvestTool, harvestLevel);
+		setHardness(5.0F);
+		setResistance(5.0F);
+		setHarvestLevel("pickaxe", 1);
 		setCreativeTab(MTCreativeTabs.worldgen);
 	}
 	
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune){
-		return Item.getItemFromBlock(this);
+		if(this.getDefaultState() == MTBlocks.rQOre){
+			return MTItems.rQuartz;
+		}
+		else if(this.getDefaultState() == MTBlocks.plOre){
+			return MTItems.pIron;
+		}
+		else
+			return Item.getItemFromBlock(this);
 	}
 
 }

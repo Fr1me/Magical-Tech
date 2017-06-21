@@ -5,8 +5,8 @@ import java.util.Random;
 import net.magicaltech.init.MTBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -15,11 +15,22 @@ public class OreGen implements IWorldGenerator {
 	
 	//World Generators
 	private WorldGenerator rose_quartz_nether;
+	private WorldGenerator transistium_nether;
+	private WorldGenerator prophecy_iron_nether;
+	
+	private WorldGenerator rose_quartz;
+	private WorldGenerator transistium;
+	private WorldGenerator prophecy_iron;
+	
 	private WorldGenerator hardened_stone;
 	
 	public OreGen() {
-		rose_quartz_nether = new WorldGenMinable(MTBlocks.rQOre.getDefaultState(), 8, new NetherGenPredicate());
+		rose_quartz_nether = new WorldGenMinable(MTBlocks.rQNetherOre.getDefaultState(), 8, new NetherGenPredicate());
+		prophecy_iron_nether = new WorldGenMinable(MTBlocks.plNetherOre.getDefaultState(), 8, new NetherGenPredicate());
+		
 		hardened_stone = new WorldGenMinable(MTBlocks.hStone.getDefaultState(), 8);
+		rose_quartz = new WorldGenMinable(MTBlocks.rQOre.getDefaultState(), 8);
+		prophecy_iron = new WorldGenMinable(MTBlocks.plOre.getDefaultState(), 8);
 	}
 	
 	private void runGenerator(WorldGenerator generator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight, int maxHeight) {
@@ -40,8 +51,13 @@ public class OreGen implements IWorldGenerator {
 		switch(world.provider.getDimension()) {
 		case 1: //OverWorld
 			this.runGenerator(hardened_stone, world, random, chunkX, chunkZ, 13, 0, 48);
+			this.runGenerator(rose_quartz, world, random, chunkX, chunkZ, 13, 0, 48);
+			this.runGenerator(transistium, world, random, chunkX, chunkZ, 13, 0, 48);
+			this.runGenerator(prophecy_iron, world, random, chunkX, chunkZ, 13, 0, 48);
 		case -1: //Nether
 			this.runGenerator(rose_quartz_nether, world, random, chunkX, chunkZ, 5, 16, 64);
+			this.runGenerator(transistium_nether, world, random, chunkX, chunkZ, 5, 16, 64);
+			this.runGenerator(prophecy_iron_nether, world, random, chunkX, chunkZ, 5, 16, 64);
 		}
 	}
 

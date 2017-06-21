@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 import net.magicaltech.Reference;
 import net.magicaltech.client.gui.GuiBase;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -123,7 +123,7 @@ public abstract class ElementBase
         GlStateManager.depthMask(false);
         GL11.glClearStencil(0);
         GlStateManager.clear(1024);
-        VertexBuffer buffer = Tessellator.getInstance().getBuffer();
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(7, DefaultVertexFormats.POSITION);
         buffer.pos(xStart, yEnd, 0.0D).endVertex();
         buffer.pos(xEnd, yEnd, 0.0D).endVertex();
@@ -174,7 +174,7 @@ public abstract class ElementBase
 
     public FontRenderer getFontRenderer()
     {
-        return fontRenderer != null ? fontRenderer : gui.getfontRendererObj();
+        return fontRenderer != null ? fontRenderer : gui.getFontRenderer();
     }
 
     public ElementBase setFontRenderer(FontRenderer renderer)

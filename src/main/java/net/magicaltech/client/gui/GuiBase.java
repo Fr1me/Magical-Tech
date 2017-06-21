@@ -1,274 +1,121 @@
 package net.magicaltech.client.gui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.lwjgl.input.Mouse;
-
+import net.magicaltech.Reference;
+import net.magicaltech.client.container.builder.BuiltContainer;
 import net.magicaltech.client.gui.widget.EnumRenderType;
+import net.magicaltech.client.gui.widget.GuiButtonPowerBar;
 import net.magicaltech.client.gui.widget.element.ElementBase;
 import net.magicaltech.client.gui.widget.element.TabBase;
-import net.magicaltech.client.gui.widget.slot.SlotFalseCopy;
 import net.magicaltech.util.RenderHelper;
 import net.magicaltech.util.StringHelper;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.client.FMLClientHandler;
 
-public abstract class GuiBase extends GuiContainer
-{
+/**
+ * Created by Prospector
+ */
+public class GuiBase extends GuiContainer {
 
-    /*public static void playSound(String name, SoundCategory category, float volume, float pitch)
-    {
-        guiSoundManager.playSound(new SoundBase(name, category, volume, pitch));
-    }
+	public int xSize = 176;
+	public int ySize = 176;
+	public TRBuilder builder = new TRBuilder();
+	public TileEntity tile;
+	public BuiltContainer container;
+	protected boolean drawTitle;
+    protected boolean drawInventory;
+    protected int mouseX;
+    protected int mouseY;
+    protected int lastIndex;
+    protected String name;
+    private ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/gui_base.png");
+    public ArrayList tabs;
+    protected ArrayList elements;
+    protected List tooltip;
+    protected boolean tooltips;
 
-    public static void playClickSound(float volume, float pitch)
-    {
-        guiSoundManager.playSound(new SoundBase(SoundEvents.UI_BUTTON_CLICK, SoundCategory.MASTER, volume, pitch));
-    }*/
-
-    public GuiBase(Container container)
-    {
-        super(container);
-        drawTitle = true;
+	public GuiBase(EntityPlayer player, TileEntity tile, BuiltContainer container) {
+		super(container);
+		this.tile = tile;
+		this.container = container;
+		drawTitle = true;
         drawInventory = true;
         mouseX = 0;
         mouseY = 0;
-        lastIndex = -1;
+//        lastIndex = -1;
         tabs = new ArrayList();
         elements = new ArrayList();
         tooltip = new LinkedList();
         tooltips = true;
-    }
-
-    public GuiBase(Container container, ResourceLocation texture)
-    {
-        super(container);
-        drawTitle = true;
-        drawInventory = true;
-        mouseX = 0;
-        mouseY = 0;
-        lastIndex = -1;
-        tabs = new ArrayList();
-        elements = new ArrayList();
-        tooltip = new LinkedList();
-        tooltips = true;
-        this.texture = texture;
-    }
-
-    public void initGui()
-    {
+	}
+	
+	@Override
+	public void initGui(){
         super.initGui();
         tabs.clear();
         elements.clear();
     }
-
-    public void drawScreen(int x, int y, float partialTick)
-    {
-        updateElementInformation();
-        super.drawScreen(x, y, partialTick);
-        if(tooltips && mc.player.inventory.getItemStack() == null)
-        {
-            addTooltips(tooltip);
-            drawTooltip(tooltip);
-        }
-        mouseX = x - guiLeft;
-        mouseY = y - guiTop;
-        updateElements();
+	
+	public void handleElementButtonClick(String s, int i){
+		
     }
-
-    protected void drawGuiContainerForegroundLayer(int x, int y)
+	
+	public void drawIcon(TextureAtlasSprite icon, int x, int y)
     {
-        if(drawTitle & (name != null))
-            fontRendererObj.drawString(StringHelper.localize(name), getCenteredOffset(StringHelper.localize(name)), 6, 0x404040);
-        if(drawInventory)
-            fontRendererObj.drawString(I18n.translateToLocal("container.inventory"), 8, (ySize - 96) + 3, 0x404040);
-        drawElements(0.0F, true);
-        drawTabs(0.0F, true);
-    }
-
-    protected void drawGuiContainerBackgroundLayer(float partialTick, int x, int y)
-    {
+        RenderHelper.setBlockTextureSheet();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        bindTexture(texture);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
-        mouseX = x - guiLeft;
-        mouseY = y - guiTop;
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(guiLeft, guiTop, 0.0F);
-        drawElements(partialTick, false);
-        drawTabs(partialTick, false);
-        GlStateManager.popMatrix();
+        drawTexturedModalRect(x, y, icon, 16, 16);
     }
 
-    protected void keyTyped(char characterTyped, int keyPressed)
-        throws IOException
+    public void drawColorIcon(TextureAtlasSprite icon, int x, int y)
     {
-        for(int i = elements.size(); i-- > 0;)
+        drawTexturedModalRect(x, y, icon, 16, 16);
+    }
+
+    public void drawSizedRect(int x1, int y1, int x2, int y2, int color)
+    {
+        if(x1 < x2)
         {
-            ElementBase c = (ElementBase)elements.get(i);
-            if(c.isVisible() && c.isEnabled() && c.onKeyTyped(characterTyped, keyPressed))
-                return;
+            int temp = x1;
+            x1 = x2;
+            x2 = temp;
         }
-
-        super.keyTyped(characterTyped, keyPressed);
-    }
-
-    public void handleMouseInput()
-        throws IOException
-    {
-        int x = (Mouse.getEventX() * width) / mc.displayWidth;
-        int y = height - (Mouse.getEventY() * height) / mc.displayHeight - 1;
-        mouseX = x - guiLeft;
-        mouseY = y - guiTop;
-        int wheelMovement = Mouse.getEventDWheel();
-        if(wheelMovement != 0)
+        if(y1 < y2)
         {
-            for(int i = elements.size(); i-- > 0;)
-            {
-                ElementBase c = (ElementBase)elements.get(i);
-                if(c.isVisible() && c.isEnabled() && c.intersectsWith(mouseX, mouseY) && c.onMouseWheel(mouseX, mouseY, wheelMovement))
-                    return;
-            }
-
-            TabBase tab = getTabAtPosition(mouseX, mouseY);
-            if(tab != null && tab.onMouseWheel(mouseX, mouseY, wheelMovement))
-                return;
-            if(onMouseWheel(mouseX, mouseY, wheelMovement))
-                return;
+            int temp = y1;
+            y1 = y2;
+            y2 = temp;
         }
-        super.handleMouseInput();
+        float a = (float)(color >> 24 & 0xff) / 255F;
+        float r = (float)(color >> 16 & 0xff) / 255F;
+        float g = (float)(color >> 8 & 0xff) / 255F;
+        float b = (float)(color & 0xff) / 255F;
+        GlStateManager.disableTexture2D();
+        GlStateManager.color(r, g, b, a);
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
+        buffer.begin(7, DefaultVertexFormats.POSITION);
+        buffer.pos(x1, y2, zLevel).endVertex();
+        buffer.pos(x2, y2, zLevel).endVertex();
+        buffer.pos(x2, y1, zLevel).endVertex();
+        buffer.pos(x1, y1, zLevel).endVertex();
+        Tessellator.getInstance().draw();
+        GlStateManager.enableTexture2D();
     }
-
-    protected boolean onMouseWheel(int mouseX, int mouseY, int wheelMovement)
-    {
-        return false;
-    }
-
-    protected void mouseClicked(int mX, int mY, int mouseButton)
-        throws IOException
-    {
-        mX -= guiLeft;
-        mY -= guiTop;
-        for(int i = elements.size(); i-- > 0;)
-        {
-            ElementBase c = (ElementBase)elements.get(i);
-            if(c.isVisible() && c.isEnabled() && c.intersectsWith(mX, mY) && c.onMousePressed(mX, mY, mouseButton))
-                return;
-        }
-
-        TabBase tab = getTabAtPosition(mX, mY);
-        if(tab != null)
-        {
-            int tMx = mX;
-            if(!tab.onMousePressed(tMx, mY, mouseButton))
-            {
-                int i = tabs.size();
-                do
-                {
-                    if(i-- <= 0)
-                        break;
-                    TabBase other = (TabBase)tabs.get(i);
-                    if(other != tab && other.open && other.side == tab.side)
-                        other.toggleOpen();
-                } while(true);
-                tab.toggleOpen();
-                return;
-            }
-        }
-        mX += guiLeft;
-        mY += guiTop;
-        if(tab != null)
-            switch(tab.side)
-            {
-            case 1: // '\001'
-                xSize += tab.currentWidth;
-                break;
-            }
-        super.mouseClicked(mX, mY, mouseButton);
-        if(tab != null)
-            switch(tab.side)
-            {
-            case 1: // '\001'
-                xSize -= tab.currentWidth;
-                break;
-            }
-    }
-
-    protected void mouseReleased(int mX, int mY, int mouseButton)
-    {
-        mX -= guiLeft;
-        mY -= guiTop;
-        if(mouseButton >= 0 && mouseButton <= 2)
-        {
-            int i = elements.size();
-            do
-            {
-                if(i-- <= 0)
-                    break;
-                ElementBase c = (ElementBase)elements.get(i);
-                if(c.isVisible() && c.isEnabled())
-                    c.onMouseReleased(mX, mY);
-            } while(true);
-        }
-        mX += guiLeft;
-        mY += guiTop;
-        super.mouseReleased(mX, mY, mouseButton);
-    }
-
-    protected void mouseClickMove(int mX, int mY, int lastClick, long timeSinceClick)
-    {
-        Slot slot = getSlotAtPosition(mX, mY);
-        ItemStack itemstack = mc.player.inventory.getItemStack();
-        if(dragSplitting && slot != null && itemstack != null && (slot instanceof SlotFalseCopy))
-        {
-            if(lastIndex != slot.slotNumber)
-            {
-                lastIndex = slot.slotNumber;
-                handleMouseClick(slot, slot.slotNumber, 0, ClickType.PICKUP);
-            }
-        } else
-        {
-            lastIndex = -1;
-            super.mouseClickMove(mX, mY, lastClick, timeSinceClick);
-        }
-    }
-
-    public Slot getSlotAtPosition(int xCoord, int yCoord)
-    {
-        for(int k = 0; k < inventorySlots.inventorySlots.size(); k++)
-        {
-            Slot slot = (Slot)inventorySlots.inventorySlots.get(k);
-            if(isMouseOverSlot(slot, xCoord, yCoord))
-                return slot;
-        }
-
-        return null;
-    }
-
-    public boolean isMouseOverSlot(Slot theSlot, int xCoord, int yCoord)
-    {
-        return isPointInRegion(theSlot.xPos, theSlot.yPos, 16, 16, xCoord, yCoord);
-    }
-
-    protected void drawElements(float partialTick, boolean foreground)
+	
+	protected void drawElements(float partialTick, boolean foreground)
     {
         if(foreground)
         {
@@ -337,7 +184,35 @@ public abstract class GuiBase extends GuiContainer
         }
     }
 
-    public void addTooltips(List tooltip)
+	public void drawSlot(int x, int y, EnumRenderType layer) {
+		if (layer == EnumRenderType.BACKGROUND) {
+			x += guiLeft;
+			y += guiTop;
+		}
+		builder.drawSlot(this, x - 1, y - 1);
+	}
+	
+	@Override
+	public void drawScreen(int x, int y, float partialTicks) {
+		updateElementInformation();
+		this.drawGuiContainerForegroundLayer(x, y);
+		if(tooltips && mc.player.inventory.getItemStack() == null)
+        {
+            addTooltips(tooltip);
+            drawTooltip(tooltip);
+        }
+        mouseX = x;
+        mouseY = y;
+        updateElements();
+	}
+	
+	public void drawTooltip(List list)
+    {
+        drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRenderer);
+        tooltip.clear();
+    }
+	
+	public void addTooltips(List tooltip)
     {
         TabBase tab = getTabAtPosition(mouseX, mouseY);
         if(tab != null)
@@ -369,8 +244,8 @@ public abstract class GuiBase extends GuiContainer
             tab.setFullyOpen();*/
         return tab;
     }
-
-    protected ElementBase getElementAtPosition(int mX, int mY)
+    
+    public ElementBase getElementAtPosition(int mX, int mY)
     {
         for(int i = elements.size(); i-- > 0;)
         {
@@ -411,207 +286,6 @@ public abstract class GuiBase extends GuiContainer
         }
 
         return null;
-    }
-
-    protected final void updateElements()
-    {
-        int i = elements.size();
-        do
-        {
-            if(i-- <= 0)
-                break;
-            ElementBase c = (ElementBase)elements.get(i);
-            if(c.isVisible() && c.isEnabled())
-                c.update(mouseX, mouseY);
-        } while(true);
-    }
-
-    protected void updateElementInformation()
-    {
-    }
-
-    public void handleElementButtonClick(String s, int i)
-    {
-    }
-
-    public void bindTexture(ResourceLocation texture)
-    {
-        mc.renderEngine.bindTexture(texture);
-    }
-
-    public void drawButton(TextureAtlasSprite icon, int x, int y, int mode)
-    {
-        drawIcon(icon, x, y);
-    }
-
-    public void drawItemStack(ItemStack stack, int x, int y, boolean drawOverlay, String overlayTxt)
-    {
-        GlStateManager.enableDepth();
-        GlStateManager.enableLighting();
-        GlStateManager.pushMatrix();
-        GlStateManager.translate(0.0F, 0.0F, 32F);
-        zLevel = 200F;
-        itemRender.zLevel = 200F;
-        FontRenderer font = null;
-        if(stack != null)
-            font = stack.getItem().getFontRenderer(stack);
-        if(font == null)
-            font = fontRendererObj;
-        itemRender.renderItemAndEffectIntoGUI(stack, x, y);
-//        if(drawOverlay)
-//            itemRender.renderItemOverlayIntoGUI(font, stack, x, y - (draggedStack != null ? 8 : 0), overlayTxt);
-        zLevel = 0.0F;
-        itemRender.zLevel = 0.0F;
-        GlStateManager.popMatrix();
-        GlStateManager.disableLighting();
-    }
-
-    public void drawFluid(int x, int y, FluidStack fluid, int width, int height)
-    {
-        if(fluid == null)
-        {
-            return;
-        } else
-        {
-            RenderHelper.setBlockTextureSheet();
-            int colour = fluid.getFluid().getColor(fluid);
-            GlStateManager.color(colour >> 16 & 0xff, colour >> 8 & 0xff, colour & 0xff, colour >> 24 & 0xff);
-            drawTiledTexture(x, y, RenderHelper.getTexture(fluid.getFluid().getStill(fluid)), width, height);
-            return;
-        }
-    }
-
-    public void drawTiledTexture(int x, int y, TextureAtlasSprite icon, int width, int height)
-    {
-        for(int i = 0; i < width; i += 16)
-        {
-            for(int j = 0; j < height; j += 16)
-            {
-                int drawWidth = Math.min(width - i, 16);
-                int drawHeight = Math.min(height - j, 16);
-                drawScaledTexturedModelRectFromIcon(x + i, y + j, icon, drawWidth, drawHeight);
-            }
-
-        }
-
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-    }
-
-    public void drawIcon(TextureAtlasSprite icon, int x, int y)
-    {
-        RenderHelper.setBlockTextureSheet();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        drawTexturedModalRect(x, y, icon, 16, 16);
-    }
-
-    public void drawColorIcon(TextureAtlasSprite icon, int x, int y)
-    {
-        drawTexturedModalRect(x, y, icon, 16, 16);
-    }
-
-    public void drawSizedModalRect(int x1, int y1, int x2, int y2, int color)
-    {
-        if(x1 < x2)
-        {
-            int temp = x1;
-            x1 = x2;
-            x2 = temp;
-        }
-        if(y1 < y2)
-        {
-            int temp = y1;
-            y1 = y2;
-            y2 = temp;
-        }
-        float a = (float)(color >> 24 & 0xff) / 255F;
-        float r = (float)(color >> 16 & 0xff) / 255F;
-        float g = (float)(color >> 8 & 0xff) / 255F;
-        float b = (float)(color & 0xff) / 255F;
-        GlStateManager.enableBlend();
-        GlStateManager.disableTexture2D();
-        GlStateManager.blendFunc(net.minecraft.client.renderer.GlStateManager.SourceFactor.SRC_ALPHA, net.minecraft.client.renderer.GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        GlStateManager.color(r, g, b, a);
-        VertexBuffer buffer = Tessellator.getInstance().getBuffer();
-        buffer.begin(7, DefaultVertexFormats.POSITION);
-        buffer.pos(x1, y2, zLevel).endVertex();
-        buffer.pos(x2, y2, zLevel).endVertex();
-        buffer.pos(x2, y1, zLevel).endVertex();
-        buffer.pos(x1, y1, zLevel).endVertex();
-        Tessellator.getInstance().draw();
-        GlStateManager.enableTexture2D();
-        GlStateManager.disableBlend();
-    }
-
-    public void drawSizedRect(int x1, int y1, int x2, int y2, int color)
-    {
-        if(x1 < x2)
-        {
-            int temp = x1;
-            x1 = x2;
-            x2 = temp;
-        }
-        if(y1 < y2)
-        {
-            int temp = y1;
-            y1 = y2;
-            y2 = temp;
-        }
-        float a = (float)(color >> 24 & 0xff) / 255F;
-        float r = (float)(color >> 16 & 0xff) / 255F;
-        float g = (float)(color >> 8 & 0xff) / 255F;
-        float b = (float)(color & 0xff) / 255F;
-        GlStateManager.disableTexture2D();
-        GlStateManager.color(r, g, b, a);
-        VertexBuffer buffer = Tessellator.getInstance().getBuffer();
-        buffer.begin(7, DefaultVertexFormats.POSITION);
-        buffer.pos(x1, y2, zLevel).endVertex();
-        buffer.pos(x2, y2, zLevel).endVertex();
-        buffer.pos(x2, y1, zLevel).endVertex();
-        buffer.pos(x1, y1, zLevel).endVertex();
-        Tessellator.getInstance().draw();
-        GlStateManager.enableTexture2D();
-    }
-
-    public void drawSizedTexturedModalRect(int x, int y, int u, int v, int width, int height, float texW, 
-            float texH)
-    {
-        float texU = 1.0F / texW;
-        float texV = 1.0F / texH;
-        VertexBuffer buffer = Tessellator.getInstance().getBuffer();
-        buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos(x + 0, y + height, zLevel).tex((float)(u + 0) * texU, (float)(v + height) * texV).endVertex();
-        buffer.pos(x + width, y + height, zLevel).tex((float)(u + width) * texU, (float)(v + height) * texV).endVertex();
-        buffer.pos(x + width, y + 0, zLevel).tex((float)(u + width) * texU, (float)(v + 0) * texV).endVertex();
-        buffer.pos(x + 0, y + 0, zLevel).tex((float)(u + 0) * texU, (float)(v + 0) * texV).endVertex();
-        Tessellator.getInstance().draw();
-    }
-
-    public void drawScaledTexturedModelRectFromIcon(int x, int y, TextureAtlasSprite icon, int width, int height)
-    {
-        if(icon == null)
-        {
-            return;
-        } else
-        {
-            double minU = icon.getMinU();
-            double maxU = icon.getMaxU();
-            double minV = icon.getMinV();
-            double maxV = icon.getMaxV();
-            VertexBuffer buffer = Tessellator.getInstance().getBuffer();
-            buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            buffer.pos(x + 0, y + height, zLevel).tex(minU, minV + ((maxV - minV) * (double)height) / 16D).endVertex();
-            buffer.pos(x + width, y + height, zLevel).tex(minU + ((maxU - minU) * (double)width) / 16D, minV + ((maxV - minV) * (double)height) / 16D).endVertex();
-            buffer.pos(x + width, y + 0, zLevel).tex(minU + ((maxU - minU) * (double)width) / 16D, minV).endVertex();
-            buffer.pos(x + 0, y + 0, zLevel).tex(minU, minV).endVertex();
-            Tessellator.getInstance().draw();
-            return;
-        }
-    }
-
-    public void drawTooltip(List list)
-    {
-        drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRendererObj);
-        tooltip.clear();
     }
 
     protected void drawTooltipHoveringText(List list, int x, int y, FontRenderer font)
@@ -670,62 +344,192 @@ public abstract class GuiBase extends GuiContainer
         GlStateManager.enableDepth();
         GlStateManager.enableRescaleNormal();
     }
-
-    public void mouseClicked(int mouseButton)
-        throws IOException
+	
+	protected final void updateElements()
     {
-        super.mouseClicked(guiLeft + mouseX, guiTop + mouseY, mouseButton);
+        int i = elements.size();
+        do
+        {
+            if(i-- <= 0)
+                break;
+            ElementBase c = (ElementBase)elements.get(i);
+            if(c.isVisible() && c.isEnabled())
+                c.update(mouseX, mouseY);
+        } while(true);
     }
 
-    public FontRenderer getfontRendererObj()
+    protected void updateElementInformation()
     {
-        return fontRendererObj;
     }
 
-    protected int getCenteredOffset(String string)
+	protected void drawScrapSlot(int x, int y, EnumRenderType layer) {
+		if (layer == EnumRenderType.BACKGROUND) {
+			x += guiLeft;
+			y += guiTop;
+		}
+		builder.drawScrapSlot(this, x - 1, y - 1);
+	}
+
+	protected void drawOutputSlotBar(int x, int y, int count, EnumRenderType layer) {
+		if (layer == EnumRenderType.BACKGROUND) {
+			x += guiLeft;
+			y += guiTop;
+		}
+		builder.drawOutputSlotBar(this, x - 4, y - 4, count);
+	}
+
+	protected void drawArmourSlots(int x, int y, EnumRenderType layer) {
+		if (layer == EnumRenderType.BACKGROUND) {
+			x += guiLeft;
+			y += guiTop;
+		}
+		builder.drawSlot(this, x - 1, y - 1);
+		builder.drawSlot(this, x - 1, y - 1 + 18);
+		builder.drawSlot(this, x - 1, y - 1 + 18 + 18);
+		builder.drawSlot(this, x - 1, y - 1 + 18 + 18 + 18);
+	}
+
+	protected void drawOutputSlot(int x, int y, EnumRenderType layer) {
+		if (layer == EnumRenderType.BACKGROUND) {
+			x += guiLeft;
+			y += guiTop;
+		}
+		builder.drawOutputSlot(this, x - 5, y - 5);
+	}
+	
+	public void drawSizedModalRect(int x1, int y1, int x2, int y2, int color)
+    {
+        if(x1 < x2)
+        {
+            int temp = x1;
+            x1 = x2;
+            x2 = temp;
+        }
+        if(y1 < y2)
+        {
+            int temp = y1;
+            y1 = y2;
+            y2 = temp;
+        }
+        float a = (float)(color >> 24 & 0xff) / 255F;
+        float r = (float)(color >> 16 & 0xff) / 255F;
+        float g = (float)(color >> 8 & 0xff) / 255F;
+        float b = (float)(color & 0xff) / 255F;
+        GlStateManager.enableBlend();
+        GlStateManager.disableTexture2D();
+        GlStateManager.blendFunc(net.minecraft.client.renderer.GlStateManager.SourceFactor.SRC_ALPHA, net.minecraft.client.renderer.GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.color(r, g, b, a);
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
+        buffer.begin(7, DefaultVertexFormats.POSITION);
+        buffer.pos(x1, y2, zLevel).endVertex();
+        buffer.pos(x2, y2, zLevel).endVertex();
+        buffer.pos(x2, y1, zLevel).endVertex();
+        buffer.pos(x1, y1, zLevel).endVertex();
+        Tessellator.getInstance().draw();
+        GlStateManager.enableTexture2D();
+        GlStateManager.disableBlend();
+    }
+	
+	public void drawSizedTexturedModalRect(int x, int y, int u, int v, int width, int height, float texW, 
+            float texH)
+    {
+        float texU = 1.0F / texW;
+        float texV = 1.0F / texH;
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
+        buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(x + 0, y + height, zLevel).tex((float)(u + 0) * texU, (float)(v + height) * texV).endVertex();
+        buffer.pos(x + width, y + height, zLevel).tex((float)(u + width) * texU, (float)(v + height) * texV).endVertex();
+        buffer.pos(x + width, y + 0, zLevel).tex((float)(u + width) * texU, (float)(v + 0) * texV).endVertex();
+        buffer.pos(x + 0, y + 0, zLevel).tex((float)(u + 0) * texU, (float)(v + 0) * texV).endVertex();
+        Tessellator.getInstance().draw();
+    }
+
+	protected void drawSelectedStack(int x, int y, EnumRenderType layer) {
+		if (layer == EnumRenderType.BACKGROUND) {
+			x += guiLeft;
+			y += guiTop;
+		}
+		builder.drawSelectedStack(this, x, y);
+	}
+
+	protected void drawGuiContainerBackgroundLayer(float partialTick, int x, int y) {
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        bindTexture(texture);
+        drawTexturedModalRect(guiLeft, guiTop, 0, 0, x, y);
+        mouseX = x;
+        mouseY = y;
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(guiLeft, guiTop, 0.0F);
+        drawElements(partialTick, false);
+        drawTabs(partialTick, false);
+        GlStateManager.popMatrix();
+	}
+	
+	public void bindTexture(ResourceLocation texture)
+    {
+        mc.renderEngine.bindTexture(texture);
+    }
+
+	public boolean drawPlayerSlots() {
+		return true;
+	}
+
+	public boolean tryAddUpgrades() {
+		return true;
+	}
+
+	protected void drawGuiContainerForegroundLayer(int x, int y) {
+		if(drawTitle & (name != null))
+            fontRenderer.drawString(StringHelper.localize(name), getCenteredOffset(StringHelper.localize(name)), 6, 0x404040);
+        if(drawInventory)
+            fontRenderer.drawString(I18n.translateToLocal("container.inventory"), 8, (ySize - 96) + 3, 0x404040);
+        this.builder.drawPlayerSlots(this, guiLeft - 64, guiTop + 49, true);
+	}
+	
+	protected int getCenteredOffset(String string)
     {
         return getCenteredOffset(string, xSize);
     }
 
     protected int getCenteredOffset(String string, int xWidth)
     {
-        return (xWidth - fontRendererObj.getStringWidth(string)) / 2;
+        return (xWidth - fontRenderer.getStringWidth(string)) / 2;
     }
 
-    public int getGuiLeft()
+	protected void drawCentredString(String string, int y, int colour, EnumRenderType layer) {
+		drawString(string, (xSize / 2 - mc.fontRenderer.getStringWidth(string) / 2), y, colour, layer);
+	}
+
+	protected void drawCentredString(String string, int y, int colour, int modifier, EnumRenderType layer) {
+		drawString(string, (xSize / 2 - (mc.fontRenderer.getStringWidth(string)) / 2) + modifier, y, colour, layer);
+	}
+
+	protected void drawString(String string, int x, int y, int colour, EnumRenderType layer) {
+		int factorX = 0;
+		int factorY = 0;
+		if (layer == EnumRenderType.BACKGROUND) {
+			factorX = guiLeft;
+			factorY = guiTop;
+		}
+		mc.fontRenderer.drawString(string, x + factorX, y + factorY, colour);
+		GlStateManager.color(1, 1, 1, 1);
+	}
+
+	public void addPowerButton(int x, int y, int id, EnumRenderType layer) {
+		if (id == 0)
+			buttonList.clear();
+		int factorX = 0;
+		int factorY = 0;
+		if (layer == EnumRenderType.BACKGROUND) {
+			factorX = guiLeft;
+			factorY = guiTop;
+		}
+		buttonList.add(new GuiButtonPowerBar(id, x + factorX, y + factorY, this, layer));
+	}
+	
+	public FontRenderer getFontRenderer()
     {
-        return guiLeft;
+        return fontRenderer;
     }
-
-    public int getGuiTop()
-    {
-        return guiTop;
-    }
-
-    public int getMouseX()
-    {
-        return mouseX;
-    }
-
-    public int getMouseY()
-    {
-        return mouseY;
-    }
-
-    public void overlayRecipe()
-    {
-    }
-
-    public static final SoundHandler guiSoundManager = FMLClientHandler.instance().getClient().getSoundHandler();
-    protected boolean drawTitle;
-    protected boolean drawInventory;
-    protected int mouseX;
-    protected int mouseY;
-    protected int lastIndex;
-    protected String name;
-    protected ResourceLocation texture;
-    public ArrayList tabs;
-    protected ArrayList elements;
-    protected List tooltip;
-    protected boolean tooltips;
+	
 }

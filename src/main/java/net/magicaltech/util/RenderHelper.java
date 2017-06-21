@@ -6,7 +6,7 @@
 package net.magicaltech.util;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
@@ -64,7 +64,7 @@ public final class RenderHelper
 
     public static void renderIcon(TextureAtlasSprite icon, double z)
     {
-    	VertexBuffer buffer = Tessellator.getInstance().getBuffer();
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
         buffer.pos(0.0D, 16D, z).tex(icon.getMinU(), icon.getMaxV());
         buffer.pos(16D, 16D, z).tex(icon.getMaxU(), icon.getMaxV());
@@ -76,7 +76,7 @@ public final class RenderHelper
     public static void renderIcon(double x, double y, double z, TextureAtlasSprite icon, int width, 
             int height)
     {
-        VertexBuffer buffer = Tessellator.getInstance().getBuffer();
+        BufferBuilder buffer = Tessellator.getInstance().getBuffer();
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
         buffer.pos(x, y + (double)height, z).tex(icon.getMinU(), icon.getMaxV());
         buffer.pos(x + (double)width, y + (double)height, z).tex(icon.getMaxU(), icon.getMaxV());

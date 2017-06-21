@@ -1,12 +1,12 @@
 package net.magicaltech.proxy;
 
+import keri.ninetaillib.render.registry.IRenderingRegistry;
+import keri.ninetaillib.texture.IIconRegistrar;
 import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
 import net.magicaltech.handler.MTGuiHandler;
-import net.magicaltech.init.MTBlocks;
-import net.magicaltech.init.MTItems;
-import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.world.gen.OreGen;
+import net.magicaltech.tile.TileEntityGeneratorBase;
+import net.magicaltech.tile.TileEntityMachineBase;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -14,15 +14,26 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy implements IMTProxy {
-
-    @Override
+	
+	@Override
     public void registerRenders() {
     	
     }
-    	
+
     @Override
     public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityCoalGenerator.class, Reference.MODID + ":coal_generator");
+    	GameRegistry.registerTileEntity(TileEntityGeneratorBase.class, Reference.MODID + ":generator_base");
+		GameRegistry.registerTileEntity(TileEntityMachineBase.class, Reference.MODID + ":machine_base");
+    }
+    
+    @Override
+    public IIconRegistrar getIconRegistrar() {
+    	return null;
+    }
+    
+    @Override
+    public IRenderingRegistry getRenderingRegistry() {
+        return null;
     }
 
     @Override

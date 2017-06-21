@@ -9,8 +9,6 @@ import net.magicaltech.client.container.builder.BuiltContainer;
 import net.magicaltech.client.gui.widget.EnumRenderType;
 import net.magicaltech.inventory.ContainerCoalGenerator;
 import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.tile.TileEntityGeneratorBase;
-import net.magicaltech.util.StringHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,10 +16,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
  
+@SuppressWarnings("deprecation")
 public class GuiCoalGenerator extends GuiContainer {
 	
-    private IInventory playerInventory;
-    private TileEntityCoalGenerator tileEntity;
     public BuiltContainer container;
     public GuiBuilder guiBuilder = new GuiBuilder(new ResourceLocation(Reference.MODID, "textures/gui/container/coal_generator.png"));
     protected boolean drawTitle;
@@ -30,18 +27,15 @@ public class GuiCoalGenerator extends GuiContainer {
     protected int mouseY;
     protected int lastIndex;
     protected String name;
-    public ArrayList tabs;
-    protected ArrayList elements;
-    protected List tooltip;
+    public ArrayList<?> tabs;
+    protected ArrayList<?> elements;
+    protected List<?> tooltip;
     protected boolean tooltips;
     
-    private MTBuilder builder = new MTBuilder();
+    private TRBuilder builder = new TRBuilder();
  
-    public GuiCoalGenerator(IInventory playerInventory, TileEntityCoalGenerator tile) {
-        super(new ContainerCoalGenerator(playerInventory, tile));
- 
-        this.playerInventory = playerInventory;
-        this.tileEntity = tile;
+    public GuiCoalGenerator(IInventory playerInventory, TileEntityCoalGenerator tileEntity) {
+        super(new ContainerCoalGenerator(playerInventory, tileEntity));
  
         xSize = 176;
         ySize = 190;
@@ -49,13 +43,6 @@ public class GuiCoalGenerator extends GuiContainer {
  
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int x, int y) {
-    	/*GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/container/coal_generator.png"));
-        drawTexturedModalRect(guiLeft, guiTop - 4, 0, 0, xSize, ySize);
-        
-        builder.drawInfo(this, x, y, 10, 30, true);*/
-    	
-    	
     	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/container/coal_generator.png"));
 		final int k = (this.width - this.xSize) / 2;
@@ -65,16 +52,10 @@ public class GuiCoalGenerator extends GuiContainer {
  
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-    	/*if(drawTitle & (name != null))
-            fontRenderer.drawString(StringHelper.localize(name), getCenteredOffset(StringHelper.localize(name)), 6, 0x404040);
-        if(drawInventory)
-            fontRenderer.drawString(I18n.translateToLocal("container.inventory"), 8, (ySize - 96) + 3, 0x404040);*/
-//        this.builder.drawPlayerSlots(this, guiLeft - 64, guiTop + 49, true);
-    	
     	final String name = "Coal Generator";
-		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6,
+		this.fontRenderer.drawString(name, this.xSize / 2 - this.fontRenderer.getStringWidth(name) / 2, 6,
 			4210752);
-		this.fontRendererObj.drawString(I18n.translateToLocalFormatted("container.inventory", new Object[0]), 8,
+		this.fontRenderer.drawString(I18n.translateToLocalFormatted("container.inventory", new Object[0]), 8,
 			this.ySize - 96 + 2, 4210752);
     }
     
@@ -85,7 +66,7 @@ public class GuiCoalGenerator extends GuiContainer {
 
     protected int getCenteredOffset(String string, int xWidth)
     {
-        return (xWidth - fontRendererObj.getStringWidth(string)) / 2;
+        return (xWidth - fontRenderer.getStringWidth(string)) / 2;
     }
     
     protected void drawArmourSlots(int x, int y, EnumRenderType layer) {
@@ -102,18 +83,16 @@ public class GuiCoalGenerator extends GuiContainer {
     @Override
 	public void drawScreen(int x, int y, float partialTicks) {
     	super.drawScreen(x, y, partialTicks);
-    	/*this.drawGuiContainerForegroundLayer(x, y);
-    	this.drawGuiContainerBackgroundLayer(partialTicks, x, y);*/
-//    	this.renderHoveredToolTip(x, y);
+    	this.renderHoveredToolTip(x, y);
 	}
 	
-	public void drawTooltip(List list)
+	public void drawTooltip(List<?> list)
     {
-        drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRendererObj);
+        drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRenderer);
         tooltip.clear();
     }
 	
-	protected void drawTooltipHoveringText(List list, int x, int y, FontRenderer font)
+	protected void drawTooltipHoveringText(List<?> list, int x, int y, FontRenderer font)
     {
         if(list == null || list.isEmpty())
             return;
@@ -121,7 +100,7 @@ public class GuiCoalGenerator extends GuiContainer {
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
         int k = 0;
-        Iterator iterator = list.iterator();
+        Iterator<?> iterator = list.iterator();
         do
         {
             if(!iterator.hasNext())
@@ -168,11 +147,5 @@ public class GuiCoalGenerator extends GuiContainer {
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
         GlStateManager.enableRescaleNormal();
-    }
- 
-    private int getProgressScaled(int pixels){
-        int i = tileEntity.getBurnTime();
-        int j = tileEntity.getTotalBurnTime();
-        return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 }
