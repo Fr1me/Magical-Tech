@@ -32,24 +32,14 @@ import java.util.function.Predicate;
 import org.apache.commons.lang3.Range;
 import org.apache.commons.lang3.tuple.Pair;
 
-import net.magicaltech.MagicalTech;
 import net.magicaltech.client.container.builder.slot.FilteredSlot;
-import net.magicaltech.client.container.builder.slot.UpgradeSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceFuel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import reborncore.api.power.IEnergyInterfaceItem;
-import reborncore.api.recipe.IRecipeCrafterProvider;
-import reborncore.api.tile.IUpgrade;
-import reborncore.api.tile.IUpgradeable;
-import reborncore.client.gui.slots.BaseSlot;
-import reborncore.client.gui.slots.SlotFake;
-import reborncore.client.gui.slots.SlotOutput;
-import reborncore.common.powerSystem.TilePowerAcceptor;
 
 public class ContainerTileInventoryBuilder {
 
@@ -61,23 +51,20 @@ public class ContainerTileInventoryBuilder {
 		this.tile = tile;
 		this.parent = parent;
 		this.rangeStart = parent.slots.size();
-		if (tile instanceof IUpgradeable) {
-			upgradeSlots((IUpgradeable) tile);
-		}
 	}
 
 	public ContainerTileInventoryBuilder slot(final int index, final int x, final int y) {
-		this.parent.slots.add(new BaseSlot(this.tile, index, x, y));
+		this.parent.slots.add(new Slot(this.tile, index, x, y));
 		return this;
 	}
 
 	public ContainerTileInventoryBuilder outputSlot(final int index, final int x, final int y) {
-		this.parent.slots.add(new SlotOutput(this.tile, index, x, y));
+		this.parent.slots.add(new Slot(this.tile, index, x, y));
 		return this;
 	}
 
 	public ContainerTileInventoryBuilder fakeSlot(final int index, final int x, final int y) {
-		this.parent.slots.add(new SlotFake(this.tile, index, x, y, false, false, Integer.MAX_VALUE));
+		this.parent.slots.add(new Slot(this.tile, index, x, y));
 		return this;
 	}
 
@@ -87,15 +74,14 @@ public class ContainerTileInventoryBuilder {
 		return this;
 	}
 
-	@SuppressWarnings("null")
+	/*@SuppressWarnings("null")
 	public ContainerTileInventoryBuilder energySlot(final int index, final int x, final int y) {
 		this.parent.slots.add(new FilteredSlot(this.tile, index, x, y)
 			.setFilter(stack -> stack.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.UP)
 				|| stack.getItem() instanceof IEnergyInterfaceItem));
 		return this;
-	}
+	}*/
 
-	@SuppressWarnings("null")
 	public ContainerTileInventoryBuilder fluidSlot(final int index, final int x, final int y) {
 		this.parent.slots.add(new FilteredSlot(this.tile, index, x, y).setFilter(
 			stack -> stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, EnumFacing.UP)));
@@ -104,22 +90,6 @@ public class ContainerTileInventoryBuilder {
 
 	public ContainerTileInventoryBuilder fuelSlot(final int index, final int x, final int y) {
 		this.parent.slots.add(new SlotFurnaceFuel(this.tile, index, x, y));
-		return this;
-	}
-
-	@Deprecated
-	public ContainerTileInventoryBuilder upgradeSlot(final int index, final int x, final int y) {
-		this.parent.slots.add(new FilteredSlot(this.tile, index, x, y)
-			.setFilter(stack -> stack.getItem() instanceof IUpgrade));
-		return this;
-	}
-
-	private ContainerTileInventoryBuilder upgradeSlots(IUpgradeable upgradeable) {
-		if (upgradeable.canBeUpgraded()) {
-			for (int i = 0; i < upgradeable.getUpgradeSlotCount(); i++) {
-				this.parent.slots.add(new UpgradeSlot(upgradeable.getUpgradeInvetory(), i, -19, i * 18 + 12));
-			}
-		}
 		return this;
 	}
 
@@ -143,7 +113,7 @@ public class ContainerTileInventoryBuilder {
 		return this;
 	}
 
-	public ContainerTileInventoryBuilder syncEnergyValue() {
+	/*public ContainerTileInventoryBuilder syncEnergyValue() {
 		if (this.tile instanceof TilePowerAcceptor)
 			return this.syncIntegerValue(() -> (int) ((TilePowerAcceptor) this.tile).getEnergy(),
 				((TilePowerAcceptor) this.tile)::setEnergy)
@@ -164,7 +134,7 @@ public class ContainerTileInventoryBuilder {
 						.getRecipeCrafter().currentNeededTicks = currentNeededTicks);
 		MagicalTech.logger.warning(this.tile + " is not an instance of IRecipeCrafterProvider! Craft progress cannot be synced.");
 		return this;
-	}
+	}*/
 
 	public ContainerTileInventoryBuilder onCraft(final Consumer<InventoryCrafting> onCraft) {
 		this.parent.craftEvents.add(onCraft);

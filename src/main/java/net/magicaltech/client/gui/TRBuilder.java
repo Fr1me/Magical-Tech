@@ -44,6 +44,7 @@ import net.minecraftforge.fml.common.Loader;
 /**
  * Created by Prospector
  */
+@SuppressWarnings("deprecation")
 public class TRBuilder extends GuiBuilder {
 	public static final ResourceLocation GUI_SHEET = new ResourceLocation(Reference.MODID.toLowerCase() + ":" + "textures/gui/gui_sheet.png");
 
@@ -270,7 +271,6 @@ public class TRBuilder extends GuiBuilder {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void drawMultiblockMissingBar(GuiBase gui, EnumRenderType layer) {
 		int x = 0;
 		int y = 4;
@@ -287,7 +287,7 @@ public class TRBuilder extends GuiBuilder {
 		GuiUtils.drawGradientRect(0, x, y + 68, x + 176, y + 70 + 20, 0xC0000000, 0x00000000);
 		GlStateManager.colorMask(true, true, true, true);
 		GlStateManager.enableDepth();
-		gui.drawCentredString(I18n.translateToLocal("techreborn.message.missingmultiblock"), 43, 0xFFFFFF, layer);
+		gui.drawCentredString(I18n.translateToLocal("magicaltech.message.missingmultiblock"), 43, 0xFFFFFF, layer);
 	}
 
 	public void drawBigBlueBar(GuiBase gui, int x, int y, int value, int max, int mouseX, int mouseY, EnumRenderType layer) {

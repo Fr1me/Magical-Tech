@@ -27,13 +27,9 @@ public class TextureSpecial extends TextureAtlasSprite implements IIconRegister 
     //textureFX fields
     private TextureFX textureFX;
     private int mipmapLevels;
-    private int rawWidth;
-    private int rawHeight;
-
     private int blankSize = -1;
     private ArrayList<TextureDataHolder> baseTextures;
 
-    private boolean selfRegister;
     public int atlasIndex;
 
     protected TextureSpecial(String par1) {
@@ -82,8 +78,6 @@ public class TextureSpecial extends TextureAtlasSprite implements IIconRegister 
 
     @Override
     public void loadSprite(PngSizeInfo sizeInfo, boolean animationMeta) {
-        rawWidth = sizeInfo.pngWidth;
-        rawHeight = sizeInfo.pngHeight;
         try {
             super.loadSprite(sizeInfo, false);
         } catch (IOException e) {
@@ -156,7 +150,6 @@ public class TextureSpecial extends TextureAtlasSprite implements IIconRegister 
     }
 
     public TextureSpecial selfRegister() {
-        selfRegister = true;
         TextureUtils.addIconRegister(this);
         return this;
     }

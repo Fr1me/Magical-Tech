@@ -2,7 +2,6 @@ package net.magicaltech.init;
 
 import net.magicaltech.Reference;
 import net.magicaltech.item.ItemArmorBase;
-import net.magicaltech.item.ItemArmorHelperFutopia;
 import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
@@ -36,15 +35,6 @@ public class MTArmor {
 	public static ItemArmor rQLeggings;
 	public static ItemArmor rQBoots;
 	
-	public static Item[] armorBlue;
-    public static Item[] armorGreen;
-    public static Item[] armorRed;
-    public static Item[] armorPurple;
-    public static Item[] armorTungsten;
-    public static Item[] armorZinc;
-
-    private static ItemArmorHelperFutopia armorHelper = new ItemArmorHelperFutopia();
-	
 	public static void init() {
 		tHelmet = new ItemArmorBase(transistiumMaterial, 1, EntityEquipmentSlot.HEAD, "transistium_helmet");
 		tChestplate = new ItemArmorBase(transistiumMaterial, 1, EntityEquipmentSlot.CHEST, "transistium_chestplate");
@@ -60,13 +50,6 @@ public class MTArmor {
 		rQChestplate = new ItemArmorBase(roseQuartsMaterial, 1, EntityEquipmentSlot.CHEST, "rose_quartz_chestplate");
 		rQLeggings = new ItemArmorBase(roseQuartsMaterial, 2, EntityEquipmentSlot.LEGS, "rose_quartz_leggings");
 		rQBoots = new ItemArmorBase(roseQuartsMaterial, 1, EntityEquipmentSlot.FEET, "rose_quartz_boots");
-		
-		armorBlue = armorHelper.createArmorSet("blue", EnumHelper.addArmorMaterial("blue", Reference.MODID + ":blue", 16, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.1F));
-        armorGreen = armorHelper.createArmorSet("green", EnumHelper.addArmorMaterial("green", Reference.MODID + ":green", 16, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.1F));
-        armorRed = armorHelper.createArmorSet("red", EnumHelper.addArmorMaterial("red", Reference.MODID + ":red", 16, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.1F));
-        armorPurple = armorHelper.createArmorSet("purple", EnumHelper.addArmorMaterial("purple", Reference.MODID + ":purple", 16, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.1F));
-        armorTungsten = armorHelper.createArmorSet("tungsten", EnumHelper.addArmorMaterial("tungsten", Reference.MODID + ":tungsten", 16, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.1F));
-        armorZinc = armorHelper.createArmorSet("zinc", EnumHelper.addArmorMaterial("zinc", Reference.MODID + ":zinc", 16, new int[]{2, 5, 6, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.1F));
 	}
 	
 	public static void register() {
@@ -84,13 +67,6 @@ public class MTArmor {
 		registerItem(rQChestplate);
 		registerItem(rQLeggings);
 		registerItem(rQBoots);
-
-		registerItem(armorBlue);
-		registerItem(armorGreen);
-		registerItem(armorRed);
-		registerItem(armorPurple);
-		registerItem(armorTungsten);
-		registerItem(armorZinc);
 	}
 
 	public static void registerRenders() {
@@ -108,13 +84,6 @@ public class MTArmor {
 		registerRender(rQChestplate);
 		registerRender(rQLeggings);
 		registerRender(rQBoots);
-
-		registerRender(armorBlue);
-		registerRender(armorGreen);
-		registerRender(armorRed);
-		registerRender(armorPurple);
-		registerRender(armorTungsten);
-		registerRender(armorZinc);
 	}
 	
 	public static void registerItem (Item item) {

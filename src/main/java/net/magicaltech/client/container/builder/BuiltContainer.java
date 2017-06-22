@@ -26,9 +26,6 @@ public class BuiltContainer extends Container {
 	private final String name;
 
 	private final Predicate<EntityPlayer> canInteract;
-	private final List<Range<Integer>> playerSlotRanges;
-	private final List<Range<Integer>> tileSlotRanges;
-
 	private final ArrayList<MutableTriple<IntSupplier, IntConsumer, Short>> shortValues;
 	private final ArrayList<MutableTriple<IntSupplier, IntConsumer, Integer>> integerValues;
 	private List<Consumer<InventoryCrafting>> craftEvents;
@@ -40,9 +37,6 @@ public class BuiltContainer extends Container {
 		this.name = name;
 
 		this.canInteract = canInteract;
-
-		this.playerSlotRanges = playerSlotRange;
-		this.tileSlotRanges = tileSlotRange;
 
 		this.shortValues = new ArrayList<>();
 		this.integerValues = new ArrayList<>();
@@ -182,8 +176,6 @@ public class BuiltContainer extends Container {
 
 			final ItemStack stackInSlot = slot.getStack();
 			originalStack = stackInSlot.copy();
-
-			boolean shifted = false;
 
 			/*for (final Range<Integer> range : this.playerSlotRanges)
 				if (range.contains(index)) {

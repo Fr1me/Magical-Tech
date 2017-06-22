@@ -29,14 +29,11 @@ import net.minecraft.client.gui.GuiScreen;
 
 public abstract class Widget {
 
-	private final int x, y;
 	protected final int width, height;
 
 	private ToolTip toolTip;
 
 	public Widget(int x, int y, int width, int height) {
-		this.x = x;
-		this.y = y;
 		this.width = width;
 		this.height = height;
 	}
@@ -69,6 +66,7 @@ public abstract class Widget {
 
 	protected abstract void draw(GuiScreen guiScreen, int x, int y);
 
+	@SuppressWarnings("rawtypes")
 	protected abstract void mouseClick(GuiWidget guiWidget, int mouseX, int mouseY);
 
 }

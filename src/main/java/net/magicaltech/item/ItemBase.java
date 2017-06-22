@@ -1,7 +1,6 @@
 package net.magicaltech.item;
 
 import net.magicaltech.init.MTCreativeTabs;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -9,7 +8,7 @@ public class ItemBase extends Item {
 	
 	public boolean hasEffect;
 	
-	public ItemBase(String name, Boolean effect) {
+	public ItemBase(String name, boolean effect) {
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setCreativeTab(MTCreativeTabs.items);

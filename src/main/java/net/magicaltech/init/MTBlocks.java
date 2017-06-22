@@ -131,6 +131,8 @@ public class MTBlocks {
 		registerRender(crafterT3);
 		registerRender(crafterTC);
 		
+		registerRender(cropTransition);
+		
 	}
 	
 	public static void registerBlock(Block block) {

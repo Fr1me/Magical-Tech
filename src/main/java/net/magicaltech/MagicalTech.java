@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class MagicalTech {
 
 	@Mod.Instance(Reference.MODID)
-	public static MagicalTech instance = new MagicalTech();
+	public static MagicalTech instance;
 	@SidedProxy(serverSide = Reference.SERVER_PROXY_CLASS, clientSide = Reference.CLIENT_PROXY_CLASS)
 	public static IMTProxy proxy;
 	public static Logger logger = Logger.getLogger(Reference.NAME);

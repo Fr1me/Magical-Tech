@@ -8,7 +8,6 @@ import net.magicaltech.util.MTCraftingHelper;
 import net.magicaltech.util.Utils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class MTRecipeHandler {
 	

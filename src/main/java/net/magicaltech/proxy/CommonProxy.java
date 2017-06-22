@@ -1,7 +1,5 @@
 package net.magicaltech.proxy;
 
-import keri.ninetaillib.render.registry.IRenderingRegistry;
-import keri.ninetaillib.texture.IIconRegistrar;
 import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
 import net.magicaltech.handler.MTGuiHandler;
@@ -24,16 +22,6 @@ public class CommonProxy implements IMTProxy {
     public void registerTileEntities() {
     	GameRegistry.registerTileEntity(TileEntityGeneratorBase.class, Reference.MODID + ":generator_base");
 		GameRegistry.registerTileEntity(TileEntityMachineBase.class, Reference.MODID + ":machine_base");
-    }
-    
-    @Override
-    public IIconRegistrar getIconRegistrar() {
-    	return null;
-    }
-    
-    @Override
-    public IRenderingRegistry getRenderingRegistry() {
-        return null;
     }
 
     @Override

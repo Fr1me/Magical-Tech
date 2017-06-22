@@ -28,6 +28,7 @@ import net.minecraft.util.text.translation.I18n;
 /**
  * Created by Prospector
  */
+@SuppressWarnings("deprecation")
 public class GuiBase extends GuiContainer {
 
 	public int xSize = 176;
@@ -42,9 +43,9 @@ public class GuiBase extends GuiContainer {
     protected int lastIndex;
     protected String name;
     private ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/gui_base.png");
-    public ArrayList tabs;
-    protected ArrayList elements;
-    protected List tooltip;
+    public ArrayList<TabBase> tabs;
+    protected ArrayList<ElementBase> elements;
+    protected List<?> tooltip;
     protected boolean tooltips;
 
 	public GuiBase(EntityPlayer player, TileEntity tile, BuiltContainer container) {
@@ -56,9 +57,9 @@ public class GuiBase extends GuiContainer {
         mouseX = 0;
         mouseY = 0;
 //        lastIndex = -1;
-        tabs = new ArrayList();
-        elements = new ArrayList();
-        tooltip = new LinkedList();
+        tabs = new ArrayList<TabBase>();
+        elements = new ArrayList<ElementBase>();
+        tooltip = new LinkedList<Object>();
         tooltips = true;
 	}
 	
@@ -206,13 +207,13 @@ public class GuiBase extends GuiContainer {
         updateElements();
 	}
 	
-	public void drawTooltip(List list)
+	public void drawTooltip(List<?> list)
     {
         drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRenderer);
         tooltip.clear();
     }
 	
-	public void addTooltips(List tooltip)
+	public void addTooltips(List<?> tooltip)
     {
         TabBase tab = getTabAtPosition(mouseX, mouseY);
         if(tab != null)
@@ -288,7 +289,7 @@ public class GuiBase extends GuiContainer {
         return null;
     }
 
-    protected void drawTooltipHoveringText(List list, int x, int y, FontRenderer font)
+    protected void drawTooltipHoveringText(List<?> list, int x, int y, FontRenderer font)
     {
         if(list == null || list.isEmpty())
             return;
@@ -296,7 +297,7 @@ public class GuiBase extends GuiContainer {
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
         int k = 0;
-        Iterator iterator = list.iterator();
+        Iterator<?> iterator = list.iterator();
         do
         {
             if(!iterator.hasNext())

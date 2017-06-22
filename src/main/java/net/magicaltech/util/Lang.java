@@ -3,12 +3,12 @@ package net.magicaltech.util;
 import java.util.List;
 
 import com.google.common.collect.Lists;
- 
+
 import net.minecraft.util.text.translation.I18n;
  
+@SuppressWarnings("deprecation")
 public class Lang
 {
-    private static final String REGEX = "\\|";
     public static final char CHAR = '|';
     private static String prefix;
    
@@ -56,7 +56,8 @@ public class Lang
         return ret;
     }
    
-    public static String[] localizeAll(Lang lang, String... unloc) {
+    @SuppressWarnings("static-access")
+	public static String[] localizeAll(Lang lang, String... unloc) {
         String[] ret = new String[unloc.length];
         for (int i = 0; i < ret.length; i++) {
             ret[i] = lang.localize(unloc[i]);

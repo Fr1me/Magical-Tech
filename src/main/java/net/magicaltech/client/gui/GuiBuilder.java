@@ -13,11 +13,12 @@ import net.minecraft.util.ResourceLocation;
  * Created by Gigabit101 on 08/08/2016.
  */
 public class GuiBuilder {
-	public static final ResourceLocation defaultTextureSheet = new ResourceLocation("reborncore", "textures/gui/guielements.png");
+	
+	public static final ResourceLocation defaultTextureSheet = new ResourceLocation("magicaltech", "textures/gui/guielements.png");
 	static ResourceLocation resourceLocation;
 
 	public GuiBuilder(ResourceLocation resourceLocation) {
-		this.resourceLocation = resourceLocation;
+		GuiBuilder.resourceLocation = resourceLocation;
 	}
 
 	public void drawDefaultBackground(GuiScreen gui, int x, int y, int width, int height) {

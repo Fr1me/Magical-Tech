@@ -7,7 +7,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
-import reborncore.client.gui.slots.BaseSlot;
  
 public class ContainerCoalGenerator extends Container {
     private IItemHandler handler;
@@ -17,10 +16,10 @@ public class ContainerCoalGenerator extends Container {
     	
     	for(int y = 0; y < 3; y++) 
     		for(int x = 0; x < 9; x++)
-    	        addSlotToContainer(new BaseSlot(player, x + y * 9 + 9, xs + (x * 18), ys + (y * 18) + 92)); // Player Inventory
+    	        addSlotToContainer(new Slot(player, x + y * 9 + 9, xs + (x * 18), ys + (y * 18) + 92)); // Player Inventory
 
     	for(int k = 0; k < 9; k++)
-    	    addSlotToContainer(new BaseSlot(player, k, xs + (k * 18), ys + 83 + 67)); // Player Hotbar
+    	    addSlotToContainer(new Slot(player, k, xs + (k * 18), ys + 83 + 67)); // Player Hotbar
     }
  
     @Override

@@ -60,6 +60,7 @@ public class ElementSimpleTooltip extends ElementBase {
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void addTooltip(List list) {
 

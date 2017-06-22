@@ -30,6 +30,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
 
+@SuppressWarnings("deprecation")
 public abstract class GuiBase extends GuiContainer
 {
 
@@ -51,9 +52,9 @@ public abstract class GuiBase extends GuiContainer
         mouseX = 0;
         mouseY = 0;
         lastIndex = -1;
-        tabs = new ArrayList();
-        elements = new ArrayList();
-        tooltip = new LinkedList();
+        tabs = new ArrayList<TabBase>();
+        elements = new ArrayList<ElementBase>();
+        tooltip = new LinkedList<Object>();
         tooltips = true;
     }
 
@@ -65,9 +66,9 @@ public abstract class GuiBase extends GuiContainer
         mouseX = 0;
         mouseY = 0;
         lastIndex = -1;
-        tabs = new ArrayList();
-        elements = new ArrayList();
-        tooltip = new LinkedList();
+        tabs = new ArrayList<TabBase>();
+        elements = new ArrayList<ElementBase>();
+        tooltip = new LinkedList<Object>();
         tooltips = true;
         this.texture = texture;
     }
@@ -336,7 +337,7 @@ public abstract class GuiBase extends GuiContainer
         }
     }
 
-    public void addTooltips(List tooltip)
+    public void addTooltips(List<?> tooltip)
     {
         TabBase tab = getTabAtPosition(mouseX, mouseY);
         if(tab != null)
@@ -607,13 +608,13 @@ public abstract class GuiBase extends GuiContainer
         }
     }
 
-    public void drawTooltip(List list)
+    public void drawTooltip(List<?> list)
     {
         drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRenderer);
         tooltip.clear();
     }
 
-    protected void drawTooltipHoveringText(List list, int x, int y, FontRenderer font)
+    protected void drawTooltipHoveringText(List<?> list, int x, int y, FontRenderer font)
     {
         if(list == null || list.isEmpty())
             return;
@@ -621,7 +622,7 @@ public abstract class GuiBase extends GuiContainer
         GlStateManager.disableLighting();
         GlStateManager.disableDepth();
         int k = 0;
-        Iterator iterator = list.iterator();
+        Iterator<?> iterator = list.iterator();
         do
         {
             if(!iterator.hasNext())
@@ -723,9 +724,9 @@ public abstract class GuiBase extends GuiContainer
     protected int lastIndex;
     protected String name;
     protected ResourceLocation texture;
-    public ArrayList tabs;
-    protected ArrayList elements;
-    protected List tooltip;
+    public ArrayList<TabBase> tabs;
+    protected ArrayList<ElementBase> elements;
+    protected List<?> tooltip;
     protected boolean tooltips;
 
 }

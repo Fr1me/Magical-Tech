@@ -53,7 +53,7 @@ public class ElementEnergyStored extends ElementBase {
 
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 	@Override
 	public void addTooltip(List list) {
 

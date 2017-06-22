@@ -104,7 +104,7 @@ public abstract class ElementBase
 
     public abstract void drawForeground(int i, int j);
 
-    public void addTooltip(List list1)
+    public void addTooltip(List<?> list1)
     {
     }
 

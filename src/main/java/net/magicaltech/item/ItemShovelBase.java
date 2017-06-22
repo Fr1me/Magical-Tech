@@ -1,7 +1,6 @@
 package net.magicaltech.item;
 
 import net.magicaltech.init.MTCreativeTabs;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemSpade;
 
 public class ItemShovelBase extends ItemSpade {

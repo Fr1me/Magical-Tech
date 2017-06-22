@@ -51,11 +51,12 @@ public final class RecipeHandler {
 		addRecipe(unusedLocForOutput(namespace, output), recipe);
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void addShapedRecipe(ItemStack output, Object... inputs) {
 		String namespace = getNamespace();
 		ArrayList<String> pattern = Lists.newArrayList();
 		Map<String, Ingredient> key = Maps.newHashMap();
-		Iterator itr = Arrays.asList(inputs).iterator();
+		Iterator<Object> itr = Arrays.asList(inputs).iterator();
 
 		while(itr.hasNext()) {
 			Object obj = itr.next();

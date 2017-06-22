@@ -5,7 +5,7 @@ import org.apache.commons.lang3.Range;
 import net.magicaltech.client.container.builder.slot.FilteredSlot;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import reborncore.client.gui.slots.BaseSlot;
+import net.minecraft.inventory.Slot;
 
 public final class ContainerPlayerInventoryBuilder {
 
@@ -24,7 +24,7 @@ public final class ContainerPlayerInventoryBuilder {
 		final int startIndex = this.parent.slots.size();
 		for (int i = 0; i < 3; ++i)
 			for (int j = 0; j < 9; ++j)
-				this.parent.slots.add(new BaseSlot(this.player, j + i * 9 + 9, xStart + j * 18, yStart + i * 18));
+				this.parent.slots.add(new Slot(this.player, j + i * 9 + 9, xStart + j * 18, yStart + i * 18));
 		this.main = Range.between(startIndex, this.parent.slots.size() - 1);
 		return this;
 	}
@@ -32,7 +32,7 @@ public final class ContainerPlayerInventoryBuilder {
 	public ContainerPlayerInventoryBuilder hotbar(final int xStart, final int yStart) {
 		final int startIndex = this.parent.slots.size();
 		for (int i = 0; i < 9; ++i)
-			this.parent.slots.add(new BaseSlot(this.player, i, xStart + i * 18, yStart));
+			this.parent.slots.add(new Slot(this.player, i, xStart + i * 18, yStart));
 		this.hotbar = Range.between(startIndex, this.parent.slots.size() - 1);
 		return this;
 	}

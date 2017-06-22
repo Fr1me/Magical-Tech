@@ -6,7 +6,6 @@ import net.magicaltech.item.ItemHoeBase;
 import net.magicaltech.item.ItemPickaxeBase;
 import net.magicaltech.item.ItemShovelBase;
 import net.magicaltech.item.ItemSwordBase;
-import net.magicaltech.item.ItemToolHelperFutopia;
 import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -40,21 +39,6 @@ public class MTTools {
 	public static ItemShovelBase rQShovel;
 	public static ItemHoeBase rQHoe;
 	
-	public static Item[] toolsBlue;
-    public static Item[] toolsGreen;
-    public static Item[] toolsRed;
-    public static Item[] toolsPurple;
-    public static Item[] toolsTungsten;
-    public static Item[] toolsZinc;
-    
-    public static Item.ToolMaterial toolMaterialBlue = EnumHelper.addToolMaterial("blue", 2, 700, 6.1F, 2.1F, 15);
-    private static Item.ToolMaterial toolMaterialGreen = EnumHelper.addToolMaterial("green", 2, 700, 6.1F, 2.1F, 15);
-    private static Item.ToolMaterial toolMaterialRed = EnumHelper.addToolMaterial("red", 2, 700, 6.1F, 2.1F, 15);
-    private static Item.ToolMaterial toolMaterialPurple = EnumHelper.addToolMaterial("purple", 2, 700, 6.1F, 2.1F, 15);
-    private static Item.ToolMaterial toolMaterialTungsten = EnumHelper.addToolMaterial("tungsten", 2, 700, 6.1F, 2.1F, 15);
-    private static Item.ToolMaterial toolMaterialZinc = EnumHelper.addToolMaterial("zinc", 2, 700, 6.1F, 2.1F, 15);
-    private static ItemToolHelperFutopia toolHelper = new ItemToolHelperFutopia();
-	
 	public static void init() {
 		tSword = new ItemSwordBase(transistium, "transistium_sword");
 		tPickaxe = new ItemPickaxeBase(transistium, "transistium_pickaxe");
@@ -73,13 +57,6 @@ public class MTTools {
 		rQAxe = new ItemAxeBase(transistium, "rose_quartz_axe");
 		rQShovel = new ItemShovelBase(transistium, "rose_quartz_shovel");
 		rQHoe = new ItemHoeBase(transistium, "rose_quartz_hoe");
-		
-		toolsBlue = toolHelper.createToolset("blue", toolMaterialBlue);
-        toolsGreen = toolHelper.createToolset("green", toolMaterialGreen);
-        toolsRed = toolHelper.createToolset("red", toolMaterialRed);
-        toolsPurple = toolHelper.createToolset("purple", toolMaterialPurple);
-        toolsTungsten = toolHelper.createToolset("tungsten", toolMaterialTungsten);
-        toolsZinc = toolHelper.createToolset("zinc", toolMaterialZinc);
 	}
 	
 	public static void register() {
@@ -100,13 +77,6 @@ public class MTTools {
 		registerItem(rQAxe);
 		registerItem(rQShovel);
 		registerItem(rQHoe);
-		
-		registerItem(toolsBlue);
-		registerItem(toolsGreen);
-		registerItem(toolsRed);
-		registerItem(toolsPurple);
-		registerItem(toolsTungsten);
-		registerItem(toolsZinc);
 	}
 	
 	public static void registerRenders() {
@@ -127,13 +97,6 @@ public class MTTools {
 		registerRender(rQAxe, 0, null);
 		registerRender(rQShovel, 0, null);
 		registerRender(rQHoe, 0, null);
-
-		registerRender(toolsBlue, 0, null);
-		registerRender(toolsGreen, 0, null);
-		registerRender(toolsRed, 0, null);
-		registerRender(toolsPurple, 0, null);
-		registerRender(toolsTungsten, 0, null);
-		registerRender(toolsZinc, 0, null);
 	}
 	
 	public static void registerItem(Item item) {

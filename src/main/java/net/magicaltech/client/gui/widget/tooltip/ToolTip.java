@@ -27,8 +27,6 @@ package net.magicaltech.client.gui.widget.tooltip;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import net.minecraft.client.gui.FontRenderer;
-
 public class ToolTip {
 
 	protected ArrayList<ToolTipLine> lines = new ArrayList<>();

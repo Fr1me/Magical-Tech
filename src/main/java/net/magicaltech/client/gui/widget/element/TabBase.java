@@ -40,7 +40,7 @@ public abstract class TabBase extends ElementBase
         minHeight = 22;
         maxHeight = 22;
         currentHeight = minHeight;
-        elements = new ArrayList();
+        elements = new ArrayList<ElementBase>();
         texture = DEFAULT_TEXTURE_RIGHT;
     }
 
@@ -62,7 +62,7 @@ public abstract class TabBase extends ElementBase
         minHeight = 22;
         maxHeight = 22;
         currentHeight = minHeight;
-        elements = new ArrayList();
+        elements = new ArrayList<ElementBase>();
         this.side = side;
         if(side == 0)
             texture = DEFAULT_TEXTURE_LEFT;
@@ -310,7 +310,7 @@ label0:
         return true;
     }
 
-    public void addTooltip(List list)
+    public void addTooltip(List<?> list)
     {
         for(int i = 0; i < elements.size(); i++)
         {
@@ -370,7 +370,7 @@ label0:
     protected void updateElements()
     {
         ElementBase element;
-        for(Iterator iterator = elements.iterator(); iterator.hasNext(); element.setVisible(isFullyOpened()))
+        for(Iterator<ElementBase> iterator = elements.iterator(); iterator.hasNext(); element.setVisible(isFullyOpened()))
             element = (ElementBase)iterator.next();
 
     }
@@ -400,7 +400,7 @@ label0:
     public int minHeight;
     public int maxHeight;
     public int currentHeight;
-    protected ArrayList elements;
+    protected ArrayList<ElementBase> elements;
     public static final ResourceLocation DEFAULT_TEXTURE_LEFT = new ResourceLocation("techreborn:textures/gui/elements/tab_left.png");
     public static final ResourceLocation DEFAULT_TEXTURE_RIGHT = new ResourceLocation("techreborn:textures/gui/elements/tab_right.png");
 

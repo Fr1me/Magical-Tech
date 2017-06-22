@@ -48,6 +48,7 @@ public abstract class GuiWidget<T extends Container> extends GuiContainer {
 		this.background = background;
 	}
 
+	@SuppressWarnings("unchecked")
 	public T getContainer() {
 		return (T) inventorySlots;
 	}
@@ -78,6 +79,7 @@ public abstract class GuiWidget<T extends Container> extends GuiContainer {
 		this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		int x = (this.width - this.xSize) / 2;

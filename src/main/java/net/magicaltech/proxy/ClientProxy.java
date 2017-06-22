@@ -1,9 +1,5 @@
 package net.magicaltech.proxy;
 
-import keri.ninetaillib.render.registry.IRenderingRegistry;
-import keri.ninetaillib.texture.DefaultIconRegistrar;
-import keri.ninetaillib.texture.IIconRegistrar;
-import net.magicaltech.client.RenderingRegisteryThings;
 import net.magicaltech.init.MTArmor;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
@@ -14,9 +10,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ClientProxy extends CommonProxy implements IMTProxy {
-	
-	private static final DefaultIconRegistrar iconRegistrar = new DefaultIconRegistrar();
-	private static final RenderingRegisteryThings renderingRegistry = new RenderingRegisteryThings();
 	
 	@Override
 	public void registerRenders() {
@@ -35,16 +28,6 @@ public class ClientProxy extends CommonProxy implements IMTProxy {
 		
         MTCreativeTabs.initTabs();
 	}
-	
-	@Override
-    public IRenderingRegistry getRenderingRegistry() {
-        return renderingRegistry;
-    }
-
-    @Override
-    public IIconRegistrar getIconRegistrar() {
-        return iconRegistrar;
-    }
 
 	@Override
 	public void init(FMLInitializationEvent event) {

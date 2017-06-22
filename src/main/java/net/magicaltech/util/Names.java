@@ -1,7 +1,5 @@
 package net.magicaltech.util;
 
-import net.minecraft.util.text.TextFormatting;
-
 public class Names {
 
     public static class CraftingToolTips {
