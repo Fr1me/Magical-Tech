@@ -5,12 +5,8 @@
   "description": "Magic and tech, simply combined.",
   "version": "1.0",
   "mcversion": "1.12",
-  "url": "",
-  "updateUrl": "",
   "authorList": ["XFireEyeZ", "TheGamingHuskyMC"],
   "credits": "No one yet",
-  "logoFile": "assets/magicaltech/textures/logo.png",
-  "screenshots": [],
-  "dependencies": []
+  "logoFile": "assets/magicaltech/textures/logo.png"
 }
 ]
