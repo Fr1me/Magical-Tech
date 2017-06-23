@@ -17,11 +17,11 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerCoalGenerator extends Container {
     private IItemHandler handler;
  
-    public ContainerCoalGenerator(IInventory player, TileEntityCoalGenerator tile) {
-/*        handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.getFacingFromAxis(AxisDirection.POSITIVE, Axis.Y));
+    public ContainerCoalGenerator(IInventory player, TileEntityCoalGenerator tileEntity) {
+        handler = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.getFacingFromAxis(AxisDirection.POSITIVE, Axis.Y));
  
-        addSlotToContainer(new SlotItemHandler(handler, 0, 56, 53));
- */
+        addSlotToContainer(new SlotItemHandler(handler, 0, 79, 50));
+ 
     	int xs = 8, ys = 8 + 9;
     	/*IItemHandler inventory = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
     	for (int i = 0; i < 3; i++) for (int j = 0; j < 9; j++)

@@ -6,6 +6,7 @@ import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
 import net.magicaltech.init.MTItems;
 import net.magicaltech.init.MTTools;
+import net.magicaltech.integration.Hooks;
 import net.magicaltech.proxy.IMTProxy;
 import net.magicaltech.tile.TileEntityCoalGenerator;
 import net.magicaltech.util.Utils;
@@ -22,6 +23,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class MagicalTech {
+	
+	 /** Hooks instance */
+    public static Hooks hooks = new Hooks();
 	
 	@Mod.Instance(Reference.MODID)
 	public static MagicalTech instance = new MagicalTech();

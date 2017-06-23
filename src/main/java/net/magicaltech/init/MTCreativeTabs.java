@@ -5,9 +5,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by TheGamingHuskyMC on 29.05.2017.
- */
 public class MTCreativeTabs {
 
     public static CreativeTabs blocks;

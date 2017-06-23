@@ -3,9 +3,9 @@ package net.magicaltech.init;
 import net.magicaltech.Reference;
 import net.magicaltech.block.BlockBase;
 import net.magicaltech.block.BlockCoalGenerator;
+import net.magicaltech.block.BlockCropBase;
 import net.magicaltech.block.BlockMachineBase;
 import net.magicaltech.block.BlockOreBase;
-import net.magicaltech.block.crop.BlockCropTransition;
 import net.magicaltech.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -46,7 +46,7 @@ public class MTBlocks {
 		grinder = new BlockMachineBase("grinder", 5.0F, 20.0F, "pickaxe", 0);
 		
 //		Crops
-		cropTransition = new BlockCropTransition("transition_plant");
+		cropTransition = new BlockCropBase("transition_plant", MTItems.seedTransition, MTItems.tTFragment);
 	}
 	
 	public static void register() {
