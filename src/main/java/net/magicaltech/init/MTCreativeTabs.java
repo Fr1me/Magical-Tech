@@ -45,7 +45,7 @@ public class MTCreativeTabs {
         machines = new CreativeTabs("machines_mt"){
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Item.getItemFromBlock(Blocks.FURNACE));
+                return new ItemStack(Item.getItemFromBlock(MTBlocks.mGen));
             }
 
         };
