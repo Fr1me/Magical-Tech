@@ -221,77 +221,77 @@ public class MTBuilder extends GuiBuilder {
 		}
 	}*/
 
-	public void drawBigBlueBar(GuiBase gui, int x, int y, int value, int max, int mouseX, int mouseY, String suffix, EnumRenderType layer) {
-		if (layer == EnumRenderType.BACKGROUND) {
-			x += gui.getGuiLeft();
-			y += gui.getGuiTop();
-		}
-		gui.mc.getTextureManager().bindTexture(GUI_SHEET);
-		if (!suffix.equals("")) {
-			suffix = " " + suffix;
-		}
-		gui.drawTexturedModalRect(x, y, 0, 218, 114, 18);
-		int j = (int) ((double) value / (double) max * 106);
-		if (j < 0)
-			j = 0;
-		gui.drawTexturedModalRect(x + 4, y + 4, 0, 236, j, 10);
-		gui.drawCentredString(value + suffix, y + 5, 0xFFFFFF, layer);
-		if (isInRect(x, y, 114, 18, mouseX, mouseY)) {
-			int percentage = percentage(max, value);
-			List<String> list = new ArrayList<>();
-			list.add("" + TextFormatting.GOLD + value + "/" + max + suffix);
-			list.add(getPercentageColour(percentage) + "" + percentage + "%" + TextFormatting.GRAY + " Full");
+//	public void drawBigBlueBar(GuiBase gui, int x, int y, int value, int max, int mouseX, int mouseY, String suffix, EnumRenderType layer) {
+//		if (layer == EnumRenderType.BACKGROUND) {
+//			x += gui.getGuiLeft();
+//			y += gui.getGuiTop();
+//		}
+//		gui.mc.getTextureManager().bindTexture(GUI_SHEET);
+//		if (!suffix.equals("")) {
+//			suffix = " " + suffix;
+//		}
+//		gui.drawTexturedModalRect(x, y, 0, 218, 114, 18);
+//		int j = (int) ((double) value / (double) max * 106);
+//		if (j < 0)
+//			j = 0;
+//		gui.drawTexturedModalRect(x + 4, y + 4, 0, 236, j, 10);
+//		gui.drawCentredString(value + suffix, y + 5, 0xFFFFFF, layer);
+//		if (isInRect(x, y, 114, 18, mouseX, mouseY)) {
+//			int percentage = percentage(max, value);
+//			List<String> list = new ArrayList<>();
+//			list.add("" + TextFormatting.GOLD + value + "/" + max + suffix);
+//			list.add(getPercentageColour(percentage) + "" + percentage + "%" + TextFormatting.GRAY + " Full");
+//
+//			if (value > max) {
+//				list.add(TextFormatting.GRAY + "Yo this is storing more than it should be able to");
+//				list.add(TextFormatting.GRAY + "prolly a bug");
+//				list.add(TextFormatting.GRAY + "pls report and tell how tf you did this");
+//			}
+//			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRendererObj);
+//			GlStateManager.disableLighting();
+//			GlStateManager.color(1, 1, 1, 1);
+//		}
+//	}
 
-			if (value > max) {
-				list.add(TextFormatting.GRAY + "Yo this is storing more than it should be able to");
-				list.add(TextFormatting.GRAY + "prolly a bug");
-				list.add(TextFormatting.GRAY + "pls report and tell how tf you did this");
-			}
-			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRendererObj);
-			GlStateManager.disableLighting();
-			GlStateManager.color(1, 1, 1, 1);
-		}
-	}
+//	public void drawBigHeatBar(GuiBase gui, int x, int y, int value, int max, EnumRenderType layer) {
+//		if (layer == EnumRenderType.BACKGROUND) {
+//			x += gui.getGuiLeft();
+//			y += gui.getGuiTop();
+//		}
+//		gui.mc.getTextureManager().bindTexture(GUI_SHEET);
+//		gui.drawTexturedModalRect(x, y, 0, 218, 114, 18);
+//		if (value != 0) {
+//			int j = (int) ((double) value / (double) max * 106);
+//			if (j < 0)
+//				j = 0;
+//			gui.drawTexturedModalRect(x + 4, y + 4, 0, 246, j, 10);
+//			gui.drawCentredString(value + " Heat", y + 5, 0xFFFFFF, layer);
+//
+//		}
+//	}
 
-	public void drawBigHeatBar(GuiBase gui, int x, int y, int value, int max, EnumRenderType layer) {
-		if (layer == EnumRenderType.BACKGROUND) {
-			x += gui.getGuiLeft();
-			y += gui.getGuiTop();
-		}
-		gui.mc.getTextureManager().bindTexture(GUI_SHEET);
-		gui.drawTexturedModalRect(x, y, 0, 218, 114, 18);
-		if (value != 0) {
-			int j = (int) ((double) value / (double) max * 106);
-			if (j < 0)
-				j = 0;
-			gui.drawTexturedModalRect(x + 4, y + 4, 0, 246, j, 10);
-			gui.drawCentredString(value + " Heat", y + 5, 0xFFFFFF, layer);
+//	public void drawMultiblockMissingBar(GuiBase gui, EnumRenderType layer) {
+//		int x = 0;
+//		int y = 4;
+//		if (layer == EnumRenderType.BACKGROUND) {
+//			x += gui.getGuiLeft();
+//			y += gui.getGuiTop();
+//		}
+//		gui.mc.getTextureManager().bindTexture(GUI_SHEET);
+//		GlStateManager.disableLighting();
+//		GlStateManager.disableDepth();
+//		GlStateManager.colorMask(true, true, true, false);
+//		GuiUtils.drawGradientRect(0, x, y, x + 176, y + 20, 0x000000, 0xC0000000);
+//		GuiUtils.drawGradientRect(0, x, y + 20, x + 176, y + 20 + 48, 0xC0000000, 0xC0000000);
+//		GuiUtils.drawGradientRect(0, x, y + 68, x + 176, y + 70 + 20, 0xC0000000, 0x00000000);
+//		GlStateManager.colorMask(true, true, true, true);
+//		GlStateManager.enableDepth();
+//		gui.drawCentredString(I18n.translateToLocal("techreborn.message.missingmultiblock"), 43, 0xFFFFFF, layer);
+//	}
 
-		}
-	}
-
-	public void drawMultiblockMissingBar(GuiBase gui, EnumRenderType layer) {
-		int x = 0;
-		int y = 4;
-		if (layer == EnumRenderType.BACKGROUND) {
-			x += gui.getGuiLeft();
-			y += gui.getGuiTop();
-		}
-		gui.mc.getTextureManager().bindTexture(GUI_SHEET);
-		GlStateManager.disableLighting();
-		GlStateManager.disableDepth();
-		GlStateManager.colorMask(true, true, true, false);
-		GuiUtils.drawGradientRect(0, x, y, x + 176, y + 20, 0x000000, 0xC0000000);
-		GuiUtils.drawGradientRect(0, x, y + 20, x + 176, y + 20 + 48, 0xC0000000, 0xC0000000);
-		GuiUtils.drawGradientRect(0, x, y + 68, x + 176, y + 70 + 20, 0xC0000000, 0x00000000);
-		GlStateManager.colorMask(true, true, true, true);
-		GlStateManager.enableDepth();
-		gui.drawCentredString(I18n.translateToLocal("techreborn.message.missingmultiblock"), 43, 0xFFFFFF, layer);
-	}
-
-	public void drawBigBlueBar(GuiBase gui, int x, int y, int value, int max, int mouseX, int mouseY, EnumRenderType layer) {
-		drawBigBlueBar(gui, x, y, value, max, mouseX, mouseY, "", layer);
-	}
+//	public void drawBigBlueBar(GuiBase gui, int x, int y, int value, int max, int mouseX, int mouseY, EnumRenderType layer) {
+//		drawBigBlueBar(gui, x, y, value, max, mouseX, mouseY, "", layer);
+//	}
 
 	public void drawSelectedStack(GuiBase gui, int x, int y) {
 		Minecraft.getMinecraft().getTextureManager().bindTexture(GUI_SHEET);
@@ -319,7 +319,7 @@ public class MTBuilder extends GuiBuilder {
 			int percentage = percentage(maxProgress, progress);
 			List<String> list = new ArrayList<>();
 			list.add(getPercentageColour(percentage) + "" + percentage + "%");
-			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRenderer);
+			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRendererObj);
 			GlStateManager.disableLighting();
 			GlStateManager.color(1, 1, 1, 1);
 		}

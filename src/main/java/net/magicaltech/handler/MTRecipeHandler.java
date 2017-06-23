@@ -15,8 +15,7 @@ public class MTRecipeHandler {
 		Utils.getLogger().info("Registering Crafting Recipes...");
 		
 		registry.addRecipe(new ItemStack(MTItems.tIngot), new Object[] {  "NNN", "NNN", "NNN", 'N', MTItems.tNugget });
-		registry.addRecipe(new ItemStack(MTItems.tNugget), new Object[] {  "PPP", "PPP", "PPP", 'P', MTItems.tPiece });
-		registry.addRecipe(new ItemStack(MTItems.tPiece), new Object[] {  "FFF", "FFF", "FFF", 'F', MTItems.tFragment });
+		registry.addRecipe(new ItemStack(MTItems.tNugget), new Object[] {  "FFF", "FFF", "FFF", 'F', MTItems.tFragment });
 		registry.addRecipe(new ItemStack(MTItems.tFragment), new Object[] {  "TTT", "TTT", "TTT", 'T', MTItems.tTFragment });
 		registry.addRecipe(new ItemStack(MTItems.seedTransition), new Object[] {  "IGI", "GSG", "IGI", 'I', Items.IRON_INGOT, 'G', Items.GOLD_INGOT, 'S', Items.WHEAT_SEEDS });
 		

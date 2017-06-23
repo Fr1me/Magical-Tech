@@ -19,7 +19,6 @@ public class MTItems {
 	public static Item tIngot;
 	public static Item seedTransition;
 	public static Item tNugget;
-	public static Item tPiece;
 	public static Item tFragment;
 	public static Item tTFragment;
 	public static Item iStone;
@@ -33,7 +32,7 @@ public class MTItems {
 		pIron = new ItemBase("prophecy_iron_ingot", false);
 		tIngot = new ItemBase("transistium_ingot", true);
 		tNugget = new ItemBase("transistium_nugget", false);
-		tPiece = new ItemBase("transistium_piece", false);
+
 		tFragment = new ItemBase("transistium_fragment", false);
 		tTFragment = new ItemBase("tiny_transistium_fragment", false);
 		iStone = new ItemBase("illusion_stone", false);
@@ -51,7 +50,6 @@ public class MTItems {
 		registerItem(pIron);
 		registerItem(tIngot);
 		registerItem(tNugget);
-		registerItem(tPiece);
 		registerItem(tFragment);
 		registerItem(tTFragment);
 		registerItem(iStone);
@@ -69,7 +67,6 @@ public class MTItems {
 		registerRender(pIron);
 		registerRender(tIngot);
 		registerRender(tNugget);
-		registerRender(tPiece);
 		registerRender(tFragment);
 		registerRender(tTFragment);
 		registerRender(iStone);

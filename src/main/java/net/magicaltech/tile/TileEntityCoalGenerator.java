@@ -119,5 +119,6 @@ public class TileEntityCoalGenerator extends TileEntity implements ITickable, IC
 		public int extractEnergy(EnumFacing from, int maxExtract, boolean simulate) {
 			return from.ordinal() != facing ? 0 : energyStorage.extractEnergy(Math.min(config.maxPower * 2, maxExtract), simulate);
 		}
+		
 
 }
