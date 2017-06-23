@@ -68,6 +68,12 @@ itemGroup.blocks_mt=Magical Blocks
 itemGroup.worldgen_mt=Magical Worldgen
 itemGroup.decoration_mt=Magical Decoration
 
+#Containers
+container.crafter=Crafter
+
+#Tooltips
+info.magicaltech.holdShiftForDetails=Hold Shift for Details
+
 #Achievements
 achievement.transistium=You acctually crafted that?!
 achievement.transistium.desc=What?! 6 561 of those little things?!

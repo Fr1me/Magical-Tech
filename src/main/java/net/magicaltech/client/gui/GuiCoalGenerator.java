@@ -69,17 +69,6 @@ public class GuiCoalGenerator extends GuiContainer {
         return (xWidth - fontRenderer.getStringWidth(string)) / 2;
     }
     
-    protected void drawArmourSlots(int x, int y, EnumRenderType layer) {
-		if (layer == EnumRenderType.BACKGROUND) {
-			x += guiLeft;
-			y += guiTop;
-		}
-		builder.drawSlot(this, x - 1, y - 1);
-		builder.drawSlot(this, x - 1, y - 1 + 18);
-		builder.drawSlot(this, x - 1, y - 1 + 18 + 18);
-		builder.drawSlot(this, x - 1, y - 1 + 18 + 18 + 18);
-	}
-    
     @Override
 	public void drawScreen(int x, int y, float partialTicks) {
     	super.drawScreen(x, y, partialTicks);

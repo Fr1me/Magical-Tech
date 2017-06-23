@@ -25,7 +25,7 @@ public class BlockGeneratorBase extends BlockMachineBase{
 	@Override
     public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
         if (!StringHelper.isShiftKeyDown()) {
-            tooltip.add(Names.HelpToolTips.SHIFT_FOR_INFO);
+            tooltip.add(StringHelper.shiftForDetails());
         } else {
         	tooltip.add(Names.HelpToolTips.WIP_BLOCK);
         }

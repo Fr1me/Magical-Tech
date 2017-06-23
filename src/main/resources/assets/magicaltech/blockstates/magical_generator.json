@@ -2,6 +2,7 @@
 	"variants": {
 		"normal": {
 			"model": "magicaltech:magical_generator"
-		}
+		},
+		"inventory": [{}]
 	}
 }

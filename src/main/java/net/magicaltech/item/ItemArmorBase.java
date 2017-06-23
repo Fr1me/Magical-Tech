@@ -12,7 +12,7 @@ public class ItemArmorBase extends ItemArmor {
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setCreativeTab(MTCreativeTabs.combat);
-		setColor(new ItemStack(this), 0xDEC600);
+//		setColor(new ItemStack(this), 0xDEC600);
 	}
 
 }

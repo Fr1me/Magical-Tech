@@ -196,32 +196,32 @@ public final class StringHelper
 
     public static String shiftForDetails()
     {
-        return localize("info.futopia.holdShiftForDetails");
+        return localize("info.magicaltech.holdShiftForDetails");
     }
 
     public static String tutorialTabUpgrades()
     {
-        return localize("info.futopia.tutorial.tabAugment");
+        return localize("info.magicaltech.tutorial.tabAugment");
     }
 
     public static String tutorialTabConfiguration()
     {
-        return localize("info.futopia.tutorial.tabConfiguration");
+        return localize("info.magicaltech.tutorial.tabConfiguration");
     }
 
     public static String tutorialTabRedstone()
     {
-        return localize("info.futopia.tutorial.tabRedstone");
+        return localize("info.magicaltech.tutorial.tabRedstone");
     }
 
     public static String tutorialTabSecurity()
     {
-        return localize("info.futopia.tutorial.tabSecurity");
+        return localize("info.magicaltech.tutorial.tabSecurity");
     }
 
     public static String tutorialTabFERequired()
     {
-        return localize("info.futopia.tutorial.feRequired");
+        return localize("info.magicaltech.tutorial.feRequired");
     }
 
     public static final String ROMAN_NUMERAL[] = {
