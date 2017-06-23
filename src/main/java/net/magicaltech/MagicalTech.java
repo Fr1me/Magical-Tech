@@ -9,6 +9,7 @@ import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTItems;
 import net.magicaltech.init.MTTools;
 import net.magicaltech.proxy.IMTProxy;
+import net.magicaltech.tile.TileCraftingBase;
 import net.magicaltech.tile.TileEntityGeneratorBase;
 import net.magicaltech.tile.TileEntityMachineBase;
 import net.magicaltech.util.Utils;
@@ -48,6 +49,7 @@ public class MagicalTech {
 
 		GameRegistry.registerTileEntity(TileEntityMachineBase.class, Reference.MODID + ":machine_base");
 		GameRegistry.registerTileEntity(TileEntityGeneratorBase.class, Reference.MODID + ":generator_base");
+		GameRegistry.registerTileEntity(TileCraftingBase.class, Reference.MODID + ":crafter_base");
 		NetworkRegistry.INSTANCE.registerGuiHandler(MagicalTech.instance, new MTGuiHandler());
 
 		proxy.registerRenders();

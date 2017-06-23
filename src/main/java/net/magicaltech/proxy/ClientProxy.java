@@ -1,10 +1,13 @@
 package net.magicaltech.proxy;
 
+import net.magicaltech.client.render.RenderCrafter;
 import net.magicaltech.init.MTArmor;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
 import net.magicaltech.init.MTItems;
 import net.magicaltech.init.MTTools;
+import net.magicaltech.tile.TileCraftingBase;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -26,6 +29,8 @@ public class ClientProxy extends CommonProxy implements IMTProxy {
 		MTTools.init();
 		MTArmor.init();
 		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCraftingBase.class, new RenderCrafter());
+		
         MTCreativeTabs.initTabs();
 	}
 
@@ -36,7 +41,7 @@ public class ClientProxy extends CommonProxy implements IMTProxy {
 
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
-
+		
 	}
 
 }

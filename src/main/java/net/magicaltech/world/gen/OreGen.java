@@ -15,7 +15,6 @@ public class OreGen implements IWorldGenerator {
 	
 	//World Generators
 	private WorldGenerator rose_quartz_nether;
-	private WorldGenerator transistium_nether;
 	private WorldGenerator prophecy_iron_nether;
 	
 	private WorldGenerator rose_quartz;
@@ -50,14 +49,13 @@ public class OreGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,IChunkProvider chunkProvider) {
 		switch(world.provider.getDimension()) {
 		case 1: //OverWorld
-			this.runGenerator(hardened_stone, world, random, chunkX, chunkZ, 13, 0, 48);
-			this.runGenerator(rose_quartz, world, random, chunkX, chunkZ, 13, 0, 48);
-			this.runGenerator(transistium, world, random, chunkX, chunkZ, 13, 0, 48);
-			this.runGenerator(prophecy_iron, world, random, chunkX, chunkZ, 13, 0, 48);
+			this.runGenerator(hardened_stone, world, random, chunkX, chunkZ, 1, 0, 48);
+			this.runGenerator(rose_quartz, world, random, chunkX, chunkZ, 1, 0, 48);
+			this.runGenerator(transistium, world, random, chunkX, chunkZ, 1, 0, 48);
+			this.runGenerator(prophecy_iron, world, random, chunkX, chunkZ, 1, 0, 48);
 		case -1: //Nether
-			this.runGenerator(rose_quartz_nether, world, random, chunkX, chunkZ, 5, 16, 64);
-			this.runGenerator(transistium_nether, world, random, chunkX, chunkZ, 5, 16, 64);
-			this.runGenerator(prophecy_iron_nether, world, random, chunkX, chunkZ, 5, 16, 64);
+			this.runGenerator(rose_quartz_nether, world, random, chunkX, chunkZ, 1, 16, 64);
+			this.runGenerator(prophecy_iron_nether, world, random, chunkX, chunkZ, 1, 16, 64);
 		}
 	}
 

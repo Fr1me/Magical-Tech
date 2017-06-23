@@ -1,16 +1,12 @@
 package net.magicaltech.client.gui;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import net.magicaltech.Reference;
-import net.magicaltech.client.container.builder.BuiltContainer;
+import net.magicaltech.client.container.ContainerBase;
 import net.magicaltech.client.gui.widget.EnumRenderType;
-import net.magicaltech.client.gui.widget.GuiButtonPowerBar;
-import net.magicaltech.client.gui.widget.element.ElementBase;
-import net.magicaltech.client.gui.widget.element.TabBase;
 import net.magicaltech.util.RenderHelper;
 import net.magicaltech.util.StringHelper;
 import net.minecraft.client.gui.FontRenderer;
@@ -33,9 +29,8 @@ public class GuiBase extends GuiContainer {
 
 	public int xSize = 176;
 	public int ySize = 176;
-	public TRBuilder builder = new TRBuilder();
+	public MTBuilder builder = new MTBuilder();
 	public TileEntity tile;
-	public BuiltContainer container;
 	protected boolean drawTitle;
     protected boolean drawInventory;
     protected int mouseX;
@@ -43,22 +38,27 @@ public class GuiBase extends GuiContainer {
     protected int lastIndex;
     protected String name;
     private ResourceLocation texture = new ResourceLocation(Reference.MODID, "textures/gui/gui_base.png");
-    public ArrayList<TabBase> tabs;
-    protected ArrayList<ElementBase> elements;
     protected List<?> tooltip;
     protected boolean tooltips;
 
-	public GuiBase(EntityPlayer player, TileEntity tile, BuiltContainer container) {
-		super(container);
+	public GuiBase(EntityPlayer player, TileEntity tile) {
+		super(new ContainerBase() {
+			
+			@Override
+			public boolean canInteractWith(EntityPlayer playerIn) {
+				return false;
+			}
+			
+			@Override
+			public int getSizeInventory() {
+				return 0;
+			}
+		});
 		this.tile = tile;
-		this.container = container;
 		drawTitle = true;
         drawInventory = true;
         mouseX = 0;
         mouseY = 0;
-//        lastIndex = -1;
-        tabs = new ArrayList<TabBase>();
-        elements = new ArrayList<ElementBase>();
         tooltip = new LinkedList<Object>();
         tooltips = true;
 	}
@@ -66,8 +66,6 @@ public class GuiBase extends GuiContainer {
 	@Override
 	public void initGui(){
         super.initGui();
-        tabs.clear();
-        elements.clear();
     }
 	
 	public void handleElementButtonClick(String s, int i){
@@ -115,75 +113,6 @@ public class GuiBase extends GuiContainer {
         Tessellator.getInstance().draw();
         GlStateManager.enableTexture2D();
     }
-	
-	protected void drawElements(float partialTick, boolean foreground)
-    {
-        if(foreground)
-        {
-            for(int i = 0; i < elements.size(); i++)
-            {
-                ElementBase element = (ElementBase)elements.get(i);
-                if(element.isVisible())
-                    element.drawForeground(mouseX, mouseY);
-            }
-
-        } else
-        {
-            for(int i = 0; i < elements.size(); i++)
-            {
-                ElementBase element = (ElementBase)elements.get(i);
-                if(element.isVisible())
-                    element.drawBackground(mouseX, mouseY, partialTick);
-            }
-
-        }
-    }
-
-    protected void drawTabs(float partialTick, boolean foreground)
-    {
-        int yPosRight = 4;
-        int yPosLeft = 4;
-        if(foreground)
-        {
-            for(int i = 0; i < tabs.size(); i++)
-            {
-                TabBase tab = (TabBase)tabs.get(i);
-                tab.update();
-                if(tab.isVisible())
-                    if(tab.side == 0)
-                    {
-                        tab.drawForeground(mouseX, mouseY);
-                        yPosLeft += tab.currentHeight;
-                    } else
-                    {
-                        tab.drawForeground(mouseX, mouseY);
-                        yPosRight += tab.currentHeight;
-                    }
-            }
-
-        } else
-        {
-            for(int i = 0; i < tabs.size(); i++)
-            {
-                TabBase tab = (TabBase)tabs.get(i);
-                tab.update();
-                if(!tab.isVisible())
-                    continue;
-                if(tab.side == 0)
-                {
-                    tab.setPosition(0, yPosLeft);
-                    tab.drawBackground(mouseX, mouseY, partialTick);
-                    yPosLeft += tab.currentHeight;
-                } else
-                {
-                    tab.setPosition(xSize, yPosRight);
-                    tab.drawBackground(mouseX, mouseY, partialTick);
-                    yPosRight += tab.currentHeight;
-                }
-            }
-
-        }
-    }
 
 	public void drawSlot(int x, int y, EnumRenderType layer) {
 		if (layer == EnumRenderType.BACKGROUND) {
@@ -195,16 +124,13 @@ public class GuiBase extends GuiContainer {
 	
 	@Override
 	public void drawScreen(int x, int y, float partialTicks) {
-		updateElementInformation();
 		this.drawGuiContainerForegroundLayer(x, y);
 		if(tooltips && mc.player.inventory.getItemStack() == null)
         {
-            addTooltips(tooltip);
             drawTooltip(tooltip);
         }
         mouseX = x;
         mouseY = y;
-        updateElements();
 	}
 	
 	public void drawTooltip(List<?> list)
@@ -212,83 +138,7 @@ public class GuiBase extends GuiContainer {
         drawTooltipHoveringText(list, mouseX + guiLeft, mouseY + guiTop, fontRenderer);
         tooltip.clear();
     }
-	
-	public void addTooltips(List<?> tooltip)
-    {
-        TabBase tab = getTabAtPosition(mouseX, mouseY);
-        if(tab != null)
-            tab.addTooltip(tooltip);
-        ElementBase element = getElementAtPosition(mouseX, mouseY);
-        if(element != null && element.isVisible())
-            element.addTooltip(tooltip);
-    }
-
-    public ElementBase addElement(ElementBase element)
-    {
-        elements.add(element);
-        return element;
-    }
-
-    public TabBase addTab(TabBase tab)
-    {
-        int yOffset = 4;
-        for(int i = 0; i < tabs.size(); i++)
-            if(((TabBase)tabs.get(i)).side == tab.side && ((TabBase)tabs.get(i)).isVisible())
-                yOffset += ((TabBase)tabs.get(i)).currentHeight;
-
-        tab.setPosition(tab.side != 0 ? xSize : 0, yOffset);
-        tabs.add(tab);
-        /*if(TabTracker.getOpenedLeftTab() != null && tab.getClass().equals(TabTracker.getOpenedLeftTab()))
-            tab.setFullyOpen();
-        else
-        if(TabTracker.getOpenedRightTab() != null && tab.getClass().equals(TabTracker.getOpenedRightTab()))
-            tab.setFullyOpen();*/
-        return tab;
-    }
     
-    public ElementBase getElementAtPosition(int mX, int mY)
-    {
-        for(int i = elements.size(); i-- > 0;)
-        {
-            ElementBase element = (ElementBase)elements.get(i);
-            if(element.intersectsWith(mX, mY))
-                return element;
-        }
-
-        return null;
-    }
-
-    protected TabBase getTabAtPosition(int mX, int mY)
-    {
-        int xShift = 0;
-        int yShift = 4;
-        for(int i = 0; i < tabs.size(); i++)
-        {
-            TabBase tab = (TabBase)tabs.get(i);
-            if(!tab.isVisible() || tab.side == 1)
-                continue;
-            tab.setCurrentShift(xShift, yShift);
-            if(tab.intersectsWith(mX, mY, xShift, yShift))
-                return tab;
-            yShift += tab.currentHeight;
-        }
-
-        xShift = xSize;
-        yShift = 4;
-        for(int i = 0; i < tabs.size(); i++)
-        {
-            TabBase tab = (TabBase)tabs.get(i);
-            if(!tab.isVisible() || tab.side == 0)
-                continue;
-            tab.setCurrentShift(xShift, yShift);
-            if(tab.intersectsWith(mX, mY, xShift, yShift))
-                return tab;
-            yShift += tab.currentHeight;
-        }
-
-        return null;
-    }
-
     protected void drawTooltipHoveringText(List<?> list, int x, int y, FontRenderer font)
     {
         if(list == null || list.isEmpty())
@@ -344,23 +194,6 @@ public class GuiBase extends GuiContainer {
         GlStateManager.enableLighting();
         GlStateManager.enableDepth();
         GlStateManager.enableRescaleNormal();
-    }
-	
-	protected final void updateElements()
-    {
-        int i = elements.size();
-        do
-        {
-            if(i-- <= 0)
-                break;
-            ElementBase c = (ElementBase)elements.get(i);
-            if(c.isVisible() && c.isEnabled())
-                c.update(mouseX, mouseY);
-        } while(true);
-    }
-
-    protected void updateElementInformation()
-    {
     }
 
 	protected void drawScrapSlot(int x, int y, EnumRenderType layer) {
@@ -461,8 +294,6 @@ public class GuiBase extends GuiContainer {
         mouseY = y;
         GlStateManager.pushMatrix();
         GlStateManager.translate(guiLeft, guiTop, 0.0F);
-        drawElements(partialTick, false);
-        drawTabs(partialTick, false);
         GlStateManager.popMatrix();
 	}
 	
@@ -514,18 +345,6 @@ public class GuiBase extends GuiContainer {
 		}
 		mc.fontRenderer.drawString(string, x + factorX, y + factorY, colour);
 		GlStateManager.color(1, 1, 1, 1);
-	}
-
-	public void addPowerButton(int x, int y, int id, EnumRenderType layer) {
-		if (id == 0)
-			buttonList.clear();
-		int factorX = 0;
-		int factorY = 0;
-		if (layer == EnumRenderType.BACKGROUND) {
-			factorX = guiLeft;
-			factorY = guiTop;
-		}
-		buttonList.add(new GuiButtonPowerBar(id, x + factorX, y + factorY, this, layer));
 	}
 	
 	public FontRenderer getFontRenderer()

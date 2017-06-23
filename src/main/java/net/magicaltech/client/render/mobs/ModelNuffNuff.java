@@ -17,7 +17,6 @@ public class ModelNuffNuff extends ModelBiped
     public ModelNuffNuff(float scale)
     {
         super(0.0F, -14.0F, 64, 32);
-        float f = -14.0F;
         this.bipedHeadwear = new ModelRenderer(this, 0, 16);
         this.bipedHeadwear.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, scale - 0.5F);
         this.bipedHeadwear.setRotationPoint(0.0F, -14.0F, 0.0F);
@@ -49,7 +48,6 @@ public class ModelNuffNuff extends ModelBiped
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
         this.bipedHead.showModel = true;
-        float f = -14.0F;
         this.bipedBody.rotateAngleX = 0.0F;
         this.bipedBody.rotationPointY = -14.0F;
         this.bipedBody.rotationPointZ = -0.0F;
@@ -59,7 +57,6 @@ public class ModelNuffNuff extends ModelBiped
         this.bipedLeftArm.rotateAngleX = (float)((double)this.bipedLeftArm.rotateAngleX * 0.5D);
         this.bipedRightLeg.rotateAngleX = (float)((double)this.bipedRightLeg.rotateAngleX * 0.5D);
         this.bipedLeftLeg.rotateAngleX = (float)((double)this.bipedLeftLeg.rotateAngleX * 0.5D);
-        float f1 = 0.4F;
 
         if (this.bipedRightArm.rotateAngleX > 0.4F)
         {
@@ -126,7 +123,6 @@ public class ModelNuffNuff extends ModelBiped
 
         if (this.isAttacking)
         {
-            float f2 = 1.0F;
             this.bipedHead.rotationPointY -= 5.0F;
         }
     }

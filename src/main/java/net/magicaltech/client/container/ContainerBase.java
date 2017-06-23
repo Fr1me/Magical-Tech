@@ -2,10 +2,8 @@ package net.magicaltech.client.container;
 
 import java.util.List;
 
-import net.magicaltech.client.container.builder.slot.SlotFalseCopy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -23,7 +21,7 @@ public abstract class ContainerBase extends Container {
         }
     }
 
-    @Override
+    /*@Override
     public ItemStack slotClick(int index, int mouseButton, ClickType modifier, EntityPlayer player) {
         Slot slot = index < 0 ? null : this.inventorySlots.get(index);
 
@@ -39,7 +37,7 @@ public abstract class ContainerBase extends Container {
         }
 
         return super.slotClick(index, mouseButton, modifier, player);
-    }
+    }*/
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {

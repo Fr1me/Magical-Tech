@@ -21,13 +21,13 @@ public class MTCreativeTabs {
         blocks = new CreativeTabs("blocks_mt"){
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Item.getItemFromBlock(MTBlocks.hStone));
+                return new ItemStack(Item.getItemFromBlock(MTBlocks.pIBlock));
             }
         };
         decoration = new CreativeTabs("decoration_mt"){
         	@Override
         	public ItemStack getTabIconItem() {
-        		return new ItemStack(MTItems.iStone);
+        		return new ItemStack(Item.getItemFromBlock(MTBlocks.hStone));
         	}
         };
         combat = new CreativeTabs("combat_mt"){
@@ -58,7 +58,7 @@ public class MTCreativeTabs {
         worldgen = new CreativeTabs("worldgen_mt"){
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Item.getItemFromBlock(Blocks.DIAMOND_ORE));
+                return new ItemStack(Item.getItemFromBlock(MTBlocks.rQOre));
             }
         };
     }

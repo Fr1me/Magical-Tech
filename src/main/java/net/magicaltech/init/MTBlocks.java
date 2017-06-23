@@ -7,7 +7,7 @@ import net.magicaltech.block.BlockGeneratorBase;
 import net.magicaltech.block.BlockMachineBase;
 import net.magicaltech.block.BlockNetherOreBase;
 import net.magicaltech.block.BlockOreBase;
-import net.magicaltech.block.crop.BlockCropTransition;
+import net.magicaltech.block.crop.BlockCropBase;
 import net.magicaltech.util.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -21,8 +21,10 @@ public class MTBlocks {
 	
 //	Normal Blocks
 	public static Block hStone;
+	
 	public static Block tBlock;
 	public static Block pIBlock;
+	public static Block rQBlock;
 	
 //	Ores
 	public static Block rQOre;
@@ -44,14 +46,19 @@ public class MTBlocks {
 	public static Block crafterT3;
 	public static Block crafterTC;
 	
+	public static Block crafter;
+	
 //	Crops
 	public static Block cropTransition;
+	public static Block testCrop;
 	
 	public static void init() {
 //		Normal Blocks
 		hStone = new BlockOreBase("hardened_stone");
+		
 		tBlock = new BlockBase("transistium_block");
 		pIBlock = new BlockBase("prophecy_iron_block");
+		rQBlock = new BlockBase("rose_quartz_block");
 		
 //		Ores
 		rQOre = new BlockOreBase("rose_quartz_ore");
@@ -65,23 +72,29 @@ public class MTBlocks {
 		cGen = new BlockGeneratorBase("coal");
 		mGen = new BlockGeneratorBase("magic");
 		nnGen = new BlockGeneratorBase("nuff_nuff");
-		fGen = new BlockGeneratorBase("fluff");
+		fGen = new BlockGeneratorBase("fluffy");
+		
 		grinder = new BlockMachineBase("grinder");
 		
-		crafterT1 = new BlockCraftingBase("crafter_tire_1");
-		crafterT2 = new BlockCraftingBase("crafter_tire_2");
-		crafterT3 = new BlockCraftingBase("crafter_tire_3");
-		crafterTC = new BlockCraftingBase("crafter_creative");
+		crafter = new BlockCraftingBase("crafter");
+		
+//		crafterT1 = new BlockCraftingBase("crafter_tire_1");
+//		crafterT2 = new BlockCraftingBase("crafter_tire_2");
+//		crafterT3 = new BlockCraftingBase("crafter_tire_3");
+//		crafterTC = new BlockCraftingBase("crafter_creative");
 		
 //		Crops
-		cropTransition = new BlockCropTransition("transition_plant");
+		cropTransition = new BlockCropBase("transition_plant", MTItems.seedTransition, MTItems.tFragment);
+		testCrop = new BlockCropBase("test_crop", MTItems.magicWand, MTItems.seedTransition);
 	}
 	
 	public static void register() {
 //		Normal Blocks
 		registerBlock(hStone);
+		
 		registerBlock(tBlock);
 		registerBlock(pIBlock);
+		registerBlock(rQBlock);
 		
 //		Ores
 		registerBlock(rQOre);
@@ -95,12 +108,14 @@ public class MTBlocks {
 		registerBlock(cGen);
 		registerBlock(mGen);
 		registerBlock(nnGen);
+		registerBlock(fGen);
+		
 		registerBlock(grinder);
 		
-		registerBlock(crafterT1);
-		registerBlock(crafterT2);
-		registerBlock(crafterT3);
-		registerBlock(crafterTC);
+//		registerBlock(crafterT1);
+//		registerBlock(crafterT2);
+//		registerBlock(crafterT3);
+//		registerBlock(crafterTC);
 		
 //		Crops
 		registerBlockSpecial(cropTransition);
@@ -109,8 +124,10 @@ public class MTBlocks {
 	public static void registerRenders() {
 //		Normal Blocks
 		registerRender(hStone);
+		
 		registerRender(tBlock);
 		registerRender(pIBlock);
+		registerRender(rQBlock);
 		
 //		Ores
 		registerRender(rQOre);
@@ -126,10 +143,10 @@ public class MTBlocks {
 		registerRender(nnGen);
 		registerRender(grinder);
 		
-		registerRender(crafterT1);
-		registerRender(crafterT2);
-		registerRender(crafterT3);
-		registerRender(crafterTC);
+//		registerRender(crafterT1);
+//		registerRender(crafterT2);
+//		registerRender(crafterT3);
+//		registerRender(crafterTC);
 		
 		registerRender(cropTransition);
 		

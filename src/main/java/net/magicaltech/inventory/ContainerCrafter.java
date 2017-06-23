@@ -1,10 +1,8 @@
 package net.magicaltech.inventory;
 
 import net.magicaltech.init.MTBlocks;
-import net.magicaltech.tile.TileCraftingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;

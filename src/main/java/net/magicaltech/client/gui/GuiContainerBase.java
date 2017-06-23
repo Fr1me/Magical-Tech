@@ -1,9 +1,3 @@
-/*
- * Copyright (c) 2017 KitsuneAlex. All rights reserved!
- * Do not distribute or redistribute in any way except you got
- * the explicit permission from the developer of this software!
- */
-
 package net.magicaltech.client.gui;
 
 import java.util.List;
@@ -16,7 +10,6 @@ import net.magicaltech.util.colours.Colour;
 import net.magicaltech.util.colours.ColourRGBA;
 import net.magicaltech.util.math.IPositionProvider;
 import net.magicaltech.util.math.Point2i;
-import net.magicaltech.util.math.Rectangle4i;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -80,20 +73,6 @@ public abstract class GuiContainerBase extends GuiContainer {
                 this.drawTexturedModalRect(pos.getX(), pos.getY(), 3, 176, width, height);
                 break;
         }
-
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
-        Rectangle4i dimension = new Rectangle4i(pos.getX() + 2, pos.getY() + 50, 16, 16);
-
-        if(fluidTank != null && fluidTank.getFluid() != null){
-            double density = ((fluidTank.getFluidAmount() * 64D) / fluidTank.getCapacity() * 64D) / 1000D;
-            /*RenderUtils.preFluidRender();
-            RenderUtils.renderFluidGauge(fluidTank.getFluid(), dimension, density, 16D);
-            RenderUtils.postFluidRender();*/
-        }
-
-        GlStateManager.popMatrix();
-        GlStateManager.pushMatrix();
 
         switch(backgroundType){
             case BACKGROUND_LIGHT:

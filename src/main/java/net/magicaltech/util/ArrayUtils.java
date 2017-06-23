@@ -1,7 +1,11 @@
 package net.magicaltech.util;
 
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -212,7 +216,8 @@ public class ArrayUtils {
      * @param <O>      The Output generic.
      * @return A list of the output of the specified function.
      */
-    public static <I, O> List<O> applyArray(Function<I, O> function, I... array) {
+    @SuppressWarnings("unchecked")
+	public static <I, O> List<O> applyArray(Function<I, O> function, I... array) {
         List<O> finalList = new ArrayList<>();
         for (I i : array) {
             finalList.add(function.apply(i));
@@ -230,7 +235,8 @@ public class ArrayUtils {
      * @param destPos Starting position in the destination array.
      * @param length  The number of elements to copy.
      */
-    public static void arrayCopy(Object src, int srcPos, Object dst, int destPos, int length) {
+    @SuppressWarnings("unchecked")
+	public static void arrayCopy(Object src, int srcPos, Object dst, int destPos, int length) {
         System.arraycopy(src, srcPos, dst, destPos, length);
         if (dst instanceof Copyable[]) {
             Object[] oa = (Object[]) dst;
@@ -276,7 +282,6 @@ public class ArrayUtils {
      * @param <T>   The type.
      * @return The new array.
      */
-    @SuppressWarnings ("unchecked")
     public static <T> T[] createNewArray(T[] array) {
         return createNewArray(array, array.length);
     }

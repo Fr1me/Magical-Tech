@@ -11,7 +11,7 @@ item.cursed_illusion_stone.name=Cursed Illusion Stone
 item.rose_quartz.name=Rose Quartz
 item.flower.name=Flower
 
-item.transition_seeds.name=Transition Seeds
+item.transitium_seeds.name=Transition Seeds
 
 #Blocks
 tile.hardened_stone.name=Hardened Stone

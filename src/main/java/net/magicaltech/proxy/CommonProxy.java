@@ -3,6 +3,7 @@ package net.magicaltech.proxy;
 import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
 import net.magicaltech.handler.MTGuiHandler;
+import net.magicaltech.tile.TileCraftingBase;
 import net.magicaltech.tile.TileEntityGeneratorBase;
 import net.magicaltech.tile.TileEntityMachineBase;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,6 +23,7 @@ public class CommonProxy implements IMTProxy {
     public void registerTileEntities() {
     	GameRegistry.registerTileEntity(TileEntityGeneratorBase.class, Reference.MODID + ":generator_base");
 		GameRegistry.registerTileEntity(TileEntityMachineBase.class, Reference.MODID + ":machine_base");
+		GameRegistry.registerTileEntity(TileCraftingBase.class, Reference.MODID + ":crafter_base");
     }
 
     @Override

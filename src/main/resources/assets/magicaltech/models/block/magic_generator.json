@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "magicaltech:blocks/mg_other_sides",
+		"down": "magicaltech:blocks/mg_other_sides",
+		"north": "magicaltech:blocks/mg_front",
+		"south": "magicaltech:blocks/mg_other_sides",
+		"east": "magicaltech:blocks/mg_other_sides",
+		"west": "magicaltech:blocks/mg_other_sides",
+		"particle": "magicaltech:blocks/mg_other_sides"
+	}
+}
