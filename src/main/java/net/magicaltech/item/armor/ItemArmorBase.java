@@ -1,4 +1,4 @@
-package net.magicaltech.item;
+package net.magicaltech.item.armor;
 
 import net.magicaltech.init.MTCreativeTabs;
 import net.minecraft.inventory.EntityEquipmentSlot;

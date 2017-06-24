@@ -1,11 +1,11 @@
 package net.magicaltech.init;
 
 import net.magicaltech.Reference;
-import net.magicaltech.item.ItemAxeBase;
-import net.magicaltech.item.ItemHoeBase;
-import net.magicaltech.item.ItemPickaxeBase;
-import net.magicaltech.item.ItemShovelBase;
-import net.magicaltech.item.ItemSwordBase;
+import net.magicaltech.item.tools.ItemAxeBase;
+import net.magicaltech.item.tools.ItemHoeBase;
+import net.magicaltech.item.tools.ItemPickaxeBase;
+import net.magicaltech.item.tools.ItemShovelBase;
+import net.magicaltech.item.tools.ItemSwordBase;
 import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -20,6 +20,8 @@ public class MTTools {
 	public static final ToolMaterial transistium = EnumHelper.addToolMaterial(Reference.MODID + ":transistium", 3, 1826, 12.0F, 12.0F, 30);
 	public static final ToolMaterial prophecyIron = EnumHelper.addToolMaterial(Reference.MODID + ":prophecy_iron", 3, 1826, 12.0F, 12.0F, 30);
 	public static final ToolMaterial roseQuarts = EnumHelper.addToolMaterial(Reference.MODID + ":rose_quartz", 3, 1826, 12.0F, 12.0F, 30);
+	
+	public static final ToolMaterial lava = EnumHelper.addToolMaterial(Reference.MODID + ":lava", 3, 1826, 12.0F, 12.0F, 30);
 	
 	public static ItemSwordBase tSword;
 	public static ItemPickaxeBase tPickaxe;
@@ -39,24 +41,28 @@ public class MTTools {
 	public static ItemShovelBase rQShovel;
 	public static ItemHoeBase rQHoe;
 	
+	public static ItemSwordBase lSword;
+	
 	public static void init() {
-		tSword = new ItemSwordBase(transistium, "transistium_sword");
-		tPickaxe = new ItemPickaxeBase(transistium, "transistium_pickaxe");
-		tAxe = new ItemAxeBase(transistium, "transistium_axe");
-		tShovel = new ItemShovelBase(transistium, "transistium_shovel");
-		tHoe = new ItemHoeBase(transistium, "transistium_hoe");
+		tSword = new ItemSwordBase(transistium, "transistium");
+		tPickaxe = new ItemPickaxeBase(transistium, "transistium");
+		tAxe = new ItemAxeBase(transistium, "transistium");
+		tShovel = new ItemShovelBase(transistium, "transistium");
+		tHoe = new ItemHoeBase(transistium, "transistium");
 		
-		plSword = new ItemSwordBase(transistium, "prophecy_iron_sword");
-		plPickaxe = new ItemPickaxeBase(transistium, "prophecy_iron_pickaxe");
-		plAxe = new ItemAxeBase(transistium, "prophecy_iron_axe");
-		plShovel = new ItemShovelBase(transistium, "prophecy_iron_shovel");
-		plHoe = new ItemHoeBase(transistium, "prophecy_iron_hoe");
+		plSword = new ItemSwordBase(transistium, "prophecy_iron");
+		plPickaxe = new ItemPickaxeBase(transistium, "prophecy_iron");
+		plAxe = new ItemAxeBase(transistium, "prophecy_iron");
+		plShovel = new ItemShovelBase(transistium, "prophecy_iron");
+		plHoe = new ItemHoeBase(transistium, "prophecy_iron");
 		
-		rQSword = new ItemSwordBase(transistium, "rose_quartz_sword");
-		rQPickaxe = new ItemPickaxeBase(transistium, "rose_quartz_pickaxe");
-		rQAxe = new ItemAxeBase(transistium, "rose_quartz_axe");
-		rQShovel = new ItemShovelBase(transistium, "rose_quartz_shovel");
-		rQHoe = new ItemHoeBase(transistium, "rose_quartz_hoe");
+		rQSword = new ItemSwordBase(transistium, "rose_quartz");
+		rQPickaxe = new ItemPickaxeBase(transistium, "rose_quartz");
+		rQAxe = new ItemAxeBase(transistium, "rose_quartz");
+		rQShovel = new ItemShovelBase(transistium, "rose_quartz");
+		rQHoe = new ItemHoeBase(transistium, "rose_quartz");
+		
+		lSword = new ItemSwordBase(lava, "lava");
 	}
 	
 	public static void register() {
@@ -77,6 +83,8 @@ public class MTTools {
 		registerItem(rQAxe);
 		registerItem(rQShovel);
 		registerItem(rQHoe);
+		
+		registerItem(lSword);
 	}
 	
 	public static void registerRenders() {
@@ -97,6 +105,8 @@ public class MTTools {
 		registerRender(rQAxe, 0, null);
 		registerRender(rQShovel, 0, null);
 		registerRender(rQHoe, 0, null);
+		
+		registerRender(lSword, 0, null);
 	}
 	
 	public static void registerItem(Item item) {

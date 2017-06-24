@@ -11,8 +11,16 @@ import net.minecraftforge.items.IItemHandler;
 public class ContainerGeneratorBase extends Container{
 	
 	private IItemHandler handler;
+	public int euOut;
+	public int storedEu;
+	public int euChange;
+	public int connectedBlocks;
+	public double euStorage;
+	TileEntityGeneratorBase tile;
 	 
     public ContainerGeneratorBase(IInventory player, TileEntityGeneratorBase tile) {
+    	this.tile = tile;
+    	
     	int xs = 8, ys = 8 + 9;
     	
     	for(int y = 0; y < 3; y++) 

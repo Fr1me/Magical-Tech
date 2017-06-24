@@ -1,5 +1,6 @@
 package net.magicaltech.client.gui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.Lists;
@@ -8,9 +9,11 @@ import net.magicaltech.Reference;
 import net.magicaltech.util.TranslationUtils;
 import net.magicaltech.util.colours.Colour;
 import net.magicaltech.util.colours.ColourRGBA;
+import net.magicaltech.util.colours.CustomGradient;
 import net.magicaltech.util.math.IPositionProvider;
 import net.magicaltech.util.math.Point2i;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.Container;
@@ -28,7 +31,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class GuiContainerBase extends GuiContainer {
 
     private final ResourceLocation textureBackground = new ResourceLocation(Reference.MODID, "textures/gui/background.png");
+    private final ResourceLocation texturePowerBars = new ResourceLocation(Reference.MODID, "textures/gui/power_bars.png");
     private final ResourceLocation textureElements = new ResourceLocation(Reference.MODID, "textures/gui/elements.png");
+    private final ResourceLocation textureButtons = new ResourceLocation(Reference.MODID, "textures/gui/elements/buttons.png");
+    
+    private final ResourceLocation textureSheet = new ResourceLocation(Reference.MODID, "textures/gui/gui_sheet.png");
+    
     private final String tooltipEmpty = TranslationUtils.translate(Reference.MODID, "tooltip", "empty");
     public static final int ALIGNMENT_LEFT = 0;
     public static final int ALIGNMENT_RIGHT = 1;
@@ -41,6 +49,7 @@ public abstract class GuiContainerBase extends GuiContainer {
     public static final int POWER_RF = 1;
     public static final int POWER_FORGE = 2;
     public static final int POWER_EU = 3;
+    public static final int POWER_MT = 4;
 
     public GuiContainerBase(Container container) {
         super(container);
@@ -101,17 +110,55 @@ public abstract class GuiContainerBase extends GuiContainer {
             }
         }
     }
+    
+    public void drawEnergyBar(GuiScreen gui, int x, int y, int height, int energyStored, int maxEnergyStored, int mouseX, int mouseY, String powerType) {
+		Minecraft.getMinecraft().getTextureManager().bindTexture(textureSheet);
+
+		gui.drawTexturedModalRect(x, y, 1, 150, 14, height);
+		gui.drawTexturedModalRect(x, y + height - 1, 0, 255, 14, 1);
+		int draw = (int) ((double) energyStored / (double) maxEnergyStored * (height - 2));
+		gui.drawTexturedModalRect(x + 1, y + height - draw - 1, 14, height + 150 - draw, 12, draw);
+
+		if (isInRect(x, y, 14, height, mouseX, mouseY)) {
+			List<String> list = new ArrayList<String>();
+			list.add(energyStored + " / " + maxEnergyStored + " " + powerType);
+			net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(list, mouseX, mouseY, gui.width, gui.height, -1, gui.mc.fontRenderer);
+			GlStateManager.disableLighting();
+		}
+	}
+    
+    public boolean isInRect(int x, int y, int xSize, int ySize, int mouseX, int mouseY) {
+		return ((mouseX >= x && mouseX <= x + xSize) && (mouseY >= y && mouseY <= y + ySize));
+	}
+
+	public void drawPlayerSlots(GuiScreen gui, int posX, int posY, boolean center) {
+		Minecraft.getMinecraft().getTextureManager().bindTexture(textureSheet);
+
+		if (center) {
+			posX -= 81;
+		}
+
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 9; x++) {
+				gui.drawTexturedModalRect(posX + x * 18, posY + y * 18, 150, 0, 18, 18);
+			}
+		}
+
+		for (int x = 0; x < 9; x++) {
+			gui.drawTexturedModalRect(posX + x * 18, posY + 58, 150, 0, 18, 18);
+		}
+	}
 
     protected void drawPowerBar(Point2i pos, int backgroundType, int powerType, int power, int capacity){
         this.drawPowerBar(pos, backgroundType, powerType, power, capacity, null);
     }
 
     protected void drawPowerBar(Point2i pos, int backgroundType, int powerType, int power, int capacity, IPositionProvider mousePosition){
-        final int width = 14;
-        final int height = 50;
+    	final int width = 18;
+        final int height = 74;
         int powerOffset = (power * (height + 1)) / capacity;
         Colour color = null;
-        this.mc.getTextureManager().bindTexture(this.textureElements);
+        this.mc.getTextureManager().bindTexture(this.texturePowerBars);
 
         switch(backgroundType){
             case BACKGROUND_LIGHT:
@@ -143,6 +190,9 @@ public abstract class GuiContainerBase extends GuiContainer {
             case POWER_EU:
                 color = new ColourRGBA(50, 50, 240, 255);
                 break;
+            case POWER_MT:
+                color = new ColourRGBA(0, 224, 224, 255 / 2);
+                break;
         }
 
         GlStateManager.pushMatrix();
@@ -161,10 +211,10 @@ public abstract class GuiContainerBase extends GuiContainer {
 
                 switch(powerType){
                     case POWER_TESLA:
-                        text.add(Integer.toString(power) + " RF");
+                        text.add(Integer.toString(power) + " TESLA");
                         break;
                     case POWER_RF:
-                        text.add(Integer.toString(power) + " TESLA");
+                        text.add(Integer.toString(power) + " RF");
                         break;
                     case POWER_FORGE:
                         text.add(Integer.toString(power) + " FU");

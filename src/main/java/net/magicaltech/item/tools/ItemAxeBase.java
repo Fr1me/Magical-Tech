@@ -1,4 +1,4 @@
-package net.magicaltech.item;
+package net.magicaltech.item.tools;
 
 import java.util.Set;
 
@@ -18,8 +18,8 @@ public class ItemAxeBase extends ItemTool {
      
     public ItemAxeBase(ToolMaterial material, String name) {
         super(material, EFFECTIVE_ON);
-        setUnlocalizedName(name);
-        setRegistryName(name);
+        setUnlocalizedName(name + "_axe");
+        setRegistryName(name + "_axe");
         setCreativeTab(MTCreativeTabs.tools);
         attackSpeed = (float)((float)-4 +0.8);
         damageVsEntity = (float)((float) -14 +31);
