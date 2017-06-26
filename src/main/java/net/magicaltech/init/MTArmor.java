@@ -2,7 +2,6 @@ package net.magicaltech.init;
 
 import net.magicaltech.Reference;
 import net.magicaltech.item.ItemArmorBase;
-import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -14,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xfireeyez.core.util.Utils;
 
 public class MTArmor {
 	

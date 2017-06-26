@@ -8,18 +8,15 @@ import java.util.List;
 
 import org.lwjgl.input.Mouse;
 
-import net.magicaltech.client.gui.widget.EnumRenderType;
 import net.magicaltech.client.gui.widget.element.ElementBase;
 import net.magicaltech.client.gui.widget.element.TabBase;
 import net.magicaltech.client.gui.widget.slot.SlotFalseCopy;
-import net.magicaltech.util.RenderHelper;
-import net.magicaltech.util.StringHelper;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.inventory.ClickType;
@@ -30,6 +27,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import xfireeyez.core.util.helper.RenderHelper;
+import xfireeyez.core.util.helper.StringHelper;
 
 public abstract class GuiBase extends GuiContainer
 {

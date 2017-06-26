@@ -20,12 +20,15 @@ tile.prophecy_iron_block.name=Block Of Prophecy Iron
 #Ores
 tile.rose_quartz_ore.name=Rose Quartz Ore
 
-#Crops
-tile.transition_plant.name=Transition Plant
-
 #Machines
 tile.coal_generator.name=Coal Generator
 tile.grinder.name=Grinder
+
+#Crops
+tile.transition_plant.name=Transition Plant
+
+#Special Blocks
+tile.levitator.name=Levitator
 
 #Tools
 item.transistium_sword.name=Transistium Sword
@@ -33,6 +36,8 @@ item.transistium_pickaxe.name=Transistium Pickaxe
 item.transistium_axe.name=Transistium Axe
 item.transistium_shovel.name=Transistium Shovel
 item.transistium_hoe.name=Transistium Hoe
+
+item.teleporter.name=Teleporter
 
 #Armor
 item.transistium_helmet.name=Transistium Helmet

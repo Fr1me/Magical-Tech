@@ -5,18 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.magicaltech.Reference;
-import net.magicaltech.client.container.builder.BuiltContainer;
 import net.magicaltech.client.gui.widget.EnumRenderType;
 import net.magicaltech.inventory.ContainerCoalGenerator;
 import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.tile.TileEntityGeneratorBase;
-import net.magicaltech.util.StringHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
+import xfireeyez.core.client.container.builder.BuiltContainer;
  
 public class GuiCoalGenerator extends GuiContainer {
 	

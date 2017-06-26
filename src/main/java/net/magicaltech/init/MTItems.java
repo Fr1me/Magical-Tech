@@ -1,8 +1,6 @@
 package net.magicaltech.init;
 
 import net.magicaltech.Reference;
-import net.magicaltech.item.ItemBase;
-import net.magicaltech.util.Utils;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -11,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xfireeyez.core.item.ItemBase;
+import xfireeyez.core.util.Utils;
 
 public class MTItems {
 	
@@ -28,17 +28,17 @@ public class MTItems {
 	
 	public static void init() {
 //		Normal Items
-		magicWand = new ItemBase("wand", false);
-		pIron = new ItemBase("prophecy_iron_ingot", false);
-		tIngot = new ItemBase("transistium_ingot", true);
-		tNugget = new ItemBase("transistium_nugget", false);
+		magicWand = new ItemBase("wand", MTCreativeTabs.items, false);
+		pIron = new ItemBase("prophecy_iron_ingot", MTCreativeTabs.items, false);
+		tIngot = new ItemBase("transistium_ingot", MTCreativeTabs.items, true);
+		tNugget = new ItemBase("transistium_nugget", MTCreativeTabs.items, false);
 
-		tFragment = new ItemBase("transistium_fragment", false);
-		tTFragment = new ItemBase("tiny_transistium_fragment", false);
-		iStone = new ItemBase("illusion_stone", false);
-		cIStone = new ItemBase("cursed_illusion_stone", true);
-		rQuartz = new ItemBase("rose_quartz", false);
-		flower = new ItemBase("flower", false);
+		tFragment = new ItemBase("transistium_fragment", MTCreativeTabs.items, false);
+		tTFragment = new ItemBase("tiny_transistium_fragment", MTCreativeTabs.items, false);
+		iStone = new ItemBase("illusion_stone", MTCreativeTabs.items, false);
+		cIStone = new ItemBase("cursed_illusion_stone", MTCreativeTabs.items, true);
+		rQuartz = new ItemBase("rose_quartz", MTCreativeTabs.items, false);
+		flower = new ItemBase("flower", MTCreativeTabs.items, false);
 		
 //		Seeds
 		seedTransition = new ItemSeeds(MTBlocks.cropTransition, Blocks.FARMLAND).setUnlocalizedName("transition_seeds").setRegistryName("transition_seeds").setCreativeTab(MTCreativeTabs.items);

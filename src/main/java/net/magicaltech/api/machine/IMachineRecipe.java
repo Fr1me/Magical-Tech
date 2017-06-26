@@ -10,10 +10,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
 
-import net.magicaltech.compat.StackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fluids.FluidStack;
+import xfireeyez.core.compat.StackHelper;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 public abstract interface IMachineRecipe

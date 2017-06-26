@@ -11,6 +11,9 @@
   "credits": "No one yet",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [],
+  "useDependencyInformation": true,
+  "requireMods": ["firecore"],
+  "dependencies": ["firecore"]
 }
 ]

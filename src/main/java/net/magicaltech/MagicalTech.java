@@ -9,9 +9,9 @@ import net.magicaltech.init.MTTools;
 import net.magicaltech.integration.Hooks;
 import net.magicaltech.proxy.IMTProxy;
 import net.magicaltech.tile.TileEntityCoalGenerator;
-import net.magicaltech.util.Utils;
 import net.magicaltech.world.gen.OreGen;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -20,9 +20,16 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xfireeyez.core.util.Utils;
 
 @Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 public class MagicalTech {
+	
+	public void enableUniversalBucket() {
+		 FluidRegistry.enableUniversalBucket();
+	}
+	
+	static {FluidRegistry.enableUniversalBucket();}
 	
 	 /** Hooks instance */
     public static Hooks hooks = new Hooks();

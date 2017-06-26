@@ -4,10 +4,10 @@ import net.magicaltech.init.MTArmor;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTItems;
 import net.magicaltech.init.MTTools;
-import net.magicaltech.util.Utils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xfireeyez.core.util.Utils;
 
 public class MTRecipeHandler {
 	
@@ -42,6 +42,8 @@ public class MTRecipeHandler {
 		registry.addRecipe(new ItemStack(MTTools.tShovel), new Object[] {"  T", "  S", "  S", 'T', MTItems.tIngot, 'S', Items.STICK});
 		registry.addRecipe(new ItemStack(MTTools.tHoe), new Object[] {"TT ", " S ", " S ", 'T', MTItems.tIngot, 'S', Items.STICK});
 		registry.addRecipe(new ItemStack(MTTools.tHoe), new Object[] {" TT", " S ", " S ", 'T', MTItems.tIngot, 'S', Items.STICK});
+		
+		registry.addRecipe(new ItemStack(MTTools.teleporter), new Object [] {" TE", " ST", "T  ", 'T', MTItems.tIngot, 'E', Items.ENDER_PEARL, 'S', Items.STICK});
 		
 	}
 	

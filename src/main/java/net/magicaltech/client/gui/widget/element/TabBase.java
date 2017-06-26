@@ -13,11 +13,11 @@ import java.util.List;
 import org.lwjgl.input.Mouse;
 
 import net.magicaltech.client.gui.GuiBase;
-import net.magicaltech.util.RenderHelper;
-import net.magicaltech.util.math.Rectangle4i;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
+import xfireeyez.core.util.helper.RenderHelper;
+import xfireeyez.core.util.math.Rectangle4i;
 
 public abstract class TabBase extends ElementBase
 {

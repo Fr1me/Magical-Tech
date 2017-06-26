@@ -1,19 +1,21 @@
 package net.magicaltech.init;
 
 import net.magicaltech.Reference;
-import net.magicaltech.block.BlockBase;
 import net.magicaltech.block.BlockCoalGenerator;
-import net.magicaltech.block.BlockCropBase;
+import net.magicaltech.block.BlockLevitator;
 import net.magicaltech.block.BlockMachineBase;
-import net.magicaltech.block.BlockOreBase;
-import net.magicaltech.util.Utils;
+import net.magicaltech.block.BlockGeneratedBase;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xfireeyez.core.block.BlockBase;
+import xfireeyez.core.block.BlockCropBase;
+import xfireeyez.core.util.Utils;
 
 public class MTBlocks {
 	
@@ -32,14 +34,17 @@ public class MTBlocks {
 //	Crops
 	public static Block cropTransition;
 	
+//	Special Blocks
+	public static Block levitator;
+	
 	public static void init() {
 //		Normal Blocks
-		hStone = new BlockOreBase("hardened_stone", 5.0F, 20.0F, "pickaxe", 1);
-		tBlock = new BlockBase("transistium_block", 5.0F, 20.0F, "pickaxe", 0);
-		pIBlock = new BlockBase("prophecy_iron_block", 5.0F, 20.0F, "pickaxe", 0);
+		tBlock = new BlockBase("transistium_block", MTCreativeTabs.blocks, 5.0F, 20.0F, "pickaxe", 0, Material.IRON);
+		pIBlock = new BlockBase("prophecy_iron_block", MTCreativeTabs.blocks, 5.0F, 20.0F, "pickaxe", 0, Material.IRON);
 		
-//		Ores
-		rQOre = new BlockOreBase("rose_quartz_ore", 5.0F, 20.0F, "pickaxe", 0);
+//		Worldgen Blocks
+		hStone = new BlockGeneratedBase("hardened_stone", 5.0F, 20.0F, "pickaxe", 1);
+		rQOre = new BlockGeneratedBase("rose_quartz_ore", 5.0F, 20.0F, "pickaxe", 0);
 			
 //		Machines
 		cGen = new BlockCoalGenerator("coal_generator", 5.0F, 20.0F, "pickaxe", 0);
@@ -47,6 +52,9 @@ public class MTBlocks {
 		
 //		Crops
 		cropTransition = new BlockCropBase("transition_plant", MTItems.seedTransition, MTItems.tTFragment);
+		
+//		Special Blocks
+		levitator = new BlockLevitator("levitator");
 	}
 	
 	public static void register() {
@@ -64,6 +72,9 @@ public class MTBlocks {
 		
 //		Crops
 		GameRegistry.register(cropTransition);
+		
+//		Special Blocks
+		registerBlock(levitator);
 	}
 
 	public static void registerRenders() {
@@ -78,6 +89,9 @@ public class MTBlocks {
 //		Machines
 		registerRender(cGen);
 		registerRender(grinder);
+		
+//		Special Blocks
+		registerRender(levitator);
 		
 	}
 	

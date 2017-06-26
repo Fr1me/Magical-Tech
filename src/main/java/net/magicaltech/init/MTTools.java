@@ -6,7 +6,7 @@ import net.magicaltech.item.ItemHoeBase;
 import net.magicaltech.item.ItemPickaxeBase;
 import net.magicaltech.item.ItemShovelBase;
 import net.magicaltech.item.ItemSwordBase;
-import net.magicaltech.util.Utils;
+import net.magicaltech.item.ItemTeleporter;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
@@ -19,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xfireeyez.core.util.Utils;
 
 public class MTTools {
 	
@@ -30,20 +31,26 @@ public class MTTools {
 	public static ItemSpade tShovel;
 	public static ItemHoe tHoe;
 	
+	public static Item teleporter;
+	
 	public static void init() {
 		tSword = new ItemSwordBase(transistium, "transistium_sword");
 		tPickaxe = new ItemPickaxeBase(transistium, "transistium_pickaxe");
 		tAxe = new ItemTransistiumAxe(transistium, "transistium_axe");
 		tShovel = new ItemShovelBase(transistium, "transistium_shovel");
 		tHoe = new ItemHoeBase(transistium, "transistium_hoe");
+		
+		teleporter = new ItemTeleporter("teleporter", MTCreativeTabs.tools, true);
 	}
 	
 	public static void register() {
-		registerItem(tSword);
-		registerItem(tPickaxe);
-		registerItem(tAxe);
-		registerItem(tShovel);
-		registerItem(tHoe);
+		registerTool(tSword);
+		registerTool(tPickaxe);
+		registerTool(tAxe);
+		registerTool(tShovel);
+		registerTool(tHoe);
+		
+		registerTool(teleporter);
 	}
 	
 	public static void registerRenders() {
@@ -52,9 +59,11 @@ public class MTTools {
 		registerRender(tAxe, 0, null);
 		registerRender(tShovel, 0, null);
 		registerRender(tHoe, 0, null);
+		
+		registerRender(teleporter, 0, null);
 	}
 	
-	public static void registerItem(Item item) {
+	public static void registerTool(Item item) {
 		GameRegistry.register(item);
 		Utils.getLogger().info("Registered Item: " + item.getUnlocalizedName().substring(5));
 	}

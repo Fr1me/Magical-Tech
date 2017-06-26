@@ -20,12 +20,15 @@ tile.prophecy_iron_block.name=Profetians Järnblock
 #Malm
 tile.rose_quartz_ore.name=Rosa Kvartsmalm
 
-#Grödor
-tile.transition_plant.name=Transitionsplanta
-
 #Maskiner
 tile.coal_generator.name=Kolgenerator
 tile.grinder.name=Kvarn
+
+#Grödor
+tile.transition_plant.name=Transitionsplanta
+
+#Speciella Block
+tile.levitator.name=Svävare
 
 #Verktyg
 item.transistium_sword.name=Transitionssvärd
@@ -33,6 +36,8 @@ item.transistium_pickaxe.name=Transitionshacka
 item.transistium_axe.name=Transitionsyxa
 item.transistium_shovel.name=Transitionsspade
 item.transistium_hoe.name=Transitionsflohacka
+
+item.teleporter.name=Teleportör
 
 #Rustning
 item.transistium_helmet.name=Transitionshjälm
