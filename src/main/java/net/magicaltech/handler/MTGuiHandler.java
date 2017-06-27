@@ -16,16 +16,16 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class MTGuiHandler implements IGuiHandler{
 	
-    public static final int GENERATOR = 0;
-    public static final int COAL_GENERATOR = GENERATOR + 0;
-    public static final int MAGICAL_GENERATOR = GENERATOR + 1;
-    public static final int NUFF_NUFF_GENERATOR = GENERATOR + 2;
-    public static final int FLUFFY_GENERATOR = GENERATOR + 3;
-    public static final int CRAFTER = 1;
+    public static final int GENERATOR_BASE = 0;
+    public static final int COAL_GENERATOR = GENERATOR_BASE + 0;
+    public static final int MAGICAL_GENERATOR = GENERATOR_BASE + 1;
+    public static final int NUFF_NUFF_GENERATOR = GENERATOR_BASE + 2;
+    public static final int FLUFFY_GENERATOR = GENERATOR_BASE + 3;
+    public static final int CRAFTER = 5;
  
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        if(id == GENERATOR) {
+        if(id == GENERATOR_BASE) {
             return new ContainerGeneratorBase(player.inventory, (TileEntityGeneratorBase) world.getTileEntity(new BlockPos(x, y, z)));
         }
         if(id == CRAFTER) {
@@ -36,7 +36,7 @@ public class MTGuiHandler implements IGuiHandler{
  
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        if(id == GENERATOR) {
+        if(id == GENERATOR_BASE) {
         	TileEntityGeneratorBase tile = (TileEntityGeneratorBase)world.getTileEntity(new BlockPos(x, y, z));
             return new GuiGeneratorBase(new ContainerGeneratorBase(player.inventory, tile), "");
         }

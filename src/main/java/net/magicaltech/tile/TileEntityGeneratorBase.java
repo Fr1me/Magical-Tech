@@ -4,105 +4,114 @@ import cofh.api.energy.EnergyConfig;
 import cofh.api.energy.EnergyStorage;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
-import net.minecraft.item.ItemStack;
+import ic2.api.tile.IEnergyStorage;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.thegaminghuskymc.huskylib.tiles.TileEntityBase;
 
-public class TileEntityGeneratorBase extends TilePoweredBase implements ITickable, IEnergySource {
+public class TileEntityGeneratorBase extends TileEntityBase implements ITickable, IEnergySource, IEnergyStorage {
 	
 	private ItemStackHandler handler;
-	private int totalBurnTime;
-	private int burnTime;
-	private boolean isBurning;
 	
 	byte facing = 1;
 	protected EnergyStorage energyStorage = new EnergyStorage(100);
 	protected EnergyConfig config;
-	
-	public TileEntityGeneratorBase() {
-		handler = new ItemStackHandler(1);
-	}
-	
+
 	@Override
 	public void update() {
-		if (world != null) {
-			if (!TileEntityFurnace.isItemFuel(handler.getStackInSlot(0))) {
-				return;
-			}
-			
-			if (isBurning) {
-				
-				if(handler.getStackInSlot(0).getItem() != null) {
-					isBurning = false;
-				}
-				
-				if (burnTime < 0) {
-					handler.setStackInSlot(0, new ItemStack(handler.getStackInSlot(0).getItem(), handler.getStackInSlot(0).getCount() - 1));
-					isBurning = false;
-					return;
-				}
-				
-				burnTime--;
-				return;
-				
-			}
-			
-			else if(!isBurning){
-                totalBurnTime = burnTime = TileEntityFurnace.getItemBurnTime(handler.getStackInSlot(0));
-                isBurning = true;
-            }	
+		
+		if(world.isRaining()){
+			this.addEnergy(100);
 		}
+		
 	}
-	
-	@Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-            return true;
-        return super.hasCapability(capability, facing);
-    }
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound.setTag("ItemStackHandler", handler.serializeNBT());
-        compound.setInteger("BurnTime", burnTime);
+		energyStorage.writeToNBT(compound);
 		return super.writeToNBT(compound);
 	}
-		
-	public boolean isBurning() {
-		return isBurning;
-	}
-		
-	public int getTotalBurnTime() {
-		return totalBurnTime;
-	}
-		
-	public int getBurnTime() {
-		return burnTime;
-	}
 	
 	@Override
-	public void drawEnergy(double amount) {
-		super.drawEnergy(amount);
+	public void readFromNBT(NBTTagCompound tag) {
+		energyStorage.readFromNBT(tag);
 	}
-	
+
 	@Override
-	public boolean emitsEnergyTo(IEnergyAcceptor iEnergyAcceptor, EnumFacing enumFacing) {
-		return super.emitsEnergyTo(iEnergyAcceptor, enumFacing);
+	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing side) {
+		return true;
 	}
-	
+
 	@Override
 	public double getOfferedEnergy() {
-		return super.getOfferedEnergy();
+		return 0;
 	}
-	
+
+	@Override
+	public void drawEnergy(double amount) {
+		
+	}
+
 	@Override
 	public int getSourceTier() {
-		return super.getSourceTier();
+		return 1;
+	}
+
+	@Override
+	public int getStored() {
+		return energyStorage.getEnergyStored();
+	}
+
+	@Override
+	public void setStored(int energy) {
+		energyStorage.setEnergyStored(energy);
+	}
+
+	@Override
+	public int addEnergy(int amount) {
+		return amount;
+	}
+
+	@Override
+	public int getCapacity() {
+		return energyStorage.getMaxEnergyStored();
+	}
+
+	@Override
+	public int getOutput() {
+		return energyStorage.getMaxExtract();
+	}
+
+	@Override
+	public double getOutputEnergyUnitsPerTick() {
+		return energyStorage.getMaxExtract();
+	}
+
+	@Override
+	public boolean isTeleporterCompatible(EnumFacing side) {
+		if(side == EnumFacing.UP){
+			return false;
+		}
+		else if(side == EnumFacing.DOWN){
+			return false;
+		}
+		else if(side == EnumFacing.NORTH){
+			return false;
+		}
+		else if(side == EnumFacing.SOUTH){
+			return true;
+		}
+		else if(side == EnumFacing.EAST){
+			return false;
+		}
+		else if(side == EnumFacing.WEST){
+			return false;
+		}
+		else
+			return false;
 	}
 
 }

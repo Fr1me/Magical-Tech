@@ -17,13 +17,11 @@ public class ContainerCrafter extends Container {
     private final World world;
     /** Position of the workbench */
     private final BlockPos pos;
-    private final EntityPlayer player;
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public InventoryCraftResult craftResult = new InventoryCraftResult();
 
     public ContainerCrafter(InventoryPlayer playerInventory, World worldIn, BlockPos posIn){
     	this.world = worldIn;
-    	this.player = playerInventory.player;
     	this.pos = posIn;
     	
     	this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
@@ -78,7 +76,7 @@ public class ContainerCrafter extends Container {
      */
     public void onCraftMatrixChanged(IInventory inventoryIn)
     {
-        this.func_192389_a(this.world, this.player, this.craftMatrix, this.craftResult);
+        this.onCraftMatrixChanged(this.craftMatrix);
     }
 
     /**
@@ -90,7 +88,7 @@ public class ContainerCrafter extends Container {
 
         if (!this.world.isRemote)
         {
-            this.func_193327_a(playerIn, this.world, this.craftMatrix);
+            this.onContainerClosed(playerIn);
         }
     }
 

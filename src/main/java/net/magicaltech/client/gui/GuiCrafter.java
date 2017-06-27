@@ -2,6 +2,7 @@ package net.magicaltech.client.gui;
 
 import java.io.IOException;
 
+import net.magicaltech.Reference;
 import net.magicaltech.inventory.ContainerCrafter;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonImage;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -21,9 +23,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiCrafter extends GuiContainer{
 	
-	private GuiButtonImage field_192049_w;
-    private final GuiRecipeBook field_192050_x;
-    private boolean field_193112_y;
+	private GuiButtonImage recipeButton;
+    private final GuiRecipeBook recipeBookGui;
+    private boolean widthTooNarrow;
 	
     public GuiCrafter(InventoryPlayer playerInv, World worldIn)
     {
@@ -33,30 +35,17 @@ public class GuiCrafter extends GuiContainer{
     public GuiCrafter(InventoryPlayer playerInv, World worldIn, BlockPos blockPosition)
     {
         super(new ContainerCrafter(playerInv, worldIn, blockPosition));
-        this.field_192050_x = new GuiRecipeBook();
+        this.recipeBookGui = new GuiRecipeBook();
     }
     
     /**
      * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
      * window resizes, the buttonList is cleared beforehand.
      */
-    public void initGui()
-    {
-        super.initGui();
-        this.field_193112_y = this.width < 379;
-        this.field_192050_x.func_191856_a(this.width, this.height, this.mc, this.field_193112_y, this.inventorySlots, ((ContainerCrafter)this.inventorySlots).craftMatrix);
-        this.guiLeft = this.field_192050_x.func_193011_a(this.field_193112_y, this.width, this.xSize);
-        this.field_192049_w = new GuiButtonImage(10, this.guiLeft + 5, this.height / 2 - 49, 20, 18, 0, 168, 19, new ResourceLocation("textures/gui/container/crafting_table.png"));
-        this.buttonList.add(this.field_192049_w);
-    }
-
-    /**
-     * Called from the main game loop to update the screen.
-     */
     public void updateScreen()
     {
         super.updateScreen();
-        this.field_192050_x.func_193957_d();
+        this.recipeBookGui.tick();
     }
 
     /**
@@ -66,44 +55,50 @@ public class GuiCrafter extends GuiContainer{
     {
         this.drawDefaultBackground();
 
-        if (this.field_192050_x.func_191878_b() && this.field_193112_y)
+        if (this.recipeBookGui.isVisible() && this.widthTooNarrow)
         {
             this.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-            this.field_192050_x.func_191861_a(mouseX, mouseY, partialTicks);
+            this.recipeBookGui.render(mouseX, mouseY, partialTicks);
         }
         else
         {
-            this.field_192050_x.func_191861_a(mouseX, mouseY, partialTicks);
+            this.recipeBookGui.render(mouseX, mouseY, partialTicks);
             super.drawScreen(mouseX, mouseY, partialTicks);
-            this.field_192050_x.func_191864_a(this.guiLeft, this.guiTop, true, partialTicks);
+            this.recipeBookGui.renderGhostRecipe(this.guiLeft, this.guiTop, true, partialTicks);
         }
 
         this.renderHoveredToolTip(mouseX, mouseY);
-        this.field_192050_x.func_191876_c(this.guiLeft, this.guiTop, mouseX, mouseY);
-    }
-    
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY){
-    	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/container/crafting_table.png"));
-		final int k = (this.width - this.xSize) / 2;
-		final int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+        this.recipeBookGui.renderTooltip(this.guiLeft, this.guiTop, mouseX, mouseY);
     }
 
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
-        this.fontRenderer.drawString(I18n.format("Crafter"), 28, 6, 0x515151);
-        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 0x515151);
+    /**
+     * Draw the foreground layer for the GuiContainer (everything in front of the items)
+     */
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+    {
+        this.fontRenderer.drawString(I18n.format("container.crafting"), 28, 6, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
-    
+
+    /**
+     * Draws the background layer of this container (behind the items).
+     */
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+    {
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/crafter.png"));
+        int i = this.guiLeft;
+        int j = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+    }
+
     /**
      * Test if the 2D point is in a rectangle (relative to the GUI). Args : rectX, rectY, rectWidth, rectHeight, pointX,
      * pointY
      */
     protected boolean isPointInRegion(int rectX, int rectY, int rectWidth, int rectHeight, int pointX, int pointY)
     {
-        return (!this.field_193112_y || !this.field_192050_x.func_191878_b()) && super.isPointInRegion(rectX, rectY, rectWidth, rectHeight, pointX, pointY);
+        return (!this.widthTooNarrow || !this.recipeBookGui.isVisible()) && super.isPointInRegion(rectX, rectY, rectWidth, rectHeight, pointX, pointY);
     }
 
     /**
@@ -111,19 +106,19 @@ public class GuiCrafter extends GuiContainer{
      */
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
-        if (!this.field_192050_x.func_191862_a(mouseX, mouseY, mouseButton))
+        if (!this.recipeBookGui.mouseClicked(mouseX, mouseY, mouseButton))
         {
-            if (!this.field_193112_y || !this.field_192050_x.func_191878_b())
+            if (!this.widthTooNarrow || !this.recipeBookGui.isVisible())
             {
                 super.mouseClicked(mouseX, mouseY, mouseButton);
             }
         }
     }
 
-    protected boolean func_193983_c(int p_193983_1_, int p_193983_2_, int p_193983_3_, int p_193983_4_)
+    protected boolean hasClickedOutside(int p_193983_1_, int p_193983_2_, int p_193983_3_, int p_193983_4_)
     {
         boolean flag = p_193983_1_ < p_193983_3_ || p_193983_2_ < p_193983_4_ || p_193983_1_ >= p_193983_3_ + this.xSize || p_193983_2_ >= p_193983_4_ + this.ySize;
-        return this.field_192050_x.func_193955_c(p_193983_1_, p_193983_2_, this.guiLeft, this.guiTop, this.xSize, this.ySize) && flag;
+        return this.recipeBookGui.hasClickedOutside(p_193983_1_, p_193983_2_, this.guiLeft, this.guiTop, this.xSize, this.ySize) && flag;
     }
 
     /**
@@ -133,10 +128,10 @@ public class GuiCrafter extends GuiContainer{
     {
         if (button.id == 10)
         {
-            this.field_192050_x.func_193014_a(this.field_193112_y, ((ContainerCrafter)this.inventorySlots).craftMatrix);
-            this.field_192050_x.func_191866_a();
-            this.guiLeft = this.field_192050_x.func_193011_a(this.field_193112_y, this.width, this.xSize);
-            this.field_192049_w.func_191746_c(this.guiLeft + 5, this.height / 2 - 49);
+            this.recipeBookGui.initVisuals(this.widthTooNarrow, ((ContainerWorkbench)this.inventorySlots).craftMatrix);
+            this.recipeBookGui.toggleVisibility();
+            this.guiLeft = this.recipeBookGui.updateScreenPosition(this.widthTooNarrow, this.width, this.xSize);
+            this.recipeButton.setPosition(this.guiLeft + 5, this.height / 2 - 49);
         }
     }
 
@@ -146,7 +141,7 @@ public class GuiCrafter extends GuiContainer{
      */
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
-        if (!this.field_192050_x.func_191859_a(typedChar, keyCode))
+        if (!this.recipeBookGui.keyPressed(typedChar, keyCode))
         {
             super.keyTyped(typedChar, keyCode);
         }
@@ -158,12 +153,12 @@ public class GuiCrafter extends GuiContainer{
     protected void handleMouseClick(Slot slotIn, int slotId, int mouseButton, ClickType type)
     {
         super.handleMouseClick(slotIn, slotId, mouseButton, type);
-        this.field_192050_x.func_191874_a(slotIn);
+        this.recipeBookGui.slotClicked(slotIn);
     }
 
-    public void func_192043_J_()
+    public void recipesUpdated()
     {
-        this.field_192050_x.func_193948_e();
+        this.recipeBookGui.recipesUpdated();
     }
 
     /**
@@ -171,7 +166,7 @@ public class GuiCrafter extends GuiContainer{
      */
     public void onGuiClosed()
     {
-        this.field_192050_x.func_191871_c();
+        this.recipeBookGui.removed();
         super.onGuiClosed();
     }
     

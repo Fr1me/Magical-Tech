@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 public class GuiMagicGenerator extends GuiGeneratorBase {
 
     public GuiMagicGenerator(IInventory playerInventory, TileEntityGeneratorBase tileEntity) {
-        super(new ContainerGeneratorBase(playerInventory, tileEntity), "Magical");
+        super(new ContainerGeneratorBase(playerInventory, tileEntity), "Magical ");
     }
     
 }

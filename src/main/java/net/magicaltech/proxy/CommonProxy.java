@@ -5,12 +5,12 @@ import net.magicaltech.Reference;
 import net.magicaltech.handler.MTGuiHandler;
 import net.magicaltech.tile.TileCraftingBase;
 import net.magicaltech.tile.TileEntityGeneratorBase;
-import net.magicaltech.tile.TileEntityMachineBase;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.thegaminghuskymc.huskylib.tiles.TileEntityMachineBase;
 
 public class CommonProxy implements IMTProxy {
 	

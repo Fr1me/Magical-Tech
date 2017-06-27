@@ -29,6 +29,10 @@ public class ContainerGeneratorBase extends Container{
 
     	for(int k = 0; k < 9; k++)
     	    addSlotToContainer(new Slot(player, k, xs + (k * 18), ys + 83 + 67)); // Player Hotbar
+    	
+//    	addSlotToContainer(new Slot(player, 1, 100, 100));
+    	
+//    	addSlotToContainer(new SlotDefinition(SlotType.SLOT_SPECIFICITEM, new ItemStack(Items.COAL)));
     }
  
     @Override

@@ -3,10 +3,19 @@
   "modid": "magicaltech",
   "name": "Magical Tech",
   "description": "Magic and tech, simply combined.",
-  "version": "1.0",
+  "version": "0.1.5",
   "mcversion": "1.12",
   "authorList": ["XFireEyeZ", "TheGamingHuskyMC"],
   "credits": "No one yet",
   "logoFile": "assets/magicaltech/textures/logo.png"
+},
+{
+  "modid": "huskylib",
+  "name": "HuskyLib",
+  "description": "This is my lib mod",
+  "version": "0.0.1",
+  "mcversion": "1.12",
+  "authorList": ["TheGamingHuskyMC"],
+  "credits": "No one yet"
 }
 ]

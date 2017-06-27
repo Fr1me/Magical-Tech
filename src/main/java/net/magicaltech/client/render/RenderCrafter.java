@@ -1,21 +1,21 @@
 package net.magicaltech.client.render;
 
-import net.magicaltech.tile.TileCraftingBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.thegaminghuskymc.huskylib.client.render.CustomRenderTESR;
+import net.thegaminghuskymc.huskylib.tiles.TileEntityBase;
 
 @SideOnly(Side.CLIENT)
-public class RenderCrafter extends TileEntitySpecialRenderer<TileCraftingBase> {
+public class RenderCrafter extends CustomRenderTESR {
 
     @Override
-    public void render(TileCraftingBase te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(TileEntityBase te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         GlStateManager.pushAttrib();
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
@@ -27,7 +27,7 @@ public class RenderCrafter extends TileEntitySpecialRenderer<TileCraftingBase> {
 
     //long angle = (System.currentTimeMillis() / 10) % 360;
 
-    private void renderItem(TileCraftingBase te) {
+    private void renderItem(TileEntityBase te) {
         ItemStack stack = new ItemStack(te.getBlockType());
         if (stack != null) {
             RenderHelper.enableStandardItemLighting();

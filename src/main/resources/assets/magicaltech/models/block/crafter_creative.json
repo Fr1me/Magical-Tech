@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "magicaltech:blocks/crafter_top_creative",
+		"down": "magicaltech:blocks/crafter_bottom",
+		"north": "magicaltech:blocks/crafter_side_creative",
+		"south": "magicaltech:blocks/crafter_side_creative",
+		"east": "magicaltech:blocks/crafter_side_creative",
+		"west": "magicaltech:blocks/crafter_side_creative",
+		"particle": "magicaltech:blocks/crafter_top_creative"
+	}
+}

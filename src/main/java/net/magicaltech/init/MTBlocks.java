@@ -1,21 +1,16 @@
 package net.magicaltech.init;
 
-import net.magicaltech.Reference;
-import net.magicaltech.block.BlockBase;
-import net.magicaltech.block.BlockCraftingBase;
-import net.magicaltech.block.BlockGeneratorBase;
-import net.magicaltech.block.BlockMachineBase;
-import net.magicaltech.block.BlockNetherOreBase;
-import net.magicaltech.block.BlockOreBase;
-import net.magicaltech.block.crop.BlockCropBase;
-import net.magicaltech.util.Utils;
+import net.magicaltech.MagicalTech;
+import net.magicaltech.blocks.BlockCraftingBase;
+import net.magicaltech.blocks.BlockGeneratorBase;
+import net.magicaltech.blocks.BlockResearchTable;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.GameData;
+import net.thegaminghuskymc.huskylib.blocks.BlockBase;
+import net.thegaminghuskymc.huskylib.blocks.BlockMachineBase;
+import net.thegaminghuskymc.huskylib.blocks.BlockNetherOreBase;
+import net.thegaminghuskymc.huskylib.blocks.BlockOreBase;
 
 public class MTBlocks {
 	
@@ -50,42 +45,44 @@ public class MTBlocks {
 	
 //	Crops
 	public static Block cropTransition;
-	public static Block testCrop;
+	
+	public static Block researchTable;
 	
 	public static void init() {
 //		Normal Blocks
-		hStone = new BlockOreBase("hardened_stone");
+		hStone = new BlockOreBase("hardened_stone", MTCreativeTabs.worldgen);
 		
-		tBlock = new BlockBase("transistium_block");
-		pIBlock = new BlockBase("prophecy_iron_block");
-		rQBlock = new BlockBase("rose_quartz_block");
+		tBlock = new BlockBase("transistium_block", MTCreativeTabs.blocks);
+		pIBlock = new BlockBase("prophecy_iron_block", MTCreativeTabs.blocks);
+		rQBlock = new BlockBase("rose_quartz_block", MTCreativeTabs.blocks);
 		
 //		Ores
-		rQOre = new BlockOreBase("rose_quartz_ore");
-		plOre = new BlockOreBase("prophecy_iron_ore");
+		rQOre = new BlockOreBase("rose_quartz_ore", MTCreativeTabs.worldgen);
+		plOre = new BlockOreBase("prophecy_iron_ore", MTCreativeTabs.worldgen);
 		
 //		Nether Ores
-		rQNetherOre = new BlockNetherOreBase("rose_quartz_nether_ore");
-		plNetherOre = new BlockNetherOreBase("prophecy_iron_nether_ore");
+		rQNetherOre = new BlockNetherOreBase("rose_quartz_nether_ore", MTCreativeTabs.worldgen);
+		plNetherOre = new BlockNetherOreBase("prophecy_iron_nether_ore", MTCreativeTabs.worldgen);
 			
 //		Machines
-		cGen = new BlockGeneratorBase("coal");
-		mGen = new BlockGeneratorBase("magic");
-		nnGen = new BlockGeneratorBase("nuff_nuff");
-		fGen = new BlockGeneratorBase("fluffy");
+		cGen = new BlockGeneratorBase("coal", MTCreativeTabs.machines);
+		mGen = new BlockGeneratorBase("magic", MTCreativeTabs.machines);
+		nnGen = new BlockGeneratorBase("nuff_nuff", MTCreativeTabs.machines);
+		fGen = new BlockGeneratorBase("fluffy", MTCreativeTabs.machines);
 		
-		grinder = new BlockMachineBase("grinder");
+		grinder = new BlockMachineBase("grinder", MTCreativeTabs.machines);
 		
-		crafter = new BlockCraftingBase("crafter");
+		crafter = new BlockCraftingBase("crafter", MTCreativeTabs.machines);
 		
-//		crafterT1 = new BlockCraftingBase("crafter_tire_1");
-//		crafterT2 = new BlockCraftingBase("crafter_tire_2");
-//		crafterT3 = new BlockCraftingBase("crafter_tire_3");
-//		crafterTC = new BlockCraftingBase("crafter_creative");
+		crafterT1 = new BlockCraftingBase("crafter_tire_1", MTCreativeTabs.machines);
+		crafterT2 = new BlockCraftingBase("crafter_tire_2", MTCreativeTabs.machines);
+		crafterT3 = new BlockCraftingBase("crafter_tire_3", MTCreativeTabs.machines);
+		crafterTC = new BlockCraftingBase("crafter_creative", MTCreativeTabs.machines);
+		
+		researchTable = new BlockResearchTable();
 		
 //		Crops
-		cropTransition = new BlockCropBase("transition_plant", MTItems.seedTransition, MTItems.tFragment);
-		testCrop = new BlockCropBase("test_crop", MTItems.magicWand, MTItems.seedTransition);
+//		cropTransition = new BlockCropBase("transition_plant", MTItems.seedTransition, MTItems.tFragment);
 	}
 	
 	public static void register() {
@@ -110,15 +107,17 @@ public class MTBlocks {
 		registerBlock(nnGen);
 		registerBlock(fGen);
 		
-		registerBlock(grinder);
+//		registerBlock(grinder);
 		
-//		registerBlock(crafterT1);
-//		registerBlock(crafterT2);
-//		registerBlock(crafterT3);
-//		registerBlock(crafterTC);
+		registerBlock(crafterT1);
+		registerBlock(crafterT2);
+		registerBlock(crafterT3);
+		registerBlock(crafterTC);
+		
+		registerBlock(researchTable);
 		
 //		Crops
-		registerBlockSpecial(cropTransition);
+//		registerBlockSpecial(cropTransition);
 	}
 
 	public static void registerRenders() {
@@ -143,28 +142,27 @@ public class MTBlocks {
 		registerRender(nnGen);
 		registerRender(grinder);
 		
-//		registerRender(crafterT1);
-//		registerRender(crafterT2);
-//		registerRender(crafterT3);
-//		registerRender(crafterTC);
+//		registerRender(grinder);
 		
-		registerRender(cropTransition);
+		registerRender(crafterT1);
+		registerRender(crafterT2);
+		registerRender(crafterT3);
+		registerRender(crafterTC);
+		
+		registerRender(researchTable);
+		
+//		registerRender(cropTransition);
 		
 	}
 	
 	public static void registerBlock(Block block) {
-		GameRegistry.register(block);
-		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-		Utils.getLogger().info("Registered Block: " + block.getUnlocalizedName().substring(5));
-	}
-	
-	public static void registerBlockSpecial(Block block) {
-		GameRegistry.register(block);
-		Utils.getLogger().info("Registered Block: " + block.getUnlocalizedName().substring(5));
+		GameData.register_impl(block);
+		GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		MagicalTech.loggerMT.logInfo("Registered Block: " + block.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRender(Block block) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, block.getUnlocalizedName().substring(5)), "inventory"));
-		Utils.getLogger().info("Registered Render For " + block.getUnlocalizedName().substring(5));
+		RebornRegistry.registerItemModel(block, 0);
+		MagicalTech.loggerMT.logInfo("Registered Render For " + block.getUnlocalizedName().substring(5));
 	}
 }

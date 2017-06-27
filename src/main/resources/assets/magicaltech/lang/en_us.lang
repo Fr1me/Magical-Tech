@@ -2,6 +2,7 @@
 item.wand.name=Magical Wand
 item.prophecy_iron_ingot.name=Prophecy Iron
 item.transistium_ingot.name=Transistium Ingot
+item.satanium_ingot.name=Satanium Ingot
 item.transistium_nugget.name=Transistium Nugget
 item.transistium_piece.name=Transistium Piece
 item.transistium_fragment.name=Transistium Fragment
@@ -11,7 +12,7 @@ item.cursed_illusion_stone.name=Cursed Illusion Stone
 item.rose_quartz.name=Rose Quartz
 item.flower.name=Flower
 
-item.transitium_seeds.name=Transition Seeds
+item.transitium_seed.name=Transition Seeds
 
 #Blocks
 tile.hardened_stone.name=Hardened Stone
@@ -19,8 +20,11 @@ tile.transistium_block.name=Block Of Transistium
 tile.prophecy_iron_block.name=Block Of Prophecy Iron
 
 tile.rose_quartz_ore.name=Rose Quartz Ore
-tile.prophecy_iron_ore.name=Rose Quartz Ore
-tile.transistium_ore.name=Prophecy Iron Ore
+tile.prophecy_iron_ore.name=Prophecy Iron Ore
+tile.transistium_ore.name=Transistium Ore
+
+tile.rose_quartz_nether_ore.name=Rose Quartz Nether Ore
+tile.prophecy_iron_nether_ore.name=Prophecy Iron Nether Ore
 
 tile.transition_plant.name=Transition Plant
 
@@ -43,6 +47,18 @@ item.prophecy_iron_axe.name=Prophecy Iron Axe
 item.prophecy_iron_shovel.name=Prophecy Iron Shovel
 item.prophecy_iron_hoe.name=Prophecy Iron Hoe
 
+item.satanium_sword.name=Satanium Sword
+item.satanium_pickaxe.name=Satanium Pickaxe
+item.satanium_axe.name=Satanium Axe
+item.satanium_shovel.name=Satanium Shovel
+item.satanium_hoe.name=Satanium Hoe
+
+item.lava_sword.name=Lava Sword
+item.lava_pickaxe.name=Lava Pickaxe
+item.lava_axe.name=Lava Axe
+item.lava_shovel.name=Lava Shovel
+item.lava_hoe.name=Lava Hoe
+
 #Armor
 item.transistium_helmet.name=Transistium Helmet
 item.transistium_chestplate.name=Transistium Chestplate
@@ -59,6 +75,16 @@ item.prophecy_iron_chestplate.name=Prophecy Iron Chestplate
 item.prophecy_iron_leggings.name=Prophecy Iron Leggings
 item.prophecy_iron_boots.name=Prophecy Iron Boots
 
+item.satanium_helmet.name=Satanium Helmet
+item.satanium_chestplate.name=Satanium Chestplate
+item.satanium_leggings.name=Satanium Leggings
+item.satanium_boots.name=Satanium Boots
+
+item.lava_helmet.name=Lava Helmet
+item.lava_chestplate.name=Lava Chestplate
+item.lava_leggings.name=Lava Leggings
+item.lava_boots.name=Lava Boots
+
 #Creative Tabs
 itemGroup.tools_mt=Magical Tools
 itemGroup.combat_mt=Magical Combat
@@ -73,10 +99,3 @@ container.crafter=Crafter
 
 #Tooltips
 info.magicaltech.holdShiftForDetails=Hold Shift for Details
-
-#Achievements
-achievement.transistium=You acctually crafted that?!
-achievement.transistium.desc=What?! 6 561 of those little things?!
-
-achievement.join_world=New day, New world!
-achievement.join_world.desc=You loaded up a fresh Minecraft world! 

@@ -11,9 +11,8 @@ import net.magicaltech.init.MTTools;
 import net.magicaltech.proxy.IMTProxy;
 import net.magicaltech.tile.TileCraftingBase;
 import net.magicaltech.tile.TileEntityGeneratorBase;
-import net.magicaltech.tile.TileEntityMachineBase;
-import net.magicaltech.util.Utils;
 import net.magicaltech.world.gen.OreGen;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -22,8 +21,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.thegaminghuskymc.huskylib.tiles.TileEntityMachineBase;
 
-@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.MC_VERSION)
+@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPS ,acceptedMinecraftVersions = Reference.MC_VERSION)
 public class MagicalTech {
 
 	@Mod.Instance(Reference.MODID)
@@ -31,10 +31,17 @@ public class MagicalTech {
 	@SidedProxy(serverSide = Reference.SERVER_PROXY_CLASS, clientSide = Reference.CLIENT_PROXY_CLASS)
 	public static IMTProxy proxy;
 	public static Logger logger = Logger.getLogger(Reference.NAME);
+	
+	public static IMTLogger loggerMT;
+	
+	static {
+		FluidRegistry.enableUniversalBucket();
+		FluidRegistry.validateFluidRegistry();
+	}
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		Utils.getLogger().info("Pre-Initializing");
+		loggerMT.logInfo("Pre-Initializing");
 
 		proxy.preInit(event);
 
@@ -55,12 +62,12 @@ public class MagicalTech {
 		proxy.registerRenders();
 		proxy.registerTileEntities();
 
-		Utils.getLogger().info("Pre-Initialization Complete");
+		loggerMT.logInfo("Pre-Initialization Complete");
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		Utils.getLogger().info("Initializing");
+		loggerMT.logInfo("Initializing");
 
 		proxy.init(event);
 
@@ -71,16 +78,16 @@ public class MagicalTech {
 		MTRecipeHandler.registerArmorRecipes();
 		MTRecipeHandler.registerToolRecipes();
 
-		Utils.getLogger().info("Initialization Complete");
+		loggerMT.logInfo("Initialization Complete");
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		Utils.getLogger().info("Post-Initializing");
+		loggerMT.logInfo("Post-Initializing");
 
 		proxy.postInit(event);
 
-		Utils.getLogger().info("Post-Initialization Complete");
+		loggerMT.logInfo("Post-Initialization Complete");
 	}
 
 }

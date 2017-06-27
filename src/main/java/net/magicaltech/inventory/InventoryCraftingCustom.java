@@ -199,7 +199,8 @@ public class InventoryCraftingCustom implements IInventory
     {
         for (ItemStack itemstack : this.stackList)
         {
-            p_194018_1_.func_194112_a(itemstack);
+            RecipeItemHelper.pack(itemstack);
         }
     }
+    
 }

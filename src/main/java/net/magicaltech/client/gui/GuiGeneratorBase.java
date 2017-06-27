@@ -1,23 +1,23 @@
 package net.magicaltech.client.gui;
 
 import net.magicaltech.Reference;
-import net.magicaltech.inventory.ContainerGeneratorBase;
 import net.magicaltech.tile.TileEntityGeneratorBase;
-import net.magicaltech.util.colours.ColourRGBA;
-import net.magicaltech.util.math.Point2i;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
+import net.thegaminghuskymc.huskylib.client.gui.EnumRenderType;
+import net.thegaminghuskymc.huskylib.client.gui.GuiContainerBase;
+import net.thegaminghuskymc.huskylib.client.gui.HLBuilder;
 
 @SuppressWarnings("deprecation")
 public class GuiGeneratorBase extends GuiContainerBase{
 	
 	private String name;
 	
-	private TileEntityGeneratorBase generatorTE;
+	private TileEntityGeneratorBase generator;
 	
-	private ContainerGeneratorBase generator;
+	private HLBuilder builder = new HLBuilder();
 
 	public GuiGeneratorBase(Container container, String name) {
 		super(container);
@@ -37,20 +37,29 @@ public class GuiGeneratorBase extends GuiContainerBase{
 		
 //		this.drawBackground(new Point2i(k, l), new Point2i(176, 190), GuiContainerBase.ALIGNMENT_NONE);
 		
-//		this.drawEnergyBar(this, this.guiLeft + 151, this.guiTop, 76, generatorTE, generator.getMaxEnergyStored(EnumFacing.UP), mouseX, mouseY, "RF");
+		this.drawEnergyBar(this, this.guiLeft + 151, this.guiTop + 10, 50, 500, 1000, mouseX, mouseY, "RF");
 		
-		this.drawRectangle(new Point2i(this.guiLeft + 51, this.guiTop + 20), new Point2i(60, 60), new ColourRGBA(0, 224, 224, 255 / 2), new ColourRGBA(50, 50, 240, 255 / 2));
+		drawBurnBar(this, 3, this.guiLeft + 40, this.guiTop + 40);
+		
+		drawProgressBar(this, 8, this.guiLeft + 40, this.guiTop + 70);
+		
+		builder.drawJEIButton(this, 10, 10, EnumRenderType.BACKGROUND);
+		
+		builder.drawBigBlueBar(this, this.guiLeft - 120, this.guiTop + 20, 100, 100000, mouseX, mouseY, EnumRenderType.BACKGROUND);
+		
+//		builder.drawFluid(this, new FluidStack(FluidRegistry.LAVA, 100), x, y, mouseY, k, maxCapacity);
 		
 //		this.drawPowerBar(new Point2i(this.guiLeft + 151, this.guiTop), GuiContainerBase.BACKGROUND_LIGHT, GuiContainerBase.POWER_MT, 5000000, 10000000);
 	}
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		final String name = this.name + " " + "Generator";
+		final String name = this.name +  "Generator";
 		this.fontRenderer.drawString(name, this.xSize / 2 - this.fontRenderer.getStringWidth(name) / 2, 6,
 			4210752);
 		this.fontRenderer.drawString(I18n.translateToLocalFormatted("container.inventory", new Object[0]), 8,
 			this.ySize - 96 + 2, 4210752);
+		
 		/*this.fontRenderer.drawString(PowerSystem.getLocaliszedPower(generator.euOut) + "/t", 10, 20,
 			Color.WHITE.getRGB());
 		this.fontRenderer.drawString(PowerSystem.getLocaliszedPower(generator.storedEu), 10, 30,

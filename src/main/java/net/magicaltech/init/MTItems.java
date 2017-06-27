@@ -1,20 +1,19 @@
 package net.magicaltech.init;
 
-import net.magicaltech.Reference;
-import net.magicaltech.item.ItemBase;
-import net.magicaltech.item.ItemSeedBase;
-import net.magicaltech.util.Utils;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.magicaltech.MagicalTech;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.thegaminghuskymc.huskylib.items.ItemBase;
+import net.thegaminghuskymc.huskylib.items.ItemIngotBase;
+import net.thegaminghuskymc.huskylib.items.ItemSeedBase;
 
 public class MTItems {
 	
 	public static Item magicWand;
 	public static Item pIron;
+	
 	public static Item tIngot;
+	
+	
 	public static Item seedTransition;
 	public static Item tNugget;
 	public static Item tPiece;
@@ -25,68 +24,64 @@ public class MTItems {
 	public static Item rQuartz;
 	public static Item flower;
 	
+	public static Item sIngot;
+	
 	public static void init() {
 //		Normal Items
-		magicWand = new ItemBase("wand", false);
-		pIron = new ItemBase("prophecy_iron_ingot", false);
-		tIngot = new ItemBase("transistium_ingot", true);
-		tNugget = new ItemBase("transistium_nugget", false);
-		tPiece = new ItemBase("transistium_piece", false);
-		tFragment = new ItemBase("transistium_fragment", false);
-		tTFragment = new ItemBase("tiny_transistium_fragment", false);
-//		iStone = new ItemBase("illusion_stone", false);
-//		cIStone = new ItemBase("cursed_illusion_stone", true);
-		rQuartz = new ItemBase("rose_quartz", false);
-//		flower = new ItemBase("flower", false);
+		magicWand = new ItemBase("wand", MTCreativeTabs.items);
+		pIron = new ItemIngotBase("prophecy_iron", MTCreativeTabs.items);
+		tIngot = new ItemIngotBase("transistium", MTCreativeTabs.items);
+		tNugget = new ItemBase("transistium_nugget", MTCreativeTabs.items);
+		tPiece = new ItemBase("transistium_piece", MTCreativeTabs.items);
+		tFragment = new ItemBase("transistium_fragment", MTCreativeTabs.items);
+		tTFragment = new ItemBase("tiny_transistium_fragment", MTCreativeTabs.items);
+		iStone = new ItemBase("illusion_stone", MTCreativeTabs.items);
+		cIStone = new ItemBase("cursed_illusion_stone", MTCreativeTabs.items);
+		rQuartz = new ItemBase("rose_quartz", MTCreativeTabs.items);
+		flower = new ItemBase("flower", MTCreativeTabs.items);
+		
+		sIngot = new ItemIngotBase("satanium", MTCreativeTabs.items);
 		
 //		Seeds
-		seedTransition = new ItemSeedBase("transistium");
+		seedTransition = new ItemSeedBase("transistium", MTBlocks.cropTransition, MTCreativeTabs.items);
 	}
 	
 	public static void register() {
-//		Normal Items
 		registerItem(magicWand);
+		
 		registerItem(pIron);
 		registerItem(tIngot);
+		registerItem(sIngot);
+		registerItem(rQuartz);
+		
 		registerItem(tNugget);
 		registerItem(tPiece);
 		registerItem(tFragment);
 		registerItem(tTFragment);
-//		registerItem(iStone);
-//		registerItem(cIStone);
-		registerItem(rQuartz);
-//		registerItem(flower);
-		
-//		Seeds
-		registerItem(seedTransition);
 	}
 	
 	public static void registerRenders() {
-//		Normal Items
 		registerRender(magicWand);
+		
 		registerRender(pIron);
 		registerRender(tIngot);
+		registerRender(sIngot);
+		registerRender(rQuartz);
+		
 		registerRender(tNugget);
 		registerRender(tPiece);
 		registerRender(tFragment);
 		registerRender(tTFragment);
-//		registerRender(iStone);
-//		registerRender(cIStone);
-		registerRender(rQuartz);
-//		registerRender(flower);
-		
-//		Seeds
-		registerRender(seedTransition);
 	}
 	
 	public static void registerItem(Item item) {
-		GameRegistry.register(item);
-		Utils.getLogger().info("Registered Item: " + item.getUnlocalizedName().substring(5));
+		RebornRegistry.registerItem(item);
+		MagicalTech.loggerMT.logInfo("Registered Item: " + item.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRender(Item item) {
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item.getUnlocalizedName().substring(5)), "inventory"));
-		Utils.getLogger().info("Registered Render For " + item.getUnlocalizedName().substring(5));
+		RebornRegistry.registerItemModel(item, 0);
+		MagicalTech.loggerMT.logInfo("Registered Render For " + item.getUnlocalizedName().substring(5));
 	}
 
 }
