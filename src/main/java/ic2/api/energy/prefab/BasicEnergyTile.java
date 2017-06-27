@@ -1,19 +1,13 @@
 package ic2.api.energy.prefab;
 
+import ic2.api.energy.tile.IEnergyTile;
+import ic2.api.info.ILocatable;
+import ic2.api.item.ElectricItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
-import ic2.api.energy.tile.IEnergyTile;
-import ic2.api.info.ILocatable;
-import ic2.api.info.Info;
-import ic2.api.item.ElectricItem;
 
 /**
  * Common functionality for BasicSink and BasicSource.
@@ -68,13 +62,8 @@ abstract class BasicEnergyTile implements ILocatable, IEnergyTile {
 	 * Either update or onLoad have to be used.
 	 */
 	public void onLoad() {
-		if (!addedToEnet
-				&& !getWorldObj().isRemote
-				&& Info.isIc2Available()) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-
+		if (!addedToEnet)
 			addedToEnet = true;
-		}
 	}
 
 	/**
@@ -90,13 +79,8 @@ abstract class BasicEnergyTile implements ILocatable, IEnergyTile {
 	 * Both invalidate and onChunkUnload have to be used.
 	 */
 	public void onChunkUnload() {
-		if (addedToEnet
-				&& !getWorldObj().isRemote
-				&& Info.isIc2Available()) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-
+		if (addedToEnet);
 			addedToEnet = false;
-		}
 	}
 
 	/**
@@ -220,7 +204,7 @@ abstract class BasicEnergyTile implements ILocatable, IEnergyTile {
 	 * @return true if energy was transferred
 	 */
 	public boolean charge(ItemStack stack) {
-		if (stack == null || !Info.isIc2Available() || getWorldObj().isRemote) return false;
+		if (stack == null || getWorldObj().isRemote) return false;
 
 		double amount = ElectricItem.manager.charge(stack, energyStored, Math.max(getSinkTier(), getSourceTier()), false, false);
 
@@ -237,7 +221,7 @@ abstract class BasicEnergyTile implements ILocatable, IEnergyTile {
 	 * @return true if energy was transferred
 	 */
 	public boolean discharge(ItemStack stack, double limit) {
-		if (stack == null || !Info.isIc2Available() || getWorldObj().isRemote) return false;
+		if (stack == null || getWorldObj().isRemote) return false;
 
 		double amount = capacity - energyStored;
 		if (amount <= 0) return false;
