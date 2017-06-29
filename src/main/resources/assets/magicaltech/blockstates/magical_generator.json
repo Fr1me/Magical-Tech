@@ -6,7 +6,7 @@
 	},
 	"variants": {
 		"normal": {
-			"model": "magicaltech:magic_generator"
+			"model": "magicaltech:magical_generator"
 		},
 		"inventory": [{}]
 	}

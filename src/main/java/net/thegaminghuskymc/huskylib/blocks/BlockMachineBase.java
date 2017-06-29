@@ -11,9 +11,6 @@ import net.minecraft.world.World;
 
 public class BlockMachineBase extends Block {
 	
-	private static World world;
-	private static IBlockState state;
-	
 	public BlockMachineBase() {
 		super(Material.ROCK);
 		setHardness(5.0F);
