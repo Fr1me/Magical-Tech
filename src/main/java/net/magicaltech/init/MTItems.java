@@ -1,5 +1,7 @@
 package net.magicaltech.init;
 
+import org.apache.logging.log4j.Level;
+
 import net.magicaltech.MagicalTech;
 import net.minecraft.item.Item;
 import net.thegaminghuskymc.huskylib.items.ItemBase;
@@ -12,7 +14,6 @@ public class MTItems {
 	public static Item pIron;
 	
 	public static Item tIngot;
-	
 	
 	public static Item seedTransition;
 	public static Item tNugget;
@@ -76,12 +77,12 @@ public class MTItems {
 	
 	public static void registerItem(Item item) {
 		RebornRegistry.registerItem(item);
-		MagicalTech.loggerMT.logInfo("Registered Item: " + item.getUnlocalizedName().substring(5));
+		MagicalTech.logger.log(Level.INFO, "Registered Item: " + item.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRender(Item item) {
 		RebornRegistry.registerItemModel(item, 0);
-		MagicalTech.loggerMT.logInfo("Registered Render For " + item.getUnlocalizedName().substring(5));
+		MagicalTech.logger.log(Level.INFO, "Registered Render For " + item.getUnlocalizedName().substring(5));
 	}
 
 }

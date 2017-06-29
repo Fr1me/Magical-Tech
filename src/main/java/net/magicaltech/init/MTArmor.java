@@ -1,7 +1,10 @@
 package net.magicaltech.init;
 
+import org.apache.logging.log4j.Level;
+
 import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
+import net.magicaltech.items.ItemWitchHat;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -50,6 +53,8 @@ public class MTArmor {
 	public static ItemArmor sLeggings;
 	public static ItemArmor sBoots;
 	
+	public static ItemWitchHat witchHat;
+	
 	public static void init() {
 		tHelmet = new ItemHelmetBase(transistiumMaterial, "transistium", MTCreativeTabs.combat);
 		tChestplate = new ItemChestplateBase(transistiumMaterial, "transistium", MTCreativeTabs.combat);
@@ -66,15 +71,12 @@ public class MTArmor {
 		rQLeggings = new ItemLeggingsBase(roseQuartsMaterial, "rose_quartz", MTCreativeTabs.combat);
 		rQBoots = new ItemBootsBase(roseQuartsMaterial, "rose_quartz", MTCreativeTabs.combat);
 		
-		lHelmet = new ItemHelmetSpecialBase(lavaMaterial, "lava", MTCreativeTabs.combat);
-		lChestplate = new ItemChestplateSpecialBase(lavaMaterial, "lava", MTCreativeTabs.combat);
-		lLeggings = new ItemLeggingsSpecialBase(lavaMaterial, "lava", MTCreativeTabs.combat);
-		lBoots = new ItemBootsSpecialBase(lavaMaterial, "lava", MTCreativeTabs.combat);
-		
 		sHelmet = new ItemHelmetSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
 		sChestplate = new ItemChestplateSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
 		sLeggings = new ItemLeggingsSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
 		sBoots = new ItemBootsSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
+		
+		witchHat = new ItemWitchHat();
 	}
 	
 	public static void register() {
@@ -93,15 +95,12 @@ public class MTArmor {
 		registerItem(rQLeggings);
 		registerItem(rQBoots);
 		
-		registerItem(lHelmet);
-		registerItem(lChestplate);
-		registerItem(lLeggings);
-		registerItem(lBoots);
-		
 		registerItem(sHelmet);
 		registerItem(sChestplate);
 		registerItem(sLeggings);
 		registerItem(sBoots);
+		
+		registerItem(witchHat);
 	}
 
 	public static void registerRenders() {
@@ -120,52 +119,21 @@ public class MTArmor {
 		registerRender(rQLeggings);
 		registerRender(rQBoots);
 		
-		registerRender(lHelmet);
-		registerRender(lChestplate);
-		registerRender(lLeggings);
-		registerRender(lBoots);
-		
 		registerRender(sHelmet);
 		registerRender(sChestplate);
 		registerRender(sLeggings);
 		registerRender(sBoots);
+		
+		registerRender(witchHat);
 	}
 	
 	public static void registerItem (Item item) {
 		RebornRegistry.registerItem(item);
-		MagicalTech.loggerMT.logInfo("Registered Armor Piece: " + item.getUnlocalizedName().substring(5));
+		MagicalTech.logger.log(Level.INFO, "Registered Armor Piece: " + item.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRender(Item item) {
 		RebornRegistry.registerItemModel(item, 0);
-		MagicalTech.loggerMT.logInfo("Registered Render For: " + item.getUnlocalizedName().substring(5));
+		MagicalTech.logger.log(Level.INFO, "Registered Render For: " + item.getUnlocalizedName().substring(5));
 	}
-	
-	/*public static void registerItem(Item[] item) {
-		RebornRegistry.registerItem(item[0]);
-		Utils.getLogger().info("Registered Item: " + item[0].getUnlocalizedName().substring(5));
-		
-		RebornRegistry.registerItem(item[1]);
-		Utils.getLogger().info("Registered Item: " + item[1].getUnlocalizedName().substring(5));
-		
-		RebornRegistry.registerItem(item[2]);
-		Utils.getLogger().info("Registered Item: " + item[2].getUnlocalizedName().substring(5));
-		
-		RebornRegistry.registerItem(item[3]);
-		Utils.getLogger().info("Registered Item: " + item[3].getUnlocalizedName().substring(5));
-	}
-	
-	public static void registerRender(Item[] item) {
-		ModelLoader.setCustomModelResourceLocation(item[0], 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item[0].getUnlocalizedName().substring(5)), "inventory"));
-		Utils.getLogger().info("Registered Render For " + item[0].getUnlocalizedName().substring(5));
-		
-		ModelLoader.setCustomModelResourceLocation(item[1], 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item[1].getUnlocalizedName().substring(5)), "inventory"));
-		Utils.getLogger().info("Registered Render For " + item[1].getUnlocalizedName().substring(5));
-		
-		ModelLoader.setCustomModelResourceLocation(item[2], 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item[2].getUnlocalizedName().substring(5)), "inventory"));
-		Utils.getLogger().info("Registered Render For " + item[2].getUnlocalizedName().substring(5));
-		
-		ModelLoader.setCustomModelResourceLocation(item[3], 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, item[3].getUnlocalizedName().substring(5)), "inventory"));
-		Utils.getLogger().info("Registered Render For " + item[3].getUnlocalizedName().substring(5));
-	}*/
 }

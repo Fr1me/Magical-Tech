@@ -1,6 +1,7 @@
 package net.magicaltech.init;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -45,7 +46,7 @@ public class MTCreativeTabs {
         machines = new CreativeTabs("machines_mt"){
             @Override
             public ItemStack getTabIconItem() {
-                return new ItemStack(Item.getItemFromBlock(MTBlocks.mGen));
+                return new ItemStack(Item.getItemFromBlock(Blocks.FURNACE));
             }
 
         };

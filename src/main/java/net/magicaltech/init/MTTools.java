@@ -1,5 +1,7 @@
 package net.magicaltech.init;
 
+import org.apache.logging.log4j.Level;
+
 import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
 import net.minecraft.item.Item;
@@ -71,7 +73,7 @@ public class MTTools {
 		sShovel = new ItemShovelBase(satanium, "satanium", MTCreativeTabs.tools);
 		sHoe = new ItemHoeBase(satanium, "satanium", MTCreativeTabs.tools);
 		
-		lSword = new ItemSwordBase(lava, "lava", MTCreativeTabs.tools);
+//		lSword = new ItemSwordBase(lava, "lava", MTCreativeTabs.tools);
 	}
 	
 	public static void register() {
@@ -99,7 +101,7 @@ public class MTTools {
 		registerItem(sShovel);
 		registerItem(sHoe);
 		
-		registerItem(lSword);
+//		registerItem(lSword);
 	}
 	
 	public static void registerRenders() {
@@ -127,17 +129,17 @@ public class MTTools {
 		registerRender(sShovel, 0, null);
 		registerRender(sHoe, 0, null);
 		
-		registerRender(lSword, 0, null);
+//		registerRender(lSword, 0, null);
 	}
 	
 	public static void registerItem(Item item) {
 		RebornRegistry.registerItem(item);
-		MagicalTech.loggerMT.logInfo("Registered Item: " + item.getUnlocalizedName().substring(5));
+		MagicalTech.logger.log(Level.INFO, "Registered Item: " + item.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRender(Item item, int meta, String fileName) {
 		RebornRegistry.registerItemModel(item, meta, fileName);
-		MagicalTech.loggerMT.logInfo("Registered Render For " + item.getUnlocalizedName().substring(5));
+		MagicalTech.logger.log(Level.INFO, "Registered Render For " + item.getUnlocalizedName().substring(5));
 	}
 	
 	/*public static void registerItem(Item[] item) {

@@ -1,5 +1,6 @@
 package net.thegaminghuskymc.huskylib.items.armor.special;
 
+import net.magicaltech.init.MTCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -16,6 +17,18 @@ public class ItemHelmetSpecialBase extends ItemArmorBase{
 
 	public ItemHelmetSpecialBase(ArmorMaterial materialIn, String name, CreativeTabs tabs) {
 		super(materialIn, 1, EntityEquipmentSlot.HEAD, name + "_helmet", tabs);
+	}
+	
+	public ItemHelmetSpecialBase(String name, CreativeTabs tabs) {
+		this(ArmorMaterial.LEATHER, name, tabs);
+	}
+	
+	public ItemHelmetSpecialBase(String specialName) {
+		super(ArmorMaterial.LEATHER, 1, EntityEquipmentSlot.HEAD, specialName, MTCreativeTabs.combat);
+	}
+	
+	public CreativeTabs getCreativeTab() {
+		return super.getCreativeTab();
 	}
 	
 	@Override

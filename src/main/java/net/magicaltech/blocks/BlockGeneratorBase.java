@@ -5,10 +5,9 @@ import java.util.List;
 import net.magicaltech.MagicalTech;
 import net.magicaltech.handler.MTGuiHandler;
 import net.magicaltech.init.MTBlocks;
-import net.magicaltech.tile.TileEntityGeneratorBase;
+import net.magicaltech.init.MTCreativeTabs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -21,8 +20,9 @@ import net.thegaminghuskymc.huskylib.utils.StringHelper;
 
 public class BlockGeneratorBase extends BlockMachineBase{
 
-	public BlockGeneratorBase(String name, CreativeTabs creativetab) {
-		super(name + "_generator", new TileEntityGeneratorBase(), creativetab);
+	public BlockGeneratorBase() {
+		super();
+		setCreativeTab(MTCreativeTabs.machines);
 	}
 	
 	@Override

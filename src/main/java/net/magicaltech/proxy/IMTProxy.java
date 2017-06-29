@@ -6,10 +6,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public interface IMTProxy {
 	
-	void registerRenders();
-	
-	void registerTileEntities();
-	
     void preInit(FMLPreInitializationEvent event);
 
     void init(FMLInitializationEvent event);

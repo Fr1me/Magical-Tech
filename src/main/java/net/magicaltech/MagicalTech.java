@@ -1,17 +1,16 @@
 package net.magicaltech;
 
-import java.util.logging.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
 
 import net.magicaltech.handler.MTGuiHandler;
-import net.magicaltech.handler.MTRecipeHandler;
 import net.magicaltech.init.MTArmor;
-import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTItems;
 import net.magicaltech.init.MTTools;
+import net.magicaltech.proxy.CommonProxy;
 import net.magicaltech.proxy.IMTProxy;
 import net.magicaltech.tile.TileCraftingBase;
 import net.magicaltech.tile.TileEntityGeneratorBase;
-import net.magicaltech.world.gen.OreGen;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -29,8 +28,8 @@ public class MagicalTech {
 	@Mod.Instance(Reference.MODID)
 	public static MagicalTech instance;
 	@SidedProxy(serverSide = Reference.SERVER_PROXY_CLASS, clientSide = Reference.CLIENT_PROXY_CLASS)
-	public static IMTProxy proxy;
-	public static Logger logger = Logger.getLogger(Reference.NAME);
+	public static CommonProxy proxy;
+	public static Logger logger;
 	
 	public static IMTLogger loggerMT;
 	
@@ -41,15 +40,14 @@ public class MagicalTech {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		loggerMT.logInfo("Pre-Initializing");
+//		logger.log(Level.INFO, "Pre-Initializing");
+		logger = event.getModLog();
 
 		proxy.preInit(event);
 
-		MTBlocks.init();
 		MTItems.init();
 		MTTools.init();
 		MTArmor.init();
-		MTBlocks.register();
 		MTItems.register();
 		MTTools.register();
 		MTArmor.register();
@@ -59,35 +57,32 @@ public class MagicalTech {
 		GameRegistry.registerTileEntity(TileCraftingBase.class, Reference.MODID + ":crafter_base");
 		NetworkRegistry.INSTANCE.registerGuiHandler(MagicalTech.instance, new MTGuiHandler());
 
-		proxy.registerRenders();
-		proxy.registerTileEntities();
-
-		loggerMT.logInfo("Pre-Initialization Complete");
+//		logger.log(Level.INFO, "Pre-Initialization Complete");
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		loggerMT.logInfo("Initializing");
+//		logger.log(Level.INFO, "Initializing");
 
 		proxy.init(event);
 
-		GameRegistry.registerWorldGenerator(new OreGen(), 0);
+//		GameRegistry.registerWorldGenerator(new OreGen(), 0);
 
-		MTRecipeHandler.registerCraftingRecipes();
-		MTRecipeHandler.registerSmeltingRecipes();
-		MTRecipeHandler.registerArmorRecipes();
-		MTRecipeHandler.registerToolRecipes();
+//		MTRecipeHandler.registerCraftingRecipes();
+//		MTRecipeHandler.registerSmeltingRecipes();
+//		MTRecipeHandler.registerArmorRecipes();
+//		MTRecipeHandler.registerToolRecipes();
 
-		loggerMT.logInfo("Initialization Complete");
+//		logger.log(Level.INFO, "Initialization Complete");
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		loggerMT.logInfo("Post-Initializing");
+//		logger.log(Level.INFO, "Post-Initializing");
 
 		proxy.postInit(event);
 
-		loggerMT.logInfo("Post-Initialization Complete");
+//		logger.log(Level.INFO, "Post-Initialization Complete");
 	}
 
 }

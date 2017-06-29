@@ -13,6 +13,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.animation.ITimeValue;
+import net.thegaminghuskymc.huskylib.utils.Names;
 
 public class ItemArmorSpecialBase extends ItemArmor {
 	
@@ -32,25 +33,13 @@ public class ItemArmorSpecialBase extends ItemArmor {
 	}
 	
 	@Override
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
-			ModelBiped _default) {
-		return super.getArmorModel(entityLiving, itemStack, armorSlot, _default);
-	}
-	
-	@Override
-	public ImmutableMap<String, ITimeValue> getAnimationParameters(ItemStack stack, World world,
-			EntityLivingBase entity) {
-		return super.getAnimationParameters(stack, world, entity);
-	}
-	
-	@Override
 	public int getColor(ItemStack stack) {
 		return super.getColor(stack);
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+		tooltip.add(Names.ItemToolTips.TEST_ITEM);
 	}
 	
 	@Override

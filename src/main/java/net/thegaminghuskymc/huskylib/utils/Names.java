@@ -14,22 +14,18 @@ public class Names {
     	public static final String WIP_BLOCK = StringHelper.getRedText("This block is Work In Progess but will be finished soon");
     	public static final String WIP_ITEM = StringHelper.getRedText("This item is Work In Progess but will be finished soon");
     	public static final String SHIFT_FOR_INFO = StringHelper.getFlavorText("Hold") + " " + StringHelper.getYellowText("Shift") + " " + StringHelper.getFlavorText("for Info.");
-    
-    	public static final String TOOLTIP_PRESS = StringHelper.translate("tooltip", "press");
-        public static final String TOOLTIP_INFO = StringHelper.translate("tooltip", "info");
-        public static final String TOOLTIP_SHIFT = StringHelper.translate("tooltip", "shift");
-        public static final String TOOLTIP_UPGRADE_TYPE = StringHelper.translate("tooltip", "upgrade_type");
-        public static final String TOOLTIP_WITHER_PROOF = StringHelper.translate("tooltip", "wither_proof");
     }
     
     public static class ItemToolTips{
-    	public static final String WIP_AXE = StringHelper.getRedText("This sword is Work In Progess but will be finished soon");
-    	public static final String WIP_HOE = StringHelper.getRedText("This sword is Work In Progess but will be finished soon");
-    	public static final String WIP_PICKAXE = StringHelper.getRedText("This sword is Work In Progess but will be finished soon");
-    	public static final String WIP_SHOVEL = StringHelper.getRedText("This sword is Work In Progess but will be finished soon");
-    	public static final String WIP_SWORD = StringHelper.getRedText("This sword is Work In Progess but will be finished soon");
+    	public static final String WIP_AXE = StringHelper.getRedText("Warning!") + "This axe is Work In Progess but will be finished soon";
+    	public static final String WIP_HOE = StringHelper.getRedText("Warning!") + "This hoe is Work In Progess but will be finished soon";
+    	public static final String WIP_PICKAXE = StringHelper.getRedText("Warning!") + "This pickaxe is Work In Progess but will be finished soon";
+    	public static final String WIP_SHOVEL = StringHelper.getRedText("Warning!") + "This shovel is Work In Progess but will be finished soon";
+    	public static final String WIP_SWORD = StringHelper.getRedText("Warning!") + "This sword is Work In Progess but will be finished soon";
     	
-    	public static final String WIP_TOOL = StringHelper.getRedText("This tool is Work In Progess but will be finished soon");
+    	public static final String WIP_TOOL = StringHelper.getRedText("Warning!") + "This tool is Work In Progess but will be finished soon";
+    	
+    	public static final String TEST_ITEM = "This is just a test item";
     }
     
     public static class UpgradeToolTips{

@@ -10,10 +10,10 @@ import net.minecraft.item.Item;
 
 public class BlockBase extends Block {
 
-	public BlockBase(String name, CreativeTabs creativetab) {
+	public BlockBase(String modID, String name, CreativeTabs creativetab) {
 		super(Material.ROCK);
 		setUnlocalizedName(name);
-		setRegistryName(name);
+		setRegistryName(modID, name);
 		setHardness(5.0F);
 		setResistance(5.0F);
 		setHarvestLevel("pickaxe", 1);

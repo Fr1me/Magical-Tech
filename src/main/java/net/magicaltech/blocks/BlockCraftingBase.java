@@ -1,6 +1,5 @@
 package net.magicaltech.blocks;
 
-import net.magicaltech.tile.TileCraftingBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +12,7 @@ import net.thegaminghuskymc.huskylib.blocks.BlockMachineBase;
 public class BlockCraftingBase extends BlockMachineBase{
 
 	public BlockCraftingBase(String name, CreativeTabs creativetab) {
-		super(name, new TileCraftingBase(), creativetab);
+		super();
 	}
 	
 	@Override
