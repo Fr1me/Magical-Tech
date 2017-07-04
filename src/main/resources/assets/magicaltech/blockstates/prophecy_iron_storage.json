@@ -1,7 +1,12 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube_all",
+		"transform": "forge:default-block"
+	},
 	"variants": {
 		"normal": {
-			"model": "magicaltech:prophecy_iron_block"
+			"model": "magicaltech:prophecy_iron_storage"
 		}
 	}
 }

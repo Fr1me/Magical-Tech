@@ -1,7 +1,7 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"up": "magicaltech:blocks/top_on",
+		"up": "magicaltech:blocks/crafter_top_tire_1",
 		"down": "magicaltech:blocks/crafter_bottom",
 		"north": "magicaltech:blocks/crafter_side_tire_1",
 		"south": "magicaltech:blocks/crafter_side_tire_1",

@@ -11,5 +11,9 @@ public interface IMTProxy {
     void init(FMLInitializationEvent event);
 
     void postInit(FMLPostInitializationEvent event);
+    
+    void registerRenders();
+    
+    void registerTileEntities();
 
 }

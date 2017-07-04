@@ -1,8 +1,8 @@
 package net.magicaltech.network;
 
 import net.magicaltech.Reference;
-import net.thegaminghuskymc.huskylib.utils.color.Color;
-import net.thegaminghuskymc.huskylib.utils.color.ColorRGBA;
+import net.thegaminghuskymc.huskylib.lib.utils.color.Color;
+import net.thegaminghuskymc.huskylib.lib.utils.color.ColorRGBA;
 
 public enum EnumUpgradeType {
 

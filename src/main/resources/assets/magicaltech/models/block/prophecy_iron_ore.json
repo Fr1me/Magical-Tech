@@ -1,6 +1,6 @@
 {
 	"parent": "block/cube_all",
 	"textures": {
-		"all": "magicaltech:blocks/prophecy_iron_ore"
+		"all": "magicaltech:blocks/worldgen/prophecy_iron_ore"
 	}
 }

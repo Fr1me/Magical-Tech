@@ -7,12 +7,12 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.thegaminghuskymc.huskylib.blocks.BlockOreBase;
+import net.thegaminghuskymc.huskylib.lib.blocks.BlockOreBase;
 
 public class BlockWorldGenNetherBase extends BlockOreBase{
 
 	public BlockWorldGenNetherBase(String name) {
-		super(Reference.MODID, name, MTCreativeTabs.worldgen);
+		super(Reference.MODID, name + "_nether_ore", MTCreativeTabs.worldgen);
 	}
 	
 	@SideOnly(Side.CLIENT)

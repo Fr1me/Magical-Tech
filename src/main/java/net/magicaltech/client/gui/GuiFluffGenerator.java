@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 public class GuiFluffGenerator extends GuiGeneratorBase {
 	
     public GuiFluffGenerator(IInventory playerInventory, TileEntityGeneratorBase tileEntity) {
-        super(new ContainerGeneratorBase(playerInventory, tileEntity), "Fluffy ");
+        super(new ContainerGeneratorBase(playerInventory, tileEntity), "Fluffy");
     }
     
 }

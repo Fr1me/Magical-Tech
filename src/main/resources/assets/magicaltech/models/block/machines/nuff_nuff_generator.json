@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "magicaltech:blocks/magical_generator_top",
+		"down": "magicaltech:blocks/magical_generator_bottom",
+		"north": "magicaltech:blocks/magical_generator_front",
+		"south": "magicaltech:blocks/magical_generator_back",
+		"east": "magicaltech:blocks/magical_generator_side",
+		"west": "magicaltech:blocks/magical_generator_side",
+		"particle": "magicaltech:blocks/magical_generator_side"
+	}
+}

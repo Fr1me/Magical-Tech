@@ -1,6 +1,5 @@
 package net.magicaltech.inventory;
 
-import net.magicaltech.init.MTBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -14,16 +13,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ContainerCrafter extends Container {
+	
     private final World world;
-    /** Position of the workbench */
-    private final BlockPos pos;
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public InventoryCraftResult craftResult = new InventoryCraftResult();
 
     public ContainerCrafter(InventoryPlayer playerInventory, World worldIn, BlockPos posIn){
     	this.world = worldIn;
-    	this.pos = posIn;
-    	
     	this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
         for (int i = 0; i < 3; ++i)
@@ -95,7 +91,7 @@ public class ContainerCrafter extends Container {
     /**
      * Determines whether supplied player can use this container
      */
-    public boolean canInteractWith(EntityPlayer playerIn)
+    /*public boolean canInteractWith(EntityPlayer playerIn)
     {
         if (this.world.getBlockState(this.pos).getBlock() != MTBlocks.crafterT1)
         {
@@ -105,7 +101,7 @@ public class ContainerCrafter extends Container {
         {
             return playerIn.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
         }
-    }
+    }*/
 
     /**
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
@@ -184,5 +180,10 @@ public class ContainerCrafter extends Container {
     {
         return slotIn.inventory != this.craftResult && super.canMergeSlot(stack, slotIn);
     }
+
+	@Override
+	public boolean canInteractWith(EntityPlayer playerIn) {
+		return true;
+	}
 
 }

@@ -4,9 +4,8 @@ import org.apache.logging.log4j.Level;
 
 import net.magicaltech.MagicalTech;
 import net.minecraft.item.Item;
-import net.thegaminghuskymc.huskylib.items.ItemBase;
-import net.thegaminghuskymc.huskylib.items.ItemIngotBase;
-import net.thegaminghuskymc.huskylib.items.ItemSeedBase;
+import net.thegaminghuskymc.huskylib.lib.items.ItemBase;
+import net.thegaminghuskymc.huskylib.lib.items.ItemIngotBase;
 
 public class MTItems {
 	
@@ -44,7 +43,7 @@ public class MTItems {
 		sIngot = new ItemIngotBase("satanium", MTCreativeTabs.items);
 		
 //		Seeds
-		seedTransition = new ItemSeedBase("transistium", MTBlocks.cropTransition, MTCreativeTabs.items);
+//		seedTransition = new ItemSeedBase("transistium", MTBlocks.cropTransition, MTCreativeTabs.items);
 	}
 	
 	public static void register() {

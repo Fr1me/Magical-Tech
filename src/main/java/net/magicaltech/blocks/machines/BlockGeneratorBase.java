@@ -2,37 +2,26 @@ package net.magicaltech.blocks.machines;
 
 import java.util.List;
 
-import ic2.api.energy.tile.IEnergyAcceptor;
-import ic2.api.energy.tile.IEnergySource;
 import net.magicaltech.MagicalTech;
-import net.magicaltech.Reference;
 import net.magicaltech.handler.MTGuiHandler;
 import net.magicaltech.init.MTBlocks;
 import net.magicaltech.init.MTCreativeTabs;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.thegaminghuskymc.huskylib.blocks.BlockMachineBase;
-import net.thegaminghuskymc.huskylib.utils.Names;
-import net.thegaminghuskymc.huskylib.utils.StringHelper;
+import net.thegaminghuskymc.huskylib.lib.blocks.BlockMachineBase;
+import net.thegaminghuskymc.huskylib.lib.utils.Names;
+import net.thegaminghuskymc.huskylib.lib.utils.StringHelper;
 
-public class BlockGeneratorBase extends BlockMachineBase implements IEnergySource{
+public class BlockGeneratorBase extends BlockMachineBase{
 
 	public BlockGeneratorBase(String name) {
-		super();
-		setUnlocalizedName(name);
-		setRegistryName(Reference.MODID, name);
-		setCreativeTab(MTCreativeTabs.machines);
+		super(name + "_generator", MTCreativeTabs.machines);
 	}
 	
 	@Override
@@ -66,31 +55,6 @@ public class BlockGeneratorBase extends BlockMachineBase implements IEnergySourc
 		}
 		
 		return false;
-	}
-	
-	@SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
-
-	@Override
-	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing side) {
-		return false;
-	}
-
-	@Override
-	public double getOfferedEnergy() {
-		return 0;
-	}
-
-	@Override
-	public void drawEnergy(double amount) {
-		
-	}
-
-	@Override
-	public int getSourceTier() {
-		return 0;
 	}
 
 }

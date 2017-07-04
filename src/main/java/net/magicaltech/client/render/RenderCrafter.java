@@ -8,8 +8,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.thegaminghuskymc.huskylib.client.render.CustomRenderTESR;
-import net.thegaminghuskymc.huskylib.tiles.TileEntityBase;
+import net.thegaminghuskymc.huskylib.lib.client.render.CustomRenderTESR;
+import net.thegaminghuskymc.huskylib.lib.tiles.TileEntityBase;
 
 @SideOnly(Side.CLIENT)
 public class RenderCrafter extends CustomRenderTESR {

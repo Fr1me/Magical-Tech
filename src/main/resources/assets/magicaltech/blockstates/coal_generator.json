@@ -5,9 +5,37 @@
 		"transform": "forge:default-block"
 	},
 	"variants": {
-		"normal": {
-			"model": "magicaltech:coal_generator"
+		"active":{
+			"true":{
+				"textures": {
+					"front": "magicaltech:blocks/machines/coal_generator/coal_generator_front_on"
+				}
+			},
+			"false":{
+				"textures": {
+					"front": "magicaltech:blocks/machines/coal_generator/coal_generator_front_off"
+				}
+			}
 		},
+
+		"facing":{
+			"north": {
+				"model": "magicaltech:coal_generator"
+			},
+			"south": {
+				"model": "magicaltech:coal_generator",
+				"y": 180
+			},
+			"east": {
+				"model": "magicaltech:coal_generator",
+				"y": 90
+			},
+			"west": {
+				"model": "magicaltech:coal_generator",
+				"y": 270
+			}
+		},
+
 		"inventory": [{}]
 	}
 }

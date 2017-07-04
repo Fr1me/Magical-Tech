@@ -1,7 +1,12 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube_all",
+		"transform": "forge:default-block"
+	},
 	"variants": {
 		"normal": {
-			"model": "magicaltech:transistium_block"
+			"model": "magicaltech:transistium_storage"
 		}
 	}
 }

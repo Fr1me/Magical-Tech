@@ -8,7 +8,7 @@ import net.magicaltech.init.MTTools;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.thegaminghuskymc.huskylib.utils.HLCraftingHelper;
+import net.thegaminghuskymc.huskylib.lib.utils.HLCraftingHelper;
 
 public class MTRecipeHandler {
 	

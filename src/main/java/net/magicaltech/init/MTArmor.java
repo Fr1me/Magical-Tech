@@ -4,20 +4,19 @@ import org.apache.logging.log4j.Level;
 
 import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
-import net.magicaltech.items.ItemWitchHat;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-import net.thegaminghuskymc.huskylib.items.armor.ItemBootsBase;
-import net.thegaminghuskymc.huskylib.items.armor.ItemChestplateBase;
-import net.thegaminghuskymc.huskylib.items.armor.ItemHelmetBase;
-import net.thegaminghuskymc.huskylib.items.armor.ItemLeggingsBase;
-import net.thegaminghuskymc.huskylib.items.armor.special.ItemBootsSpecialBase;
-import net.thegaminghuskymc.huskylib.items.armor.special.ItemChestplateSpecialBase;
-import net.thegaminghuskymc.huskylib.items.armor.special.ItemHelmetSpecialBase;
-import net.thegaminghuskymc.huskylib.items.armor.special.ItemLeggingsSpecialBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.ItemBootsBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.ItemChestplateBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.ItemHelmetBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.ItemLeggingsBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.special.ItemBootsSpecialBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.special.ItemChestplateSpecialBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.special.ItemHelmetSpecialBase;
+import net.thegaminghuskymc.huskylib.lib.items.armor.special.ItemLeggingsSpecialBase;
 
 public class MTArmor {
 	
@@ -53,8 +52,6 @@ public class MTArmor {
 	public static ItemArmor sLeggings;
 	public static ItemArmor sBoots;
 	
-	public static ItemWitchHat witchHat;
-	
 	public static void init() {
 		tHelmet = new ItemHelmetBase(transistiumMaterial, "transistium", MTCreativeTabs.combat);
 		tChestplate = new ItemChestplateBase(transistiumMaterial, "transistium", MTCreativeTabs.combat);
@@ -75,8 +72,6 @@ public class MTArmor {
 		sChestplate = new ItemChestplateSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
 		sLeggings = new ItemLeggingsSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
 		sBoots = new ItemBootsSpecialBase(sataniumMaterial, "satanium", MTCreativeTabs.combat);
-		
-		witchHat = new ItemWitchHat();
 	}
 	
 	public static void register() {
@@ -99,8 +94,6 @@ public class MTArmor {
 		registerItem(sChestplate);
 		registerItem(sLeggings);
 		registerItem(sBoots);
-		
-		registerItem(witchHat);
 	}
 
 	public static void registerRenders() {
@@ -123,8 +116,6 @@ public class MTArmor {
 		registerRender(sChestplate);
 		registerRender(sLeggings);
 		registerRender(sBoots);
-		
-		registerRender(witchHat);
 	}
 	
 	public static void registerItem (Item item) {

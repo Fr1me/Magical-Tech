@@ -1,21 +1,18 @@
 package net.magicaltech.client.gui;
 
 import net.magicaltech.Reference;
-import net.magicaltech.tile.TileEntityGeneratorBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
-import net.thegaminghuskymc.huskylib.client.gui.EnumRenderType;
-import net.thegaminghuskymc.huskylib.client.gui.GuiContainerBase;
-import net.thegaminghuskymc.huskylib.client.gui.HLBuilder;
+import net.thegaminghuskymc.huskylib.lib.client.gui.EnumRenderType;
+import net.thegaminghuskymc.huskylib.lib.client.gui.GuiContainerBase;
+import net.thegaminghuskymc.huskylib.lib.client.gui.HLBuilder;
 
 @SuppressWarnings("deprecation")
 public class GuiGeneratorBase extends GuiContainerBase{
 	
 	private String name;
-	
-	private TileEntityGeneratorBase generator;
 	
 	private HLBuilder builder = new HLBuilder();
 
@@ -30,22 +27,20 @@ public class GuiGeneratorBase extends GuiContainerBase{
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/container/coal_generator.png"));
+		this.mc.getTextureManager().bindTexture(new ResourceLocation(Reference.MODID, "textures/gui/container/generator.png"));
 		final int k = (this.width - this.xSize) / 2;
 		final int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		
 //		this.drawBackground(new Point2i(k, l), new Point2i(176, 190), GuiContainerBase.ALIGNMENT_NONE);
 		
-		this.drawEnergyBar(this, this.guiLeft + 151, this.guiTop + 10, 50, 500, 1000, mouseX, mouseY, "RF");
+		this.drawEnergyBar(this, this.guiLeft + 151, this.guiTop + 10, 50, 500, 1000, mouseX, mouseY, "Tesla");
 		
-		drawBurnBar(this, 3, this.guiLeft + 40, this.guiTop + 40);
+		drawBurnBar(this, 5, this.guiLeft + 40, this.guiTop + 40, mouseX, mouseY);
 		
-		drawProgressBar(this, 8, this.guiLeft + 40, this.guiTop + 70);
+		drawProgressBar(this, 8, this.guiLeft + 40, this.guiTop + 70, mouseX, mouseY);
 		
 		builder.drawJEIButton(this, 10, 10, EnumRenderType.BACKGROUND);
-		
-		builder.drawBigBlueBar(this, this.guiLeft - 120, this.guiTop + 20, 100, 100000, mouseX, mouseY, EnumRenderType.BACKGROUND);
 		
 //		builder.drawFluid(this, new FluidStack(FluidRegistry.LAVA, 100), x, y, mouseY, k, maxCapacity);
 		
@@ -54,7 +49,7 @@ public class GuiGeneratorBase extends GuiContainerBase{
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		final String name = this.name +  "Generator";
+		final String name = this.name +  " Generator";
 		this.fontRenderer.drawString(name, this.xSize / 2 - this.fontRenderer.getStringWidth(name) / 2, 6,
 			4210752);
 		this.fontRenderer.drawString(I18n.translateToLocalFormatted("container.inventory", new Object[0]), 8,

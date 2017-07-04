@@ -19,6 +19,10 @@ public enum EnumPlankTypes implements IStringSerializable{
     {
         return this.name;
     }
+    
+    public int getID(){
+    	return this.ID;
+    }
 
     public String toString()
     {

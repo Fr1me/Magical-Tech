@@ -1,0 +1,41 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cube_all",
+		"transform": "forge:default-block"
+	},
+	"variants": {
+		"active":{
+			"true":{
+				"textures": {
+					"front": "magicaltech:blocks/machines/grinder/grinder_front_on"
+				}
+			},
+			"false":{
+				"textures": {
+					"front": "magicaltech:blocks/machines/grinder/grinder_front_off"
+				}
+			}
+		},
+
+		"facing":{
+			"north": {
+				"model": "magicaltech:grinder"
+			},
+			"south": {
+				"model": "magicaltech:grinder",
+				"y": 180
+			},
+			"east": {
+				"model": "magicaltech:grinder",
+				"y": 90
+			},
+			"west": {
+				"model": "magicaltech:grinder",
+				"y": 270
+			}
+		},
+
+		"inventory": [{}]
+	}
+}

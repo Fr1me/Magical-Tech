@@ -1,8 +1,9 @@
 package net.magicaltech.init;
 
+import net.magicaltech.MagicalTech;
 import net.magicaltech.Reference;
 import net.magicaltech.blocks.machines.BlockCoalGenerator;
-import net.magicaltech.blocks.machines.BlockFluffyGenerator;
+import net.magicaltech.blocks.machines.BlockCraftingBase;
 import net.magicaltech.blocks.machines.BlockMagicalGenerator;
 import net.magicaltech.blocks.machines.BlockNuffNuffGenerator;
 import net.magicaltech.blocks.other.BlockProphechyIronStorage;
@@ -14,54 +15,32 @@ import net.magicaltech.blocks.worldgen.BlockProphecyIronOre;
 import net.magicaltech.blocks.worldgen.BlockRoseQuartzNetherOre;
 import net.magicaltech.blocks.worldgen.BlockRoseQuartzOre;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.thegaminghuskymc.huskylib.lib.blocks.BlockMachineBase;
+import net.thegaminghuskymc.huskylib.lib.blocks.crops.BlockCropBase;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID)
-@GameRegistry.ObjectHolder(Reference.MODID)
 public class MTBlocks {
 
-	@GameRegistry.ObjectHolder(BlockHardenedStone.INTERNAL_NAME)
-	public static final BlockHardenedStone hStone = null;
+	public static Block hStone;
 	
-	@GameRegistry.ObjectHolder(BlockTransistiumStorage.INTERNAL_NAME)
-	public static final BlockTransistiumStorage tBlock = null;
+	public static Block tBlock;
+	public static Block pIBlock;
+	public static Block rQBlock;
 	
-	@GameRegistry.ObjectHolder(BlockProphechyIronStorage.INTERNAL_NAME)
-	public static final BlockProphechyIronStorage pIBlock = null;
+	public static Block rQOre;
+	public static Block plOre;
+	public static Block rQNetherOre;
+	public static Block plNetherOre;
 	
-	@GameRegistry.ObjectHolder(BlockRoseQuartzStorage.INTERNAL_NAME)
-	public static final BlockRoseQuartzStorage rQBlock = null;
-	
-	@GameRegistry.ObjectHolder(BlockRoseQuartzOre.INTERNAL_NAME)
-	public static final BlockRoseQuartzOre rQOre = null;
-	
-	@GameRegistry.ObjectHolder(BlockProphecyIronOre.INTERNAL_NAME)
-	public static final BlockProphecyIronOre plOre = null;
-	
-	@GameRegistry.ObjectHolder(BlockRoseQuartzNetherOre.INTERNAL_NAME)
-	public static final BlockRoseQuartzNetherOre rQNetherOre = null;
-	
-	@GameRegistry.ObjectHolder(BlockProphecyIronNetherOre.INTERNAL_NAME)
-	public static final BlockProphecyIronNetherOre plNetherOre = null;
-	
-	@GameRegistry.ObjectHolder(BlockCoalGenerator.INTERNAL_NAME)
-	public static final BlockCoalGenerator cGen = null;
-	
-	@GameRegistry.ObjectHolder(BlockMagicalGenerator.INTERNAL_NAME)
-	public static final BlockMagicalGenerator mGen = null;
-	
-	@GameRegistry.ObjectHolder(BlockNuffNuffGenerator.INTERNAL_NAME)
-	public static final BlockNuffNuffGenerator nnGen = null;
-	
-	@GameRegistry.ObjectHolder(BlockFluffyGenerator.INTERNAL_NAME)
-	public static final BlockFluffyGenerator fGen = null;
+	public static Block cGen;
+	public static Block mGen;
+	public static Block nnGen;
+	public static Block fGen;
 	
 	public static Block grinder;
 	
@@ -70,61 +49,114 @@ public class MTBlocks {
 	public static Block crafterT3;
 	public static Block crafterTC;
 	
-	public static Block crafter;
-	
 	public static Block cropTransition;
 	
-	@SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(new BlockHardenedStone());
-        event.getRegistry().register(new BlockProphecyIronNetherOre());
-        event.getRegistry().register(new BlockProphecyIronOre());
-        event.getRegistry().register(new BlockRoseQuartzNetherOre());
-        event.getRegistry().register(new BlockRoseQuartzOre());
-        
-        event.getRegistry().register(new BlockProphechyIronStorage());
-        event.getRegistry().register(new BlockRoseQuartzStorage());
-        event.getRegistry().register(new BlockTransistiumStorage());
-        
-        event.getRegistry().register(new BlockCoalGenerator());
-        event.getRegistry().register(new BlockFluffyGenerator());
-        event.getRegistry().register(new BlockMagicalGenerator());
-        event.getRegistry().register(new BlockNuffNuffGenerator());
-
-//        GameRegistry.registerTileEntity(TileEntityGeneratorBase.class, Reference.MODID + "_generator_base");
-//        GameRegistry.registerTileEntity(TileCraftingBase.class, Reference.MODID + "_crafter_base");
-    }
+	public static void init() {
+		
+//		Normal Blocks
+		tBlock = new BlockTransistiumStorage();
+		pIBlock = new BlockProphechyIronStorage();
+		rQBlock = new BlockRoseQuartzStorage();
+		
+//		Worldgen Blocks
+		hStone = new BlockHardenedStone();
+		
+		plOre = new BlockProphecyIronOre();
+		rQOre = new BlockRoseQuartzOre();
+		
+		plNetherOre = new BlockProphecyIronNetherOre();
+		rQNetherOre = new BlockRoseQuartzNetherOre();
+			
+//		Machines
+		cGen = new BlockCoalGenerator();
+		mGen = new BlockMagicalGenerator();
+		nnGen = new BlockNuffNuffGenerator();
+		
+		crafterT1 = new BlockCraftingBase("crafter_tire_1");
+		crafterT2 = new BlockCraftingBase("crafter_tire_2");
+		crafterT3 = new BlockCraftingBase("crafter_tire_3");
+		crafterTC = new BlockCraftingBase("crafter_tire_creative");
+		
+		grinder = new BlockMachineBase("grinder", MTCreativeTabs.machines);
+		
+//		Crops
+		cropTransition = new BlockCropBase("transition_plant", MTItems.seedTransition, MTItems.tTFragment);
+	}
 	
-	@SideOnly(Side.CLIENT)
-    public static void initModels() {
-        hStone.initModel();
-        tBlock.initModel();
-        pIBlock.initModel();
-        rQBlock.initModel();
-        rQOre.initModel();
-        plOre.initModel();
-        rQNetherOre.initModel();
-        plNetherOre.initModel();
-        cGen.initModel();
-        mGen.initModel();
-        nnGen.initModel();
-        fGen.initModel();
-    }
+	public static void register() {
+//		Normal Blocks
+		registerBlock(tBlock);
+		registerBlock(pIBlock);
+		registerBlock(rQBlock);
+		
+//		Ores
+		registerBlock(plOre);
+		registerBlock(rQOre);
+		
+		registerBlock(plNetherOre);
+		registerBlock(rQNetherOre);
+		
+		registerBlock(hStone);
+		
+//		Machines
+		registerBlock(cGen);
+		registerBlock(mGen);
+		registerBlock(nnGen);
+		
+		registerBlock(crafterT1);
+		registerBlock(crafterT2);
+		registerBlock(crafterT3);
+		registerBlock(crafterTC);
+		
+		registerBlock(grinder);
+		
+//		Crops
+		ForgeRegistries.BLOCKS.register(cropTransition);
+	}
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemBlock(MTBlocks.hStone).setRegistryName(MTBlocks.hStone.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.tBlock).setRegistryName(MTBlocks.tBlock.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.pIBlock).setRegistryName(MTBlocks.pIBlock.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.rQBlock).setRegistryName(MTBlocks.rQBlock.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.rQOre).setRegistryName(MTBlocks.rQOre.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.plOre).setRegistryName(MTBlocks.plOre.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.rQNetherOre).setRegistryName(MTBlocks.rQNetherOre.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.plNetherOre).setRegistryName(MTBlocks.plNetherOre.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.cGen).setRegistryName(MTBlocks.cGen.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.mGen).setRegistryName(MTBlocks.mGen.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.nnGen).setRegistryName(MTBlocks.nnGen.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(MTBlocks.fGen).setRegistryName(MTBlocks.fGen.getRegistryName()));
-    }
+	public static void registerRenders() {
+//		Normal Blocks
+		registerRender(hStone);
+		
+		registerRender(tBlock);
+		registerRender(rQBlock);
+		registerRender(pIBlock);
+		
+//		Ores
+		registerRender(rQOre);
+		registerRender(plOre);
+		
+		registerRender(plNetherOre);
+		registerRender(rQNetherOre);
+		
+//		Machines
+		registerRender(cGen);
+		registerRender(mGen);
+		registerRender(nnGen);
+		
+		registerRender(crafterT1);
+		registerRender(crafterT2);
+		registerRender(crafterT3);
+		registerRender(crafterTC);
+		
+		registerRender(grinder);
+		
+	}
+	
+	public static void registerBlock (Block block) {
+		ForgeRegistries.BLOCKS.register(block);
+		ForgeRegistries.ITEMS.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		MagicalTech.logger.info("Registered Block: " + block.getUnlocalizedName().substring(5));
+	}
+	
+	public static void registerOnlyBlock(Block block) {
+		ForgeRegistries.BLOCKS.register(block);
+		MagicalTech.logger.info("Registered Special Block: " + block.getUnlocalizedName().substring(5));
+	}
+	
+	public static void registerRender(Block block) {
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(new ResourceLocation(Reference.MODID, block.getUnlocalizedName().substring(5)), "inventory"));
+		MagicalTech.logger.info("Registered Render For " + block.getUnlocalizedName().substring(5));
+	}
 
 }

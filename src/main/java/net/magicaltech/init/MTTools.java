@@ -7,11 +7,11 @@ import net.magicaltech.Reference;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-import net.thegaminghuskymc.huskylib.items.tools.ItemAxeBase;
-import net.thegaminghuskymc.huskylib.items.tools.ItemHoeBase;
-import net.thegaminghuskymc.huskylib.items.tools.ItemPickaxeBase;
-import net.thegaminghuskymc.huskylib.items.tools.ItemShovelBase;
-import net.thegaminghuskymc.huskylib.items.tools.ItemSwordBase;
+import net.thegaminghuskymc.huskylib.lib.items.tools.ItemAxeBase;
+import net.thegaminghuskymc.huskylib.lib.items.tools.ItemHoeBase;
+import net.thegaminghuskymc.huskylib.lib.items.tools.ItemPickaxeBase;
+import net.thegaminghuskymc.huskylib.lib.items.tools.ItemShovelBase;
+import net.thegaminghuskymc.huskylib.lib.items.tools.ItemSwordBase;
 
 public class MTTools {
 	

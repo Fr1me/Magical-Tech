@@ -1,8 +1,13 @@
 package net.magicaltech;
 
-import com.google.common.collect.*;
-import java.util.*;
-import net.minecraft.block.Block;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
+
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -45,22 +50,7 @@ public class BlockStateUtils
             return child != null;
         }
 
-        public int getCounter()
-        {
-            return counter;
-        }
-
-        public int getMaxCount()
-        {
-            return maxCount;
-        }
-
-        public Comparable getCurrentValue()
-        {
-            return (Comparable)validValues.get(counter);
-        }
-
-        private ArrayList validValues;
+        private ArrayList<?> validValues;
         private int maxCount;
         private int counter;
         private IndexedProperty parent;
@@ -68,10 +58,10 @@ public class BlockStateUtils
 
 
 
-        private IndexedProperty(IProperty property)
+        private IndexedProperty(IProperty<?> property)
         {
-            validValues = new ArrayList();
-            validValues.addAll(property.getAllowedValues());
+            validValues = new ArrayList<Object>();
+//            validValues.addAll(property.getAllowedValues());
             maxCount = validValues.size() - 1;
         }
 
@@ -85,24 +75,19 @@ public class BlockStateUtils
             return ((IndexedProperty)indexedProperties.get(finalProperty)).increment();
         }
 
-        public IndexedProperty getIndexedProperty(IProperty property)
-        {
-            return (IndexedProperty)indexedProperties.get(property);
-        }
+        private HashMap<IProperty<?>, IndexedProperty> indexedProperties;
+        private IProperty<?> finalProperty;
 
-        private HashMap indexedProperties;
-        private IProperty finalProperty;
-
-        private PropertyIndexer(IProperty properties[])
+        private PropertyIndexer(IProperty<?> properties[])
         {
-            indexedProperties = new HashMap();
+            indexedProperties = new HashMap<IProperty<?>, IndexedProperty>();
             finalProperty = properties[properties.length - 1];
             IndexedProperty previousIndexedProperty = null;
-            IProperty arr$[] = properties;
+            IProperty<?> arr$[] = properties;
             int len$ = arr$.length;
             for(int i$ = 0; i$ < len$; i$++)
             {
-                IProperty property = arr$[i$];
+                IProperty<?> property = arr$[i$];
                 IndexedProperty indexedProperty = new IndexedProperty(property);
                 if(previousIndexedProperty != null)
                 {
@@ -142,11 +127,11 @@ public class BlockStateUtils
         return (meta & 8) != 8;
     }
 
-    public static IProperty getPropertyByName(IBlockState blockState, String propertyName)
+    public static IProperty<?> getPropertyByName(IBlockState blockState, String propertyName)
     {
-        for(Iterator i$ = blockState.getProperties().keySet().iterator(); i$.hasNext();)
+        for(Iterator<?> i$ = blockState.getProperties().keySet().iterator(); i$.hasNext();)
         {
-            IProperty property = (IProperty)i$.next();
+            IProperty<?> property = (IProperty<?>)i$.next();
             if(property.getName().equals(propertyName))
                 return property;
         }
@@ -159,11 +144,11 @@ public class BlockStateUtils
         return getPropertyByName(blockState, propertyName) != null;
     }
 
-    public static Comparable getPropertyValueByName(IBlockState blockState, IProperty property, String valueName)
+    public static Comparable<?> getPropertyValueByName(IBlockState blockState, IProperty<?> property, String valueName)
     {
-        for(Iterator i$ = ((ImmutableSet)property.getAllowedValues()).iterator(); i$.hasNext();)
+        for(Iterator<?> i$ = ((ImmutableSet<?>)property.getAllowedValues()).iterator(); i$.hasNext();)
         {
-            Comparable value = (Comparable)i$.next();
+            Comparable<?> value = (Comparable<?>)i$.next();
             if(value.toString().equals(valueName))
                 return value;
         }
@@ -171,23 +156,15 @@ public class BlockStateUtils
         return null;
     }
 
-    public static ImmutableSet getValidStatesForProperties(IBlockState baseState, IProperty properties[])
+    public static ImmutableSet<IBlockState> getValidStatesForProperties(IBlockState baseState, IProperty<?> properties[])
     {
         if(properties == null)
             return null;
-        Set validStates = Sets.newHashSet();
+        Set<IBlockState> validStates = Sets.newHashSet();
         PropertyIndexer propertyIndexer = new PropertyIndexer(properties);
         do
         {
             IBlockState currentState = baseState;
-            IProperty arr$[] = properties;
-            int len$ = arr$.length;
-            for(int i$ = 0; i$ < len$; i$++)
-            {
-                IProperty property = arr$[i$];
-                IndexedProperty indexedProperty = propertyIndexer.getIndexedProperty(property);
-                currentState = currentState.withProperty(property, indexedProperty.getCurrentValue());
-            }
 
             validStates.add(currentState);
         } while(propertyIndexer.increment());

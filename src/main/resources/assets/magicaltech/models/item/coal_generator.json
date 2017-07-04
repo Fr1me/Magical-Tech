@@ -1,3 +1,12 @@
 {
-	"parent": "magicaltech:block/coal_generator"
+	"parent": "magicaltech:block/coal_generator",
+	"textures": {
+		"up": "magicaltech:blocks/machines/machine_top",
+		"down": "magicaltech:blocks/machines/machine_base",
+		"north": "magicaltech:blocks/machines/coal_generator/coal_generator_front_off",
+		"south": "magicaltech:blocks/machines/machine_base",
+		"east": "magicaltech:blocks/machines/machine_base",
+		"west": "magicaltech:blocks/machines/machine_base",
+		"particle": "magicaltech:blocks/machines/machine_base"
+	}
 }
